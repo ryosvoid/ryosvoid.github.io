@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Hajar Cherrouk | Portfolio</title>
+  <title>Hajar Cherrouk | About Me</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="First-year university student passionate about AI and technology. Exploring web development and programming." />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Cherry+Bomb+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
@@ -17,6 +17,7 @@
       --ghibli-purple: #b46faa;
       --ghibli-magenta: #e45ab3;
       --ghibli-blue: #8ab3d9;
+      --ghibli-green: #a3d9b1;
     }
 
     body {
@@ -32,75 +33,17 @@
       padding: 2rem 1rem;
     }
 
-    header {
-      margin-bottom: 2rem;
-      display: flex;
-      gap: 1.5rem;
-      position: relative;
-    }
-
-    header::after {
-      content: "";
-      position: absolute;
-      bottom: -15px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--ghibli-magenta), transparent);
-      opacity: 0.5;
-    }
-
-    header button {
-      font-family: 'Cherry Bomb One', cursive;
-      background: var(--ghibli-pink);
-      border: 2px solid var(--ghibli-pink-dark);
-      color: var(--ghibli-magenta);
-      font-size: 1.2rem;
-      padding: 0.6rem 1.2rem;
-      border-radius: 40px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px var(--ghibli-shadow);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    header button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 100%;
-      background: var(--ghibli-magenta);
-      transition: width 0.3s;
-      z-index: -1;
-    }
-
-    header button.active,
-    header button:hover {
-      color: var(--ghibli-white);
-      border-color: var(--ghibli-magenta);
-      box-shadow: 0 6px 20px #f08ecb;
-    }
-
-    header button.active::before,
-    header button:hover::before {
-      width: 100%;
-    }
-
     main {
       width: 100%;
-      max-width: 800px;
+      max-width: 900px;
       position: relative;
     }
 
-    .section {
-      display: none;
+    /* About Me Section */
+    .about-me {
       background: linear-gradient(110deg, #fff6fa 60%, #ffe0f5 100%);
       border-radius: 38px 38px 70px 38px;
-      padding: 2rem 2.5rem;
+      padding: 2.5rem;
       box-shadow: 0 6px 30px var(--ghibli-shadow);
       animation: fadeIn 0.5s ease;
     }
@@ -110,66 +53,25 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .section.active {
-      display: block;
-    }
-
-    /* Introduction Section */
-    .intro {
+    .profile-header {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       gap: 2rem;
-      color: var(--ghibli-purple);
+      margin-bottom: 2rem;
+    }
+
+    .profile-image {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 60px 60px 80px 80px / 50px 50px 90px 90px;
+      box-shadow: 0 8px 26px #efa3c8c0;
+      border: 4px solid #fff8c6;
+      background: #fff5fa;
       position: relative;
     }
 
-    .intro .text {
-      flex: 2;
-      font-size: 1.05rem;
-      line-height: 1.6;
-      background: var(--ghibli-pink);
-      border-radius: 30px 30px 40px 30px;
-      padding: 1.5rem;
-      border: 2px dashed #efa3c8a4;
-      box-shadow: 0 4px 24px #f8b3d98f;
-      font-family: 'Quicksand', sans-serif;
-      transition: transform 0.3s ease;
-    }
-
-    .intro .text:hover {
-      transform: translateY(-5px);
-    }
-
-    .intro .text h1 {
-      font-family: 'Cherry Bomb One', cursive;
-      font-size: 2.4rem;
-      color: var(--ghibli-magenta);
-      margin-bottom: 0.7rem;
-      text-shadow: 0 3px 10px #fff8, 1px 2px 8px #efa3c8;
-      position: relative;
-      display: inline-block;
-    }
-
-    .intro .text h1::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--ghibli-magenta), transparent);
-      opacity: 0.5;
-    }
-
-    .intro .image {
-      flex: 1;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      position: relative;
-    }
-
-    .intro .image::before {
+    .profile-image::before {
       content: '';
       position: absolute;
       width: 180px;
@@ -187,154 +89,60 @@
       100% { transform: scale(1.05); opacity: 0.7; }
     }
 
-    .intro .image img {
-      width: 180px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 60px 60px 80px 80px / 50px 50px 90px 90px;
-      box-shadow: 0 8px 26px #efa3c8c0;
-      border: 4px solid #fff8c6;
-      background: #fff5fa;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .profile-info h1 {
+      font-family: 'Cherry Bomb One', cursive;
+      font-size: 2.4rem;
+      color: var(--ghibli-magenta);
+      margin: 0 0 0.5rem 0;
+      text-shadow: 0 3px 10px #fff8, 1px 2px 8px #efa3c8;
     }
 
-    .intro .image img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 30px #e45ab3cc;
+    .profile-info p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 0;
+      color: var(--ghibli-purple);
     }
 
-    /* Projects Section */
-    .projects-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .project-item {
-      background: var(--ghibli-pink);
-      border-radius: 30px 30px 40px 30px;
-      padding: 1.2rem 1.5rem;
-      font-family: 'Quicksand', sans-serif;
-      font-weight: 600;
-      font-size: 1.2rem;
-      color: #a2357c;
-      border: 2px dashed #efa3c8a4;
-      box-shadow: 0 4px 20px #f8b3d9aa;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      user-select: none;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 100%;
-      background: linear-gradient(90deg, var(--ghibli-magenta), var(--ghibli-pink-dark));
-      transition: width 0.3s ease;
-      z-index: 0;
-    }
-
-    .project-item:hover {
-      color: #fff5fa;
-      box-shadow: 0 6px 30px #f08ecbcc;
-      transform: translateY(-3px);
-    }
-
-    .project-item:hover::before {
-      width: 100%;
-    }
-
-    .project-item span {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Hobby Section - Inspired by the image */
-    .hobby-section {
+    .about-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      font-family: 'Quicksand', sans-serif;
+      gap: 2rem;
     }
 
-    .hobby-card {
-      background: white;
-      border-radius: 20px;
+    .about-card {
+      background: var(--ghibli-white);
+      border-radius: 25px;
       padding: 1.5rem;
-      box-shadow: 0 4px 20px rgba(239, 163, 200, 0.3);
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 15px rgba(239, 163, 200, 0.2);
     }
 
-    .hobby-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .hobby-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .hobby-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 1rem;
-      border: 2px solid var(--ghibli-pink-dark);
-    }
-
-    .hobby-title {
+    .card-title {
       font-family: 'Cherry Bomb One', cursive;
       font-size: 1.8rem;
       color: var(--ghibli-magenta);
-      margin: 0;
+      margin: 0 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .hobby-subtitle {
-      font-size: 1.2rem;
-      color: var(--ghibli-purple);
-      margin: 0.5rem 0 1rem;
-      font-weight: 600;
+    .card-title i {
+      font-size: 1.5rem;
     }
 
-    .hobby-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 1.5rem;
+    .info-item {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
     }
 
-    .hobby-table th {
-      text-align: left;
-      padding: 0.5rem;
-      background-color: var(--ghibli-pink);
-      color: var(--ghibli-purple);
-      font-weight: 600;
-      border-radius: 8px 8px 0 0;
-    }
-
-    .hobby-table td {
-      padding: 0.5rem;
-      border-bottom: 1px dashed var(--ghibli-pink-dark);
-    }
-
-    .hobby-highlight {
-      font-weight: 600;
+    .info-item i {
       color: var(--ghibli-magenta);
-      margin: 1rem 0;
-      line-height: 1.5;
-    }
-
-    .hobby-divider {
-      border: none;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--ghibli-pink-dark), transparent);
-      margin: 1.5rem 0;
+      font-size: 1.2rem;
+      width: 24px;
+      text-align: center;
     }
 
     .languages-container {
@@ -353,41 +161,100 @@
       font-weight: 600;
     }
 
-    .contact-info {
-      margin-top: 1.5rem;
-      font-size: 0.9rem;
+    .certificate-item {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed var(--ghibli-pink-dark);
     }
 
-    .contact-info p {
-      margin: 0.3rem 0;
-      display: flex;
-      align-items: center;
+    .certificate-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
     }
 
-    .contact-info i {
-      margin-right: 0.5rem;
+    .certificate-link {
+      color: var(--ghibli-purple);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+      display: block;
+      margin-top: 0.3rem;
+    }
+
+    .certificate-link:hover {
       color: var(--ghibli-magenta);
+      text-decoration: underline;
     }
 
-    @media (max-width: 700px) {
-      .intro {
-        flex-direction: column;
-        align-items: center;
-      }
-      .intro .image img {
-        width: 140px;
-        height: 140px;
-      }
-      .intro .image::before {
-        width: 140px;
-        height: 140px;
-      }
-      .intro .text h1 {
-        font-size: 2rem;
-      }
-      .hobby-section {
-        grid-template-columns: 1fr;
-      }
+    /* Projects Section */
+    .projects-container {
+      margin-top: 2rem;
+    }
+
+    .projects-title {
+      font-family: 'Cherry Bomb One', cursive;
+      font-size: 2rem;
+      color: var(--ghibli-magenta);
+      margin: 0 0 1.5rem 0;
+      text-align: center;
+      text-shadow: 0 3px 10px #fff8, 1px 2px 8px #efa3c8;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--ghibli-pink);
+      border-radius: 25px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(239, 163, 200, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--ghibli-magenta), var(--ghibli-pink-dark));
+      transition: width 0.3s ease;
+      z-index: 0;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(239, 163, 200, 0.5);
+    }
+
+    .project-card:hover::before {
+      width: 100%;
+    }
+
+    .project-card h3 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.3rem;
+      color: #a2357c;
+      margin: 0 0 0.5rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .project-card p {
+      font-size: 0.9rem;
+      color: var(--ghibli-purple);
+      margin: 0;
+      position: relative;
+      z-index: 1;
     }
 
     /* Project Detail Popup */
@@ -414,7 +281,7 @@
     .project-detail {
       background: #fff5fa;
       border-radius: 38px 38px 70px 38px;
-      max-width: 600px;
+      max-width: 700px;
       width: 100%;
       padding: 2rem 2.5rem;
       box-shadow: 0 8px 40px var(--ghibli-shadow);
@@ -431,19 +298,6 @@
       margin-bottom: 1rem;
       color: var(--ghibli-magenta);
       text-shadow: 0 3px 10px #fff8, 1px 2px 8px #efa3c8;
-      position: relative;
-      display: inline-block;
-    }
-
-    .project-detail h2::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, var(--ghibli-magenta), transparent);
-      opacity: 0.5;
     }
 
     .project-detail p {
@@ -464,19 +318,18 @@
 
     .project-detail .images {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 1rem;
       margin-top: 1.5rem;
     }
 
     .project-detail .images img {
       width: 100%;
-      height: 100px;
+      height: 120px;
       object-fit: cover;
-      border-radius: 20px 20px 30px 30px / 20px 20px 40px 40px;
+      border-radius: 20px;
       box-shadow: 0 6px 20px var(--ghibli-pink-dark);
       border: 3px solid #fff5fa;
-      background: #fff5fa;
       transition: all 0.3s ease;
       cursor: pointer;
     }
@@ -560,6 +413,28 @@
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .profile-image {
+        width: 140px;
+        height: 140px;
+      }
+      
+      .profile-image::before {
+        width: 140px;
+        height: 140px;
+      }
+    }
+
     /* Scrollbar styling */
     ::-webkit-scrollbar {
       width: 8px;
@@ -578,89 +453,105 @@
       background: #b53a82;
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-  <header>
-    <button id="btn-intro" class="active">Introduction</button>
-    <button id="btn-projects">Projects</button>
-    <button id="btn-hobby">Hobby</button>
-  </header>
-
   <main>
-    <!-- Introduction Section -->
-    <section id="section-intro" class="section active">
-      <div class="intro">
-        <div class="text">
+    <!-- About Me Section -->
+    <section class="about-me">
+      <div class="profile-header">
+        <div class="profile-image-container">
+          <img src="icon.jpeg" alt="Hajar's Photo" class="profile-image">
+        </div>
+        <div class="profile-info">
           <h1>Hajar Cherrouk</h1>
-          <p>
-            I'm a first-year university student with a growing fascination for artificial intelligence and all things tech.<br><br>
-            Whether it's diving into AI concepts or experimenting with web development, I'm excited by the endless possibilities tech has to offer and motivated to keep learning, creating, and growing.
-          </p>
-        </div>
-        <div class="image">
-          <img src="icon.jpeg" alt="Hajar's Photo" />
+          <p>First-year university student passionate about AI and technology. </p>
         </div>
       </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="section-projects" class="section">
-      <h2 class="projects-title">My Projects</h2>
-      <div class="projects-list">
-        <div class="project-item" id="memory-game"><span>Memory Game</span></div>
-        <!-- Add other projects here if you want -->
-      </div>
-    </section>
-
-    <!-- Hobby Section -->
-    <section id="section-hobby" class="section">
-      <div class="hobby-section">
-        <div class="hobby-card">
-          <div class="hobby-header">
-            <img src="icon.jpeg" alt="Hajar" class="hobby-icon">
-            <h2 class="hobby-title">HOBBY</h2>
+      
+      <div class="about-content">
+        <div class="about-card">
+          <h2 class="card-title"><i class="fas fa-heart"></i> Hobbies & Interests</h2>
+          <div class="info-item">
+            <i class="fas fa-laptop-code"></i>
+            <span>Chess</span>
           </div>
-          <h3 class="hobby-subtitle">What I ♥</h3>
-          
-          <table class="hobby-table">
-            <tr>
-              <th>TOP 07/27</th>
-              <th>EDUCATION</th>
-            </tr>
-            <tr>
-              <td>2022-2018</td>
-              <td>Computer Science</td>
-            </tr>
-          </table>
-          
-          <p class="hobby-highlight">
-            Exploring technology, playing chess, solving maths problems and baking.
-          </p>
-          
-          <hr class="hobby-divider">
-          
-          <h3 class="hobby-subtitle">TOOLS</h3>
+          <div class="info-item">
+            <i class="fas fa-brain"></i>
+            <span>Artificial Intelligence</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-globe"></i>
+            <span>Solving maths problems</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-gamepad"></i>
+            <span>Sports</span>
+          </div>
+        </div>
+        
+        <div class="about-card">
+          <h2 class="card-title"><i class="fas fa-user"></i> About Me</h2>
+          <div class="info-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span>computer engineering and artificial intelligence</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Morocco</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <span>+212 724-600991</span>
+          </div>
+          <div class="info-item">
+            <i class="fab fa-github"></i>
+            <span><a href="https://github.com/ryosvoid" target="_blank" style="color: var(--ghibli-purple); text-decoration: none;">github.com/ryosvoid</a></span>
+          </div>
+        </div>
+        
+        <div class="about-card">
+          <h2 class="card-title"><i class="fas fa-code"></i> Languages & Skills</h2>
           <div class="languages-container">
             <span class="language-tag">Python</span>
             <span class="language-tag">C</span>
             <span class="language-tag">HTML/CSS</span>
             <span class="language-tag">JavaScript</span>
+            <span class="language-tag">Microsoft Office</span>
           </div>
         </div>
         
-        <div class="hobby-card">
-          <h3 class="hobby-subtitle">CONTACT</h3>
-          <div class="contact-info">
-            <p><i>✉️</i> hajarcrk@example.com</p>
-            <p><i>📱</i> +212 246 00991</p>
-            <p><i>📷</i> @yourinstagram</p>
+        <div class="about-card">
+          <h2 class="card-title"><i class="fas fa-certificate"></i> Certifications</h2>
+          <div class="certificate-item">
+            <strong>Introduction to Python Programming</strong>
+            <a href="https://coursera.org/share/443a46b3ed1df1f3ce3e756c9fd281c2" target="_blank" class="certificate-link">View Certificate</a>
           </div>
-          
-          <h3 class="hobby-subtitle">ACTIVITIES</h3>
-          <p>2025.06 - Developed Memory Game Project</p>
-          <p>2023.03 - AI Workshop Participant</p>
-          <p>2022.12 - Web Development Course</p>
+          <div class="certificate-item">
+            <strong>Work Smarter with Microsoft Word</strong>
+            <a href="https://coursera.org/share/246f4a1ea4e4e71caf8b805d97ee52c3" target="_blank" class="certificate-link">View Certificate</a>
+          </div>
+          <div class="certificate-item">
+            <strong>Work Smarter with Microsoft Excel</strong>
+            <a href="https://coursera.org/share/a5fd432d507960e5fd70f8f6b5145c7e" target="_blank" class="certificate-link">View Certificate</a>
+          </div>
+          <div class="certificate-item">
+            <strong>Introduction to Web Development</strong>
+            <a href="https://coursera.org/share/84b220c7977604f1ce66acbda583d290" target="_blank" class="certificate-link">View Certificate</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Projects Section -->
+      <div class="projects-container">
+        <h2 class="projects-title">My Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card" id="memory-game">
+            <h3>Memory Game</h3>
+            <p>Click to view details</p>
+          </div>
+          <!-- Add more project cards here as needed -->
         </div>
       </div>
     </section>
@@ -696,43 +587,6 @@
   </div>
 
   <script>
-    // Navigation buttons
-    const btnIntro = document.getElementById('btn-intro');
-    const btnProjects = document.getElementById('btn-projects');
-    const btnHobby = document.getElementById('btn-hobby');
-    const sectionIntro = document.getElementById('section-intro');
-    const sectionProjects = document.getElementById('section-projects');
-    const sectionHobby = document.getElementById('section-hobby');
-
-    function activateSection(sectionToActivate) {
-      // Deactivate all sections
-      [sectionIntro, sectionProjects, sectionHobby].forEach(section => {
-        section.classList.remove('active');
-      });
-      
-      // Deactivate all buttons
-      [btnIntro, btnProjects, btnHobby].forEach(btn => {
-        btn.classList.remove('active');
-      });
-      
-      // Activate the selected section and button
-      sectionToActivate.classList.add('active');
-      
-      if (sectionToActivate === sectionIntro) {
-        btnIntro.classList.add('active');
-      } else if (sectionToActivate === sectionProjects) {
-        btnProjects.classList.add('active');
-      } else if (sectionToActivate === sectionHobby) {
-        btnHobby.classList.add('active');
-      }
-      
-      closeProjectDetail();
-    }
-
-    btnIntro.addEventListener('click', () => activateSection(sectionIntro));
-    btnProjects.addEventListener('click', () => activateSection(sectionProjects));
-    btnHobby.addEventListener('click', () => activateSection(sectionHobby));
-
     // Project detail popup
     const projectDetailOverlay = document.getElementById('project-detail-overlay');
     const memoryGameBtn = document.getElementById('memory-game');
@@ -743,15 +597,15 @@
       projectDetailOverlay.focus();
     });
 
-    closeDetailBtn.addEventListener('click', closeProjectDetail);
-
-    projectDetailOverlay.addEventListener('click', (e) => {
-      if (e.target === projectDetailOverlay) closeProjectDetail();
+    closeDetailBtn.addEventListener('click', () => {
+      projectDetailOverlay.classList.remove('active');
     });
 
-    function closeProjectDetail() {
-      projectDetailOverlay.classList.remove('active');
-    }
+    projectDetailOverlay.addEventListener('click', (e) => {
+      if (e.target === projectDetailOverlay) {
+        projectDetailOverlay.classList.remove('active');
+      }
+    });
 
     // Image modal functionality
     const imageModal = document.getElementById('image-modal');
@@ -781,7 +635,7 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         if (projectDetailOverlay.classList.contains('active')) {
-          closeProjectDetail();
+          projectDetailOverlay.classList.remove('active');
         }
         if (imageModal.classList.contains('active')) {
           imageModal.classList.remove('active');
