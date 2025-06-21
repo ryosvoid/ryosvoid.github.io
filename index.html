@@ -110,12 +110,12 @@
       display: block;
     }
 
-    /* About Me Section */
+    /* About Me Section - Updated for horizontal layout */
     .profile-header {
       display: flex;
       align-items: center;
       gap: 2rem;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
 
     .profile-image {
@@ -161,9 +161,52 @@
       color: var(--tech-dark);
     }
 
+    /* New horizontal layout for about section */
     .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .about-main {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+
+    .about-intro {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .about-intro:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-intro h2 {
+      font-family: 'Cherry Bomb One', cursive;
+      font-size: 1.5rem;
+      color: var(--tech-blue);
+      margin: 0 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .about-intro p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--tech-dark);
+    }
+
+    .about-sidebar {
+      display: flex;
+      flex-direction: column;
       gap: 2rem;
     }
 
@@ -519,7 +562,7 @@
         text-align: center;
       }
       
-      .about-content {
+      .about-main {
         grid-template-columns: 1fr;
       }
       
@@ -572,7 +615,7 @@
   </header>
 
   <main>
-    <!-- About Me Section -->
+    <!-- About Me Section - Updated for horizontal layout -->
     <section id="section-about" class="section active">
       <div class="profile-header">
         <img src="icon.jpeg" alt="Hajar's Photo" class="profile-image">
@@ -583,87 +626,58 @@
       </div>
       
       <div class="about-content">
-        <div class="about-card">
-          <h2 class="card-title"><i class="fas fa-heart"></i> Hobbies & Interests</h2>
-          <div class="info-item">
-            <i class="fas fa-chess"></i>
-            <span>Chess</span>
-          </div>
-          <div class="info-item">
-            <i class="fas fa-brain"></i>
-            <span>Artificial Intelligence</span>
-          </div>
-          <div class="info-item">
-            <i class="fas fa-square-root-alt"></i>
-            <span>Solving maths problems</span>
-          </div>
-          <div class="info-item">
-            <i class="fas fa-running"></i>
-            <span>Sports</span>
-          </div>
-        </div>
-        
-        <div class="about-card">
-          <h2 class="card-title"><i class="fas fa-graduation-cap"></i> Education</h2>
-          <div class="info-item">
-            <i class="fas fa-university"></i>
-            <span>Computer Engineering and Artificial Intelligence</span>
-          </div>
-          <div class="info-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Morocco</span>
-          </div>
-        </div>
-        
-        <!-- Combined Skills and Certifications Card -->
-        <div class="about-card skills-cert-container">
-          <div>
-            <h2 class="card-title"><i class="fas fa-code"></i> Skills</h2>
-            <div class="languages-container">
-              <span class="language-tag">Python</span>
-              <span class="language-tag">C</span>
-              <span class="language-tag">HTML/CSS</span>
-              <span class="language-tag">JavaScript</span>
-              <span class="language-tag">Microsoft Office</span>
-            </div>
+        <div class="about-main">
+          <div class="about-intro">
+            <h2><i class="fas fa-star"></i> About Me</h2>
+            <p>Hello! I'm Hajar, a Computer Engineering and AI student with a passion for solving complex problems and creating innovative solutions. My journey in technology began with a curiosity about how things work, which has evolved into a deep interest in artificial intelligence and software development.</p>
+            <p>When I'm not coding, you can find me playing chess, solving math problems, or staying active through sports. I believe in continuous learning and enjoy challenging myself with new technologies and concepts.</p>
           </div>
           
-          <div>
-            <h2 class="card-title"><i class="fas fa-certificate"></i> Certifications</h2>
-            <div class="certificates-grid">
-              <div class="certificate-item">
-                <strong>Introduction to Python Programming</strong>
-                <a href="https://coursera.org/share/443a46b3ed1df1f3ce3e756c9fd281c2" target="_blank" class="certificate-link">View Certificate</a>
+          <div class="about-sidebar">
+            <div class="about-card">
+              <h2 class="card-title"><i class="fas fa-code"></i> Skills</h2>
+              <div class="languages-container">
+                <span class="language-tag">Python</span>
+                <span class="language-tag">C</span>
+                <span class="language-tag">HTML/CSS</span>
+                <span class="language-tag">JavaScript</span>
+                <span class="language-tag">Microsoft Office</span>
               </div>
-              <div class="certificate-item">
-                <strong>Work Smarter with Microsoft Word</strong>
-                <a href="https://coursera.org/share/246f4a1ea4e4e71caf8b805d97ee52c3" target="_blank" class="certificate-link">View Certificate</a>
+            </div>
+            
+            <div class="about-card">
+              <h2 class="card-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+              <div class="info-item">
+                <i class="fas fa-university"></i>
+                <span>Computer Engineering and Artificial Intelligence</span>
               </div>
-              <div class="certificate-item">
-                <strong>Work Smarter with Microsoft Excel</strong>
-                <a href="https://coursera.org/share/a5fd432d507960e5fd70f8f6b5145c7e" target="_blank" class="certificate-link">View Certificate</a>
-              </div>
-              <div class="certificate-item">
-                <strong>Introduction to Web Development</strong>
-                <a href="https://coursera.org/share/84b220c7977604f1ce66acbda583d290" target="_blank" class="certificate-link">View Certificate</a>
+              <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Morocco</span>
               </div>
             </div>
           </div>
         </div>
         
         <div class="about-card">
-          <h2 class="card-title"><i class="fas fa-id-card"></i> Contact</h2>
-          <div class="info-item">
-            <i class="fas fa-phone"></i>
-            <span>+212 724-600991</span>
-          </div>
-          <div class="info-item">
-            <i class="fas fa-envelope"></i>
-            <span><a href="mailto:hajarcrk26@gmail.com" style="color: var(--tech-blue); text-decoration: none;">hajarcrk26@gmail.com</a></span>
-          </div>
-          <div class="info-item">
-            <i class="fab fa-github"></i>
-            <span><a href="https://github.com/ryosvoid" target="_blank" style="color: var(--tech-blue); text-decoration: none;">github.com/ryosvoid</a></span>
+          <h2 class="card-title"><i class="fas fa-certificate"></i> Certifications</h2>
+          <div class="certificates-grid">
+            <div class="certificate-item">
+              <strong>Introduction to Python Programming</strong>
+              <a href="https://coursera.org/share/443a46b3ed1df1f3ce3e756c9fd281c2" target="_blank" class="certificate-link">View Certificate</a>
+            </div>
+            <div class="certificate-item">
+              <strong>Work Smarter with Microsoft Word</strong>
+              <a href="https://coursera.org/share/246f4a1ea4e4e71caf8b805d97ee52c3" target="_blank" class="certificate-link">View Certificate</a>
+            </div>
+            <div class="certificate-item">
+              <strong>Work Smarter with Microsoft Excel</strong>
+              <a href="https://coursera.org/share/a5fd432d507960e5fd70f8f6b5145c7e" target="_blank" class="certificate-link">View Certificate</a>
+            </div>
+            <div class="certificate-item">
+              <strong>Introduction to Web Development</strong>
+              <a href="https://coursera.org/share/84b220c7977604f1ce66acbda583d290" target="_blank" class="certificate-link">View Certificate</a>
+            </div>
           </div>
         </div>
       </div>
@@ -685,7 +699,6 @@
           </div>
         </div>
         
-        <!-- Add more project cards here as needed -->
         <div class="project-card" id="project-2">
           <h3>Coming Soon</h3>
           <p>More projects will be added here</p>
