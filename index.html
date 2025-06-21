@@ -4,10 +4,9 @@
   <meta charset="UTF-8" />
   <title>Hajar Cherrouk | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="I'm a first-year university student with a growing fascination for artificial intelligence and all things tech. I love exploring how technology shapes our world and enjoy building small projects that help me learn and improve every day." />
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Cherry+Bomb+One&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
+  <meta name="description" content="First-year university student passionate about AI and technology. Exploring web development and programming." />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Cherry+Bomb+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="icon" href="icon.jpeg" type="image/jpeg" />
-
   <style>
     :root {
       --ghibli-pink: #ffd1ea;
@@ -15,6 +14,9 @@
       --ghibli-white: #fff5fa;
       --ghibli-accent: #ffe3f5;
       --ghibli-shadow: #f8b3d9;
+      --ghibli-purple: #b46faa;
+      --ghibli-magenta: #e45ab3;
+      --ghibli-blue: #8ab3d9;
     }
 
     body {
@@ -22,7 +24,7 @@
       padding: 0;
       background: linear-gradient(120deg, var(--ghibli-accent), var(--ghibli-pink));
       font-family: 'Zen Maru Gothic', 'Quicksand', sans-serif;
-      color: #b46faa;
+      color: var(--ghibli-purple);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -34,32 +36,64 @@
       margin-bottom: 2rem;
       display: flex;
       gap: 1.5rem;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--ghibli-magenta), transparent);
+      opacity: 0.5;
     }
 
     header button {
       font-family: 'Cherry Bomb One', cursive;
       background: var(--ghibli-pink);
       border: 2px solid var(--ghibli-pink-dark);
-      color: #e45ab3;
+      color: var(--ghibli-magenta);
       font-size: 1.2rem;
       padding: 0.6rem 1.2rem;
       border-radius: 40px;
       cursor: pointer;
       box-shadow: 0 4px 15px var(--ghibli-shadow);
-      transition: background 0.3s, color 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    header button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: var(--ghibli-magenta);
+      transition: width 0.3s;
+      z-index: -1;
     }
 
     header button.active,
     header button:hover {
-      background: #e45ab3;
-      color: #fff5fa;
-      border-color: #e45ab3;
+      color: var(--ghibli-white);
+      border-color: var(--ghibli-magenta);
       box-shadow: 0 6px 20px #f08ecb;
+    }
+
+    header button.active::before,
+    header button:hover::before {
+      width: 100%;
     }
 
     main {
       width: 100%;
       max-width: 800px;
+      position: relative;
     }
 
     .section {
@@ -68,6 +102,12 @@
       border-radius: 38px 38px 70px 38px;
       padding: 2rem 2.5rem;
       box-shadow: 0 6px 30px var(--ghibli-shadow);
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .section.active {
@@ -79,7 +119,8 @@
       display: flex;
       align-items: flex-end;
       gap: 2rem;
-      color: #b46faa;
+      color: var(--ghibli-purple);
+      position: relative;
     }
 
     .intro .text {
@@ -92,14 +133,32 @@
       border: 2px dashed #efa3c8a4;
       box-shadow: 0 4px 24px #f8b3d98f;
       font-family: 'Quicksand', sans-serif;
+      transition: transform 0.3s ease;
+    }
+
+    .intro .text:hover {
+      transform: translateY(-5px);
     }
 
     .intro .text h1 {
       font-family: 'Cherry Bomb One', cursive;
       font-size: 2.4rem;
-      color: #e45ab3;
+      color: var(--ghibli-magenta);
       margin-bottom: 0.7rem;
       text-shadow: 0 3px 10px #fff8, 1px 2px 8px #efa3c8;
+      position: relative;
+      display: inline-block;
+    }
+
+    .intro .text h1::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ghibli-magenta), transparent);
+      opacity: 0.5;
     }
 
     .intro .image {
@@ -107,6 +166,25 @@
       display: flex;
       align-items: flex-end;
       justify-content: center;
+      position: relative;
+    }
+
+    .intro .image::before {
+      content: '';
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 60px 60px 80px 80px / 50px 50px 90px 90px;
+      background: linear-gradient(45deg, var(--ghibli-magenta), var(--ghibli-pink-dark));
+      z-index: -1;
+      filter: blur(10px);
+      opacity: 0.5;
+      animation: pulse 4s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.05); opacity: 0.7; }
     }
 
     .intro .image img {
@@ -117,27 +195,19 @@
       box-shadow: 0 8px 26px #efa3c8c0;
       border: 4px solid #fff8c6;
       background: #fff5fa;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    @media (max-width: 700px) {
-      .intro {
-        flex-direction: column;
-        align-items: center;
-      }
-      .intro .image img {
-        width: 140px;
-        height: 140px;
-      }
-      .intro .text h1 {
-        font-size: 2rem;
-      }
+    .intro .image img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px #e45ab3cc;
     }
 
     /* Projects Section */
     .projects-list {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .project-item {
@@ -151,14 +221,173 @@
       border: 2px dashed #efa3c8a4;
       box-shadow: 0 4px 20px #f8b3d9aa;
       cursor: pointer;
-      transition: background 0.3s, color 0.3s;
+      transition: all 0.3s ease;
       user-select: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--ghibli-magenta), var(--ghibli-pink-dark));
+      transition: width 0.3s ease;
+      z-index: 0;
     }
 
     .project-item:hover {
-      background: #e45ab3;
       color: #fff5fa;
       box-shadow: 0 6px 30px #f08ecbcc;
+      transform: translateY(-3px);
+    }
+
+    .project-item:hover::before {
+      width: 100%;
+    }
+
+    .project-item span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hobby Section - Inspired by the image */
+    .hobby-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .hobby-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(239, 163, 200, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .hobby-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .hobby-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .hobby-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 1rem;
+      border: 2px solid var(--ghibli-pink-dark);
+    }
+
+    .hobby-title {
+      font-family: 'Cherry Bomb One', cursive;
+      font-size: 1.8rem;
+      color: var(--ghibli-magenta);
+      margin: 0;
+    }
+
+    .hobby-subtitle {
+      font-size: 1.2rem;
+      color: var(--ghibli-purple);
+      margin: 0.5rem 0 1rem;
+      font-weight: 600;
+    }
+
+    .hobby-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+    }
+
+    .hobby-table th {
+      text-align: left;
+      padding: 0.5rem;
+      background-color: var(--ghibli-pink);
+      color: var(--ghibli-purple);
+      font-weight: 600;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .hobby-table td {
+      padding: 0.5rem;
+      border-bottom: 1px dashed var(--ghibli-pink-dark);
+    }
+
+    .hobby-highlight {
+      font-weight: 600;
+      color: var(--ghibli-magenta);
+      margin: 1rem 0;
+      line-height: 1.5;
+    }
+
+    .hobby-divider {
+      border: none;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--ghibli-pink-dark), transparent);
+      margin: 1.5rem 0;
+    }
+
+    .languages-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .language-tag {
+      background: var(--ghibli-blue);
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .contact-info {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-info p {
+      margin: 0.3rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-info i {
+      margin-right: 0.5rem;
+      color: var(--ghibli-magenta);
+    }
+
+    @media (max-width: 700px) {
+      .intro {
+        flex-direction: column;
+        align-items: center;
+      }
+      .intro .image img {
+        width: 140px;
+        height: 140px;
+      }
+      .intro .image::before {
+        width: 140px;
+        height: 140px;
+      }
+      .intro .text h1 {
+        font-size: 2rem;
+      }
+      .hobby-section {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Project Detail Popup */
@@ -175,6 +404,7 @@
       align-items: center;
       padding: 2rem;
       z-index: 1000;
+      animation: fadeIn 0.3s ease;
     }
 
     .project-detail-overlay.active {
@@ -189,16 +419,31 @@
       padding: 2rem 2.5rem;
       box-shadow: 0 8px 40px var(--ghibli-shadow);
       position: relative;
-      color: #b46faa;
+      color: var(--ghibli-purple);
       font-family: 'Quicksand', sans-serif;
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
     .project-detail h2 {
       font-family: 'Cherry Bomb One', cursive;
       font-size: 2rem;
       margin-bottom: 1rem;
-      color: #e45ab3;
+      color: var(--ghibli-magenta);
       text-shadow: 0 3px 10px #fff8, 1px 2px 8px #efa3c8;
+      position: relative;
+      display: inline-block;
+    }
+
+    .project-detail h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ghibli-magenta), transparent);
+      opacity: 0.5;
     }
 
     .project-detail p {
@@ -211,12 +456,17 @@
       font-weight: 700;
       margin-bottom: 1.5rem;
       color: #a2357c;
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: var(--ghibli-pink);
+      border-radius: 20px;
     }
 
     .project-detail .images {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 1rem;
+      margin-top: 1.5rem;
     }
 
     .project-detail .images img {
@@ -227,7 +477,7 @@
       box-shadow: 0 6px 20px var(--ghibli-pink-dark);
       border: 3px solid #fff5fa;
       background: #fff5fa;
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
       cursor: pointer;
     }
 
@@ -240,7 +490,7 @@
       position: absolute;
       top: 15px;
       right: 20px;
-      background: #e45ab3;
+      background: var(--ghibli-magenta);
       border: none;
       color: white;
       font-size: 1.5rem;
@@ -250,10 +500,81 @@
       height: 32px;
       cursor: pointer;
       box-shadow: 0 4px 15px #f08ecbcc;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .close-btn:hover {
+      background: #b53a82;
+      transform: rotate(90deg);
+    }
+
+    /* Image Modal */
+    .image-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .image-modal.active {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .image-modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+    }
+
+    .image-modal-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .image-modal-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: var(--ghibli-magenta);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--ghibli-pink);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--ghibli-magenta);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
       background: #b53a82;
     }
   </style>
@@ -263,27 +584,85 @@
   <header>
     <button id="btn-intro" class="active">Introduction</button>
     <button id="btn-projects">Projects</button>
+    <button id="btn-hobby">Hobby</button>
   </header>
 
   <main>
     <!-- Introduction Section -->
-    <section id="section-intro" class="section active intro">
-      <div class="text">
-        <h1>Hajar Cherrouk</h1>
-        <p>
-          I'm a first-year university student with a growing fascination for artificial intelligence and all things tech. I love exploring how technology shapes our world and enjoy building small projects that help me learn and improve every day.<br><br>
-          Whether it’s diving into AI concepts or experimenting with web development, I’m excited by the endless possibilities tech has to offer and motivated to keep learning, creating, and growing.
-        </p>
-      </div>
-      <div class="image">
-        <img src="icon.jpeg" alt="Hajar's Photo" />
+    <section id="section-intro" class="section active">
+      <div class="intro">
+        <div class="text">
+          <h1>Hajar Cherrouk</h1>
+          <p>
+            I'm a first-year university student with a growing fascination for artificial intelligence and all things tech.<br><br>
+            Whether it's diving into AI concepts or experimenting with web development, I'm excited by the endless possibilities tech has to offer and motivated to keep learning, creating, and growing.
+          </p>
+        </div>
+        <div class="image">
+          <img src="icon.jpeg" alt="Hajar's Photo" />
+        </div>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="section-projects" class="section projects-list">
-      <div class="project-item" id="memory-game">Memory Game</div>
-      <!-- Add other projects here if you want -->
+    <section id="section-projects" class="section">
+      <h2 class="projects-title">My Projects</h2>
+      <div class="projects-list">
+        <div class="project-item" id="memory-game"><span>Memory Game</span></div>
+        <!-- Add other projects here if you want -->
+      </div>
+    </section>
+
+    <!-- Hobby Section -->
+    <section id="section-hobby" class="section">
+      <div class="hobby-section">
+        <div class="hobby-card">
+          <div class="hobby-header">
+            <img src="icon.jpeg" alt="Hajar" class="hobby-icon">
+            <h2 class="hobby-title">HOBBY</h2>
+          </div>
+          <h3 class="hobby-subtitle">What I ♥</h3>
+          
+          <table class="hobby-table">
+            <tr>
+              <th>TOP 07/27</th>
+              <th>EDUCATION</th>
+            </tr>
+            <tr>
+              <td>2022-2018</td>
+              <td>Computer Science</td>
+            </tr>
+          </table>
+          
+          <p class="hobby-highlight">
+            Exploring technology, playing chess, solving maths problems and baking.
+          </p>
+          
+          <hr class="hobby-divider">
+          
+          <h3 class="hobby-subtitle">TOOLS</h3>
+          <div class="languages-container">
+            <span class="language-tag">Python</span>
+            <span class="language-tag">C</span>
+            <span class="language-tag">HTML/CSS</span>
+            <span class="language-tag">JavaScript</span>
+          </div>
+        </div>
+        
+        <div class="hobby-card">
+          <h3 class="hobby-subtitle">CONTACT</h3>
+          <div class="contact-info">
+            <p><i>✉️</i> hajarcrk@example.com</p>
+            <p><i>📱</i> +212 246 00991</p>
+            <p><i>📷</i> @yourinstagram</p>
+          </div>
+          
+          <h3 class="hobby-subtitle">ACTIVITIES</h3>
+          <p>2025.06 - Developed Memory Game Project</p>
+          <p>2023.03 - AI Workshop Participant</p>
+          <p>2022.12 - Web Development Course</p>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -297,14 +676,22 @@
       </p>
       <p class="languages"><strong>Languages used:</strong> HTML, CSS, JavaScript</p>
       <div class="images">
-        <img src="memory1.jpeg" alt="Memory Game Screenshot 1" />
-        <img src="memory2.jpeg" alt="Memory Game Screenshot 2" />
-        <img src="memory3.jpeg" alt="Memory Game Screenshot 3" />
-        <img src="memory4.jpeg" alt="Memory Game Screenshot 4" />
-        <img src="memory5.jpeg" alt="Memory Game Screenshot 5" />
-        <img src="memory6.jpeg" alt="Memory Game Screenshot 6" />
-        <img src="memory7.jpeg" alt="Memory Game Screenshot 7" />
+        <img src="memory1.jpeg" alt="Memory Game Screenshot 1" class="project-image" />
+        <img src="memory2.jpeg" alt="Memory Game Screenshot 2" class="project-image" />
+        <img src="memory3.jpeg" alt="Memory Game Screenshot 3" class="project-image" />
+        <img src="memory4.jpeg" alt="Memory Game Screenshot 4" class="project-image" />
+        <img src="memory5.jpeg" alt="Memory Game Screenshot 5" class="project-image" />
+        <img src="memory6.jpeg" alt="Memory Game Screenshot 6" class="project-image" />
+        <img src="memory7.jpeg" alt="Memory Game Screenshot 7" class="project-image" />
       </div>
+    </div>
+  </div>
+
+  <!-- Image Modal -->
+  <div class="image-modal" id="image-modal">
+    <div class="image-modal-content">
+      <span class="image-modal-close">&times;</span>
+      <img id="modal-image" src="" alt="">
     </div>
   </div>
 
@@ -312,24 +699,39 @@
     // Navigation buttons
     const btnIntro = document.getElementById('btn-intro');
     const btnProjects = document.getElementById('btn-projects');
+    const btnHobby = document.getElementById('btn-hobby');
     const sectionIntro = document.getElementById('section-intro');
     const sectionProjects = document.getElementById('section-projects');
+    const sectionHobby = document.getElementById('section-hobby');
 
-    btnIntro.addEventListener('click', () => {
-      btnIntro.classList.add('active');
-      btnProjects.classList.remove('active');
-      sectionIntro.classList.add('active');
-      sectionProjects.classList.remove('active');
+    function activateSection(sectionToActivate) {
+      // Deactivate all sections
+      [sectionIntro, sectionProjects, sectionHobby].forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      // Deactivate all buttons
+      [btnIntro, btnProjects, btnHobby].forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // Activate the selected section and button
+      sectionToActivate.classList.add('active');
+      
+      if (sectionToActivate === sectionIntro) {
+        btnIntro.classList.add('active');
+      } else if (sectionToActivate === sectionProjects) {
+        btnProjects.classList.add('active');
+      } else if (sectionToActivate === sectionHobby) {
+        btnHobby.classList.add('active');
+      }
+      
       closeProjectDetail();
-    });
+    }
 
-    btnProjects.addEventListener('click', () => {
-      btnProjects.classList.add('active');
-      btnIntro.classList.remove('active');
-      sectionProjects.classList.add('active');
-      sectionIntro.classList.remove('active');
-      closeProjectDetail();
-    });
+    btnIntro.addEventListener('click', () => activateSection(sectionIntro));
+    btnProjects.addEventListener('click', () => activateSection(sectionProjects));
+    btnHobby.addEventListener('click', () => activateSection(sectionHobby));
 
     // Project detail popup
     const projectDetailOverlay = document.getElementById('project-detail-overlay');
@@ -350,6 +752,42 @@
     function closeProjectDetail() {
       projectDetailOverlay.classList.remove('active');
     }
+
+    // Image modal functionality
+    const imageModal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalClose = document.querySelector('.image-modal-close');
+    const projectImages = document.querySelectorAll('.project-image');
+
+    projectImages.forEach(image => {
+      image.addEventListener('click', () => {
+        modalImage.src = image.src;
+        modalImage.alt = image.alt;
+        imageModal.classList.add('active');
+      });
+    });
+
+    modalClose.addEventListener('click', () => {
+      imageModal.classList.remove('active');
+    });
+
+    imageModal.addEventListener('click', (e) => {
+      if (e.target === imageModal) {
+        imageModal.classList.remove('active');
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (projectDetailOverlay.classList.contains('active')) {
+          closeProjectDetail();
+        }
+        if (imageModal.classList.contains('active')) {
+          imageModal.classList.remove('active');
+        }
+      }
+    });
   </script>
 
 </body>
