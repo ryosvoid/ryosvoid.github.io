@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hajar Cherrouk | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content=" I'm a first-year university student with a growing fascination for artificial intelligence and all things tech. I love exploring how technology shapes our world and enjoy building small projects that help me learn and improve every day.<br><br>
+  Whether it’s diving into AI concepts or experimenting with web development, I’m excited by the endless possibilities tech has to offer and motivated to keep learning, creating, and growing." />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Cherry+Bomb+One&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="icon.jpeg" type="image/jpeg" />
+
+  <style>
+    :root {
+      --ghibli-pink: #ffd1ea;
+      --ghibli-pink-dark: #efa3c8;
+      --ghibli-white: #fff5fa;
+      --ghibli-accent: #ffe3f5;
+      --ghibli-shadow: #f8b3d9;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, var(--ghibli-accent), var(--ghibli-pink));
+      font-family: 'Zen Maru Gothic', 'Quicksand', sans-serif;
+      color: #b46faa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 2rem;
+      background: linear-gradient(110deg, #fff6fa 60%, #ffe0f5 100%);
+      border-radius: 38px 38px 70px 38px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 6px 30px var(--ghibli-shadow);
+      max-width: 780px;
+      width: 100%;
+      margin-bottom: 3rem;
+    }
+
+    .text {
+      flex: 2;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      background: var(--ghibli-pink);
+      border-radius: 30px 30px 40px 30px;
+      padding: 1.5rem;
+      border: 2px dashed #efa3c8a4;
+      box-shadow: 0 4px 24px #f8b3d98f;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .text h1 {
+      font-family: 'Cherry Bomb One', cursive;
+      font-size: 2.4rem;
+      color: #e45ab3;
+      margin-bottom: 0.7rem;
+      text-shadow: 0 3px 10px #fff8, 1px 2px 8px #efa3c8;
+    }
+
+    .image {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .image img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 60px 60px 80px 80px / 50px 50px 90px 90px;
+      box-shadow: 0 8px 26px #efa3c8c0;
+      border: 4px solid #fff8c6;
+      background: #fff5fa;
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem;
+      }
+
+      .image img {
+        width: 140px;
+        height: 140px;
+      }
+
+      .text h1 {
+        font-size: 2rem;
+      }
+    }
+
+    /* Gallery for memory game images */
+    .gallery {
+      max-width: 780px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      background: var(--ghibli-accent);
+      border-radius: 30px;
+      padding: 1.5rem;
+      box-shadow: 0 6px 30px var(--ghibli-shadow);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 20px 20px 30px 30px / 20px 20px 40px 40px;
+      box-shadow: 0 6px 20px var(--ghibli-pink-dark);
+      border: 3px solid #fff5fa;
+      background: #fff5fa;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 30px #e45ab3cc;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="text">
+      <h1>Hajar Cherrouk</h1>
+      <p>
+        I'm a first-year university student with a growing fascination for artificial intelligence and all things tech. I love exploring how technology shapes our world and enjoy building small projects that help me learn and improve every day.<br><br>
+  Whether it’s diving into AI concepts or experimenting with web development, I’m excited by the endless possibilities tech has to offer and motivated to keep learning, creating, and growing.
+      </p>
+    </div>
+    <div class="image">
+      <img src="icon.jpeg" alt="Hajar's Photo" />
+    </div>
+  </div>
+
+  <div class="gallery">
+    <img src="memory1.jpg" alt="Memory Game 1" />
+    <img src="memory2.jpg" alt="Memory Game 2" />
+    <img src="memory3.jpg" alt="Memory Game 3" />
+    <img src="memory4.jpg" alt="Memory Game 4" />
+    <img src="memory5.jpg" alt="Memory Game 5" />
+    <img src="memory6.jpg" alt="Memory Game 6" />
+    <img src="memory7.jpg" alt="Memory Game 7" />
+  </div>
+</body>
+</html>
