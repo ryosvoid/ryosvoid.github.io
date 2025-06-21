@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <title>Hajar Cherrouk | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content=" I'm a first-year university student with a growing fascination for artificial intelligence and all things tech. I love exploring how technology shapes our world and enjoy building small projects that help me learn and improve every day.<br><br>
-  Whether it’s diving into AI concepts or experimenting with web development, I’m excited by the endless possibilities tech has to offer and motivated to keep learning, creating, and growing." />
+  <meta name="description" content="I'm a first-year university student with a growing fascination for artificial intelligence and all things tech. I love exploring how technology shapes our world and enjoy building small projects that help me learn and improve every day." />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Cherry+Bomb+One&family=Quicksand:wght@600&display=swap" rel="stylesheet" />
   <link rel="icon" href="icon.jpeg" type="image/jpeg" />
 
@@ -24,28 +23,66 @@
       background: linear-gradient(120deg, var(--ghibli-accent), var(--ghibli-pink));
       font-family: 'Zen Maru Gothic', 'Quicksand', sans-serif;
       color: #b46faa;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
       padding: 2rem 1rem;
     }
 
-    .container {
+    header {
+      margin-bottom: 2rem;
       display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 2rem;
+      gap: 1.5rem;
+    }
+
+    header button {
+      font-family: 'Cherry Bomb One', cursive;
+      background: var(--ghibli-pink);
+      border: 2px solid var(--ghibli-pink-dark);
+      color: #e45ab3;
+      font-size: 1.2rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px var(--ghibli-shadow);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header button.active,
+    header button:hover {
+      background: #e45ab3;
+      color: #fff5fa;
+      border-color: #e45ab3;
+      box-shadow: 0 6px 20px #f08ecb;
+    }
+
+    main {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .section {
+      display: none;
       background: linear-gradient(110deg, #fff6fa 60%, #ffe0f5 100%);
       border-radius: 38px 38px 70px 38px;
       padding: 2rem 2.5rem;
       box-shadow: 0 6px 30px var(--ghibli-shadow);
-      max-width: 780px;
-      width: 100%;
-      margin-bottom: 3rem;
     }
 
-    .text {
+    .section.active {
+      display: block;
+    }
+
+    /* Introduction Section */
+    .intro {
+      display: flex;
+      align-items: flex-end;
+      gap: 2rem;
+      color: #b46faa;
+    }
+
+    .intro .text {
       flex: 2;
       font-size: 1.05rem;
       line-height: 1.6;
@@ -57,7 +94,7 @@
       font-family: 'Quicksand', sans-serif;
     }
 
-    .text h1 {
+    .intro .text h1 {
       font-family: 'Cherry Bomb One', cursive;
       font-size: 2.4rem;
       color: #e45ab3;
@@ -65,14 +102,14 @@
       text-shadow: 0 3px 10px #fff8, 1px 2px 8px #efa3c8;
     }
 
-    .image {
+    .intro .image {
       flex: 1;
       display: flex;
       align-items: flex-end;
       justify-content: center;
     }
 
-    .image img {
+    .intro .image img {
       width: 180px;
       height: 180px;
       object-fit: cover;
@@ -83,36 +120,106 @@
     }
 
     @media (max-width: 700px) {
-      .container {
+      .intro {
         flex-direction: column;
         align-items: center;
-        padding: 1.5rem;
       }
-
-      .image img {
+      .intro .image img {
         width: 140px;
         height: 140px;
       }
-
-      .text h1 {
+      .intro .text h1 {
         font-size: 2rem;
       }
     }
 
-    /* Gallery for memory game images */
-    .gallery {
-      max-width: 780px;
+    /* Projects Section */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .project-item {
+      background: var(--ghibli-pink);
+      border-radius: 30px 30px 40px 30px;
+      padding: 1.2rem 1.5rem;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #a2357c;
+      border: 2px dashed #efa3c8a4;
+      box-shadow: 0 4px 20px #f8b3d9aa;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+      user-select: none;
+    }
+
+    .project-item:hover {
+      background: #e45ab3;
+      color: #fff5fa;
+      box-shadow: 0 6px 30px #f08ecbcc;
+    }
+
+    /* Project Detail Popup */
+    .project-detail-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255 209 234 / 0.9);
+      backdrop-filter: blur(8px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      z-index: 1000;
+    }
+
+    .project-detail-overlay.active {
+      display: flex;
+    }
+
+    .project-detail {
+      background: #fff5fa;
+      border-radius: 38px 38px 70px 38px;
+      max-width: 600px;
       width: 100%;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 8px 40px var(--ghibli-shadow);
+      position: relative;
+      color: #b46faa;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .project-detail h2 {
+      font-family: 'Cherry Bomb One', cursive;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #e45ab3;
+      text-shadow: 0 3px 10px #fff8, 1px 2px 8px #efa3c8;
+    }
+
+    .project-detail p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .project-detail .languages {
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #a2357c;
+    }
+
+    .project-detail .images {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 1rem;
-      background: var(--ghibli-accent);
-      border-radius: 30px;
-      padding: 1.5rem;
-      box-shadow: 0 6px 30px var(--ghibli-shadow);
     }
 
-    .gallery img {
+    .project-detail .images img {
       width: 100%;
       height: 100px;
       object-fit: cover;
@@ -124,35 +231,126 @@
       cursor: pointer;
     }
 
-    .gallery img:hover {
+    .project-detail .images img:hover {
       transform: scale(1.05);
       box-shadow: 0 8px 30px #e45ab3cc;
     }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: #e45ab3;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px #f08ecbcc;
+      transition: background 0.3s;
+    }
+
+    .close-btn:hover {
+      background: #b53a82;
+    }
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <div class="text">
-      <h1>Hajar Cherrouk</h1>
+
+  <header>
+    <button id="btn-intro" class="active">Introduction</button>
+    <button id="btn-projects">Projects</button>
+  </header>
+
+  <main>
+    <!-- Introduction Section -->
+    <section id="section-intro" class="section active intro">
+      <div class="text">
+        <h1>Hajar Cherrouk</h1>
+        <p>
+          I'm a first-year university student with a growing fascination for artificial intelligence and all things tech. I love exploring how technology shapes our world and enjoy building small projects that help me learn and improve every day.<br><br>
+          Whether it’s diving into AI concepts or experimenting with web development, I’m excited by the endless possibilities tech has to offer and motivated to keep learning, creating, and growing.
+        </p>
+      </div>
+      <div class="image">
+        <img src="icon.jpeg" alt="Hajar's Photo" />
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="section-projects" class="section projects-list">
+      <div class="project-item" id="memory-game">Memory Game</div>
+      <!-- Add other projects here if you want -->
+    </section>
+  </main>
+
+  <!-- Project Detail Popup -->
+  <div id="project-detail-overlay" class="project-detail-overlay" role="dialog" aria-modal="true" aria-labelledby="project-title" tabindex="-1">
+    <div class="project-detail">
+      <button class="close-btn" id="close-detail" aria-label="Close project details">&times;</button>
+      <h2 id="project-title">Memory Game</h2>
       <p>
-        I'm a first-year university student with a growing fascination for artificial intelligence and all things tech. I love exploring how technology shapes our world and enjoy building small projects that help me learn and improve every day.<br><br>
-  Whether it’s diving into AI concepts or experimenting with web development, I’m excited by the endless possibilities tech has to offer and motivated to keep learning, creating, and growing.
+        A simple yet engaging memory game built to help players train their memory skills by matching pairs of cards.
       </p>
-    </div>
-    <div class="image">
-      <img src="icon.jpeg" alt="Hajar's Photo" />
+      <p class="languages"><strong>Languages used:</strong> HTML, CSS, JavaScript</p>
+      <div class="images">
+        <img src="memory1.jpeg" alt="Memory Game Screenshot 1" />
+        <img src="memory2.jpeg" alt="Memory Game Screenshot 2" />
+        <img src="memory3.jpeg" alt="Memory Game Screenshot 3" />
+        <img src="memory4.jpeg" alt="Memory Game Screenshot 4" />
+        <img src="memory5.jpeg" alt="Memory Game Screenshot 5" />
+        <img src="memory6.jpeg" alt="Memory Game Screenshot 6" />
+        <img src="memory7.jpeg" alt="Memory Game Screenshot 7" />
+      </div>
     </div>
   </div>
 
-  <div class="gallery">
-    <img src="memory1.jpg" alt="Memory Game 1" />
-    <img src="memory2.jpg" alt="Memory Game 2" />
-    <img src="memory3.jpg" alt="Memory Game 3" />
-    <img src="memory4.jpg" alt="Memory Game 4" />
-    <img src="memory5.jpg" alt="Memory Game 5" />
-    <img src="memory6.jpg" alt="Memory Game 6" />
-    <img src="memory7.jpg" alt="Memory Game 7" />
-  </div>
+  <script>
+    // Navigation buttons
+    const btnIntro = document.getElementById('btn-intro');
+    const btnProjects = document.getElementById('btn-projects');
+    const sectionIntro = document.getElementById('section-intro');
+    const sectionProjects = document.getElementById('section-projects');
+
+    btnIntro.addEventListener('click', () => {
+      btnIntro.classList.add('active');
+      btnProjects.classList.remove('active');
+      sectionIntro.classList.add('active');
+      sectionProjects.classList.remove('active');
+      closeProjectDetail();
+    });
+
+    btnProjects.addEventListener('click', () => {
+      btnProjects.classList.add('active');
+      btnIntro.classList.remove('active');
+      sectionProjects.classList.add('active');
+      sectionIntro.classList.remove('active');
+      closeProjectDetail();
+    });
+
+    // Project detail popup
+    const projectDetailOverlay = document.getElementById('project-detail-overlay');
+    const memoryGameBtn = document.getElementById('memory-game');
+    const closeDetailBtn = document.getElementById('close-detail');
+
+    memoryGameBtn.addEventListener('click', () => {
+      projectDetailOverlay.classList.add('active');
+      projectDetailOverlay.focus();
+    });
+
+    closeDetailBtn.addEventListener('click', closeProjectDetail);
+
+    projectDetailOverlay.addEventListener('click', (e) => {
+      if (e.target === projectDetailOverlay) closeProjectDetail();
+    });
+
+    function closeProjectDetail() {
+      projectDetailOverlay.classList.remove('active');
+    }
+  </script>
+
 </body>
 </html>
