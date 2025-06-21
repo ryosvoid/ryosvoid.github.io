@@ -2,30 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Hajar Cherrouk | Tech Portfolio</title>
+  <title>Hajar Cherrouk | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Computer Engineering and AI student passionate about technology and programming." />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Cherry+Bomb+One&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="icon" href="icon.jpeg" type="image/jpeg" />
   <style>
     :root {
-      --ghibli-pink: #ffd1ea;
-      --ghibli-pink-dark: #efa3c8;
-      --ghibli-white: #fff5fa;
-      --ghibli-accent: #ffe3f5;
-      --ghibli-shadow: #f8b3d9;
-      --ghibli-purple: #b46faa;
-      --ghibli-magenta: #e45ab3;
-      --ghibli-blue: #8ab3d9;
-      --ghibli-green: #a3d9b1;
       --tech-blue: #5e8cff;
       --tech-dark: #2a3547;
+      --tech-light: #f5f7fa;
+      --tech-accent: #4a6bff;
     }
 
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      background: var(--tech-light);
       font-family: 'Zen Maru Gothic', 'Quicksand', sans-serif;
       color: var(--tech-dark);
       min-height: 100vh;
@@ -245,16 +238,15 @@
       font-weight: 600;
     }
 
-    .certificate-item {
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+    /* Certificate Grid Layout */
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
 
-    .certificate-item:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
+    .certificate-item {
+      margin-bottom: 1rem;
     }
 
     .certificate-link {
@@ -405,6 +397,24 @@
       border-radius: 20px;
     }
 
+    .project-detail .project-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: var(--tech-blue);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      padding: 0.3rem 0.8rem;
+      background: rgba(94, 140, 255, 0.1);
+      border-radius: 5px;
+    }
+
+    .project-detail .project-link:hover {
+      color: white;
+      background: var(--tech-blue);
+      text-decoration: none;
+    }
+
     .project-detail .images {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -528,6 +538,10 @@
         flex-direction: column;
         gap: 1rem;
       }
+      
+      .certificates-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Scrollbar styling */
@@ -616,21 +630,23 @@
           
           <div>
             <h2 class="card-title"><i class="fas fa-certificate"></i> Certifications</h2>
-            <div class="certificate-item">
-              <strong>Introduction to Python Programming</strong>
-              <a href="https://coursera.org/share/443a46b3ed1df1f3ce3e756c9fd281c2" target="_blank" class="certificate-link">View Certificate</a>
-            </div>
-            <div class="certificate-item">
-              <strong>Work Smarter with Microsoft Word</strong>
-              <a href="https://coursera.org/share/246f4a1ea4e4e71caf8b805d97ee52c3" target="_blank" class="certificate-link">View Certificate</a>
-            </div>
-            <div class="certificate-item">
-              <strong>Work Smarter with Microsoft Excel</strong>
-              <a href="https://coursera.org/share/a5fd432d507960e5fd70f8f6b5145c7e" target="_blank" class="certificate-link">View Certificate</a>
-            </div>
-            <div class="certificate-item">
-              <strong>Introduction to Web Development</strong>
-              <a href="https://coursera.org/share/84b220c7977604f1ce66acbda583d290" target="_blank" class="certificate-link">View Certificate</a>
+            <div class="certificates-grid">
+              <div class="certificate-item">
+                <strong>Introduction to Python Programming</strong>
+                <a href="https://coursera.org/share/443a46b3ed1df1f3ce3e756c9fd281c2" target="_blank" class="certificate-link">View Certificate</a>
+              </div>
+              <div class="certificate-item">
+                <strong>Work Smarter with Microsoft Word</strong>
+                <a href="https://coursera.org/share/246f4a1ea4e4e71caf8b805d97ee52c3" target="_blank" class="certificate-link">View Certificate</a>
+              </div>
+              <div class="certificate-item">
+                <strong>Work Smarter with Microsoft Excel</strong>
+                <a href="https://coursera.org/share/a5fd432d507960e5fd70f8f6b5145c7e" target="_blank" class="certificate-link">View Certificate</a>
+              </div>
+              <div class="certificate-item">
+                <strong>Introduction to Web Development</strong>
+                <a href="https://coursera.org/share/84b220c7977604f1ce66acbda583d290" target="_blank" class="certificate-link">View Certificate</a>
+              </div>
             </div>
           </div>
         </div>
@@ -640,6 +656,10 @@
           <div class="info-item">
             <i class="fas fa-phone"></i>
             <span>+212 724-600991</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <span><a href="mailto:hajarcrk26@gmail.com" style="color: var(--tech-blue); text-decoration: none;">hajarcrk26@gmail.com</a></span>
           </div>
           <div class="info-item">
             <i class="fab fa-github"></i>
@@ -687,6 +707,9 @@
         A fun memory game to train your brain by matching pairs of cards. Features include score tracking, game history, adaptive time limits, multiplayer mode, etc., making it engaging and challenging.
       </p>
       <p class="languages"><strong>Languages used:</strong> HTML, CSS, JavaScript</p>
+      <a href="https://github.com/ryosvoid/memory_game" target="_blank" class="project-link">
+        <i class="fab fa-github"></i> View on GitHub
+      </a>
       <div class="images">
         <img src="memory1.jpeg" alt="Memory Game Screenshot 1" class="project-image" />
         <img src="memory2.jpeg" alt="Memory Game Screenshot 2" class="project-image" />
