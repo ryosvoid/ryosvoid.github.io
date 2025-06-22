@@ -300,9 +300,9 @@
     }
 
     /* Hobbies Section */
-    .hobbies-container {
-      display: flex;
-      flex-wrap: wrap;
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
       margin-top: 2rem;
     }
@@ -314,7 +314,12 @@
       padding: 1rem;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      width: calc(50% - 1.5rem);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hobby-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
     .hobby-icon {
@@ -379,6 +384,7 @@
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
+      cursor: pointer;
     }
 
     .project-card:hover {
@@ -389,6 +395,7 @@
     .project-image {
       height: 200px;
       overflow: hidden;
+      position: relative;
     }
 
     .project-image img {
@@ -415,6 +422,7 @@
     .project-description {
       color: #666;
       margin-bottom: 1rem;
+      line-height: 1.6;
     }
 
     .project-tags {
@@ -541,14 +549,43 @@
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
+    /* Image Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1001;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
     /* Responsive Design */
     @media (max-width: 1024px) {
       .about-container {
         grid-template-columns: 1fr;
-      }
-
-      .hobby-item {
-        width: 100%;
       }
     }
 
@@ -577,6 +614,10 @@
         width: 200px;
         height: 200px;
       }
+
+      .hobbies-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 480px) {
@@ -601,6 +642,10 @@
       .contact-item {
         width: 100%;
         justify-content: center;
+      }
+
+      .modal-gallery {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -740,33 +785,31 @@
       </div>
       
       <div>
-        <div class="skills-category">
-          <h3>Hobbies & Interests</h3>
-          <div class="hobbies-container">
-            <div class="hobby-item">
-              <div class="hobby-icon">
-                <i class="fas fa-chess"></i>
-              </div>
-              <div>Chess</div>
+        <h3 style="font-family: 'Quicksand', sans-serif; font-weight: 600; font-size: 1.3rem; margin-bottom: 1rem; color: var(--tech-blue);">Hobbies</h3>
+        <div class="hobbies-grid">
+          <div class="hobby-item">
+            <div class="hobby-icon">
+              <i class="fas fa-chess"></i>
             </div>
-            <div class="hobby-item">
-              <div class="hobby-icon">
-                <i class="fas fa-square-root-alt"></i>
-              </div>
-              <div>Math Problems</div>
+            <div>Chess</div>
+          </div>
+          <div class="hobby-item">
+            <div class="hobby-icon">
+              <i class="fas fa-square-root-alt"></i>
             </div>
-            <div class="hobby-item">
-              <div class="hobby-icon">
-                <i class="fas fa-running"></i>
-              </div>
-              <div>Sports</div>
+            <div>Math Problems</div>
+          </div>
+          <div class="hobby-item">
+            <div class="hobby-icon">
+              <i class="fas fa-running"></i>
             </div>
-            <div class="hobby-item">
-              <div class="hobby-icon">
-                <i class="fas fa-book"></i>
-              </div>
-              <div>Reading</div>
+            <div>Sports</div>
+          </div>
+          <div class="hobby-item">
+            <div class="hobby-icon">
+              <i class="fas fa-book"></i>
             </div>
+            <div>Reading</div>
           </div>
         </div>
         
@@ -806,21 +849,18 @@
         </div>
         <div class="project-content">
           <h3 class="project-title">Memory Game</h3>
-          <p class="project-description">A fun card matching game with score tracking and multiple difficulty levels.</p>
+          <p class="project-description">A fun card matching game with score tracking and multiple difficulty levels. Click to view more details and screenshots.</p>
           <div class="project-tags">
             <span class="project-tag">HTML</span>
             <span class="project-tag">CSS</span>
             <span class="project-tag">JavaScript</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/ryosvoid/memory_game" target="_blank" class="btn">View on GitHub</a>
           </div>
         </div>
       </div>
       
       <div class="project-card" id="project-2">
         <div class="project-image">
-          <i class="fas fa-code"></i>
+          <i class="fas fa-code" style="font-size: 5rem; color: var(--tech-blue); display: flex; justify-content: center; align-items: center; height: 100%;"></i>
         </div>
         <div class="project-content">
           <h3 class="project-title">Coming Soon</h3>
@@ -849,16 +889,22 @@
         
         <h3 style="margin-top: 2rem;">Screenshots</h3>
         <div class="modal-gallery">
-          <img src="memory1.jpeg" alt="Memory Game Screenshot 1" class="gallery-image">
-          <img src="memory2.jpeg" alt="Memory Game Screenshot 2" class="gallery-image">
-          <img src="memory3.jpeg" alt="Memory Game Screenshot 3" class="gallery-image">
-          <img src="memory4.jpeg" alt="Memory Game Screenshot 4" class="gallery-image">
-          <img src="memory5.jpeg" alt="Memory Game Screenshot 5" class="gallery-image">
-          <img src="memory6.jpeg" alt="Memory Game Screenshot 6" class="gallery-image">
-          <img src="memory7.jpeg" alt="Memory Game Screenshot 7" class="gallery-image">
+          <img src="memory1.jpeg" alt="Memory Game Screenshot 1" class="gallery-image" data-src="memory1.jpeg">
+          <img src="memory2.jpeg" alt="Memory Game Screenshot 2" class="gallery-image" data-src="memory2.jpeg">
+          <img src="memory3.jpeg" alt="Memory Game Screenshot 3" class="gallery-image" data-src="memory3.jpeg">
+          <img src="memory4.jpeg" alt="Memory Game Screenshot 4" class="gallery-image" data-src="memory4.jpeg">
+          <img src="memory5.jpeg" alt="Memory Game Screenshot 5" class="gallery-image" data-src="memory5.jpeg">
+          <img src="memory6.jpeg" alt="Memory Game Screenshot 6" class="gallery-image" data-src="memory6.jpeg">
+          <img src="memory7.jpeg" alt="Memory Game Screenshot 7" class="gallery-image" data-src="memory7.jpeg">
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Image Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="" class="lightbox-img">
   </div>
 
   <script>
@@ -919,13 +965,38 @@
       }
     });
 
-    // Gallery image click to view larger
+    // Lightbox functionality for gallery images
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.querySelector('.lightbox-img');
+    const lightboxClose = document.querySelector('.lightbox-close');
     const galleryImages = document.querySelectorAll('.gallery-image');
+
     galleryImages.forEach(img => {
       img.addEventListener('click', () => {
-        // You could implement a lightbox here if desired
-        console.log('Viewing image:', img.src);
+        lightbox.classList.add('active');
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        document.body.style.overflow = 'hidden';
       });
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
     });
   </script>
 
