@@ -15,6 +15,7 @@
       --tech-accent: #4a6bff;
       --gradient-blue: linear-gradient(135deg, #6B73FF 0%, #000DFF 100%);
       --gradient-purple: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);
+      --bubble-color: rgba(94, 140, 255, 0.1);
     }
 
     body {
@@ -27,7 +28,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0;
     }
 
     /* Navigation */
@@ -54,6 +54,11 @@
       font-size: 1.8rem;
       color: var(--tech-blue);
       text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     .nav-links {
@@ -69,6 +74,13 @@
       position: relative;
       padding: 0.5rem 0;
       transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-link i {
+      font-size: 1.2rem;
     }
 
     .nav-link::after {
@@ -96,6 +108,21 @@
 
     .nav-link.active::after {
       width: 100%;
+    }
+
+    /* Page Container */
+    .page-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      box-sizing: border-box;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Home Section */
@@ -127,6 +154,7 @@
       flex: 1;
       display: flex;
       justify-content: center;
+      position: relative;
     }
 
     .home-image img {
@@ -138,10 +166,28 @@
       border: 8px solid white;
       transform: rotate(3deg);
       transition: all 0.5s ease;
+      position: relative;
+      z-index: 2;
     }
 
-    .home-image img:hover {
+    .home-image::before {
+      content: '';
+      position: absolute;
+      width: 350px;
+      height: 500px;
+      background: var(--gradient-blue);
+      border-radius: 20px;
+      transform: rotate(-3deg);
+      transition: all 0.5s ease;
+      z-index: 1;
+    }
+
+    .home-image:hover img {
       transform: rotate(0deg) scale(1.03);
+    }
+
+    .home-image:hover::before {
+      transform: rotate(0deg);
     }
 
     .home-title {
@@ -177,6 +223,11 @@
       display: flex;
       align-items: center;
       gap: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateX(5px);
     }
 
     .contact-icon {
@@ -189,6 +240,12 @@
       justify-content: center;
       color: var(--tech-blue);
       font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover .contact-icon {
+      background: var(--tech-blue);
+      color: white;
     }
 
     .contact-text {
@@ -241,19 +298,16 @@
     /* Sections */
     section {
       width: 100%;
-      padding: 5rem 2rem;
+      min-height: 100vh;
+      padding: 2rem 0;
       box-sizing: border-box;
       display: none;
     }
 
     section.active {
-      display: block;
-      animation: fadeIn 0.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .section-title {
@@ -279,8 +333,7 @@
 
     /* About Section */
     .about-container {
-      max-width: 1000px;
-      margin: 0 auto;
+      width: 100%;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
@@ -290,6 +343,33 @@
       font-size: 1.1rem;
       line-height: 1.8;
       margin-bottom: 2rem;
+    }
+
+    .hobbies-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .hobby-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: rgba(94, 140, 255, 0.1);
+      padding: 0.8rem 1.2rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .hobby-item:hover {
+      background: var(--tech-blue);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .hobby-item i {
+      font-size: 1.2rem;
     }
 
     .skills-container {
@@ -308,26 +388,31 @@
       color: var(--tech-blue);
     }
 
-    .skill-item {
-      margin-bottom: 1rem;
+    .skill-bubbles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    .skill-name {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
+    .skill-bubble {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--bubble-color);
+      padding: 0.8rem 1.2rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
     }
 
-    .skill-bar {
-      height: 10px;
-      background: #e0e0e0;
-      border-radius: 5px;
-      overflow: hidden;
+    .skill-bubble img {
+      width: 24px;
+      height: 24px;
     }
 
-    .skill-progress {
-      height: 100%;
-      background: var(--gradient-blue);
-      border-radius: 5px;
+    .skill-bubble:hover {
+      background: var(--tech-blue);
+      color: white;
+      transform: translateY(-3px);
     }
 
     .languages-container {
@@ -340,6 +425,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    .language-item:hover {
+      transform: translateY(-5px);
     }
 
     .language-circle {
@@ -354,6 +444,7 @@
       font-weight: bold;
       font-size: 1.2rem;
       margin-bottom: 0.5rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
     .language-name {
@@ -362,10 +453,9 @@
 
     /* Certificates Section */
     .certificates-container {
-      max-width: 1000px;
-      margin: 0 auto;
+      width: 100%;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 2rem;
     }
 
@@ -375,6 +465,9 @@
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .certificate-card:hover {
@@ -383,7 +476,7 @@
     }
 
     .certificate-image {
-      height: 200px;
+      height: 160px;
       background: var(--tech-blue);
       display: flex;
       align-items: center;
@@ -394,6 +487,9 @@
 
     .certificate-content {
       padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .certificate-title {
@@ -403,22 +499,31 @@
     }
 
     .certificate-link {
-      display: inline-block;
-      margin-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: auto;
       color: var(--tech-blue);
       text-decoration: none;
       font-weight: 600;
       transition: all 0.3s;
     }
 
+    .certificate-link i {
+      transition: transform 0.3s;
+    }
+
     .certificate-link:hover {
       text-decoration: underline;
     }
 
+    .certificate-link:hover i {
+      transform: translateX(3px);
+    }
+
     /* Projects Section */
     .projects-container {
-      max-width: 1200px;
-      margin: 0 auto;
+      width: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 2rem;
@@ -447,6 +552,7 @@
       color: white;
       font-size: 3rem;
       overflow: hidden;
+      position: relative;
     }
 
     .project-image img {
@@ -456,8 +562,23 @@
       transition: transform 0.5s ease;
     }
 
+    .project-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
     .project-card:hover .project-image img {
       transform: scale(1.1);
+    }
+
+    .project-card:hover .project-image::after {
+      background: rgba(0, 0, 0, 0);
     }
 
     .project-content {
@@ -473,6 +594,7 @@
     .project-description {
       color: #666;
       margin-bottom: 1rem;
+      line-height: 1.6;
     }
 
     .project-tags {
@@ -525,6 +647,7 @@
       max-height: 90vh;
       overflow-y: auto;
       position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     }
 
     .modal-close {
@@ -543,6 +666,7 @@
       font-size: 1.5rem;
       z-index: 10;
       transition: all 0.3s ease;
+      border: none;
     }
 
     .modal-close:hover {
@@ -597,6 +721,7 @@
       border-radius: 10px;
       cursor: pointer;
       transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
     .gallery-image:hover {
@@ -707,9 +832,9 @@
     <div class="nav-container">
       <a href="#" class="logo">Hajar Cherrouk</a>
       <div class="nav-links">
-        <a href="#home" class="nav-link active" id="nav-home">Home</a>
-        <a href="#about" class="nav-link" id="nav-about">About</a>
-        <a href="#projects" class="nav-link" id="nav-projects">Projects</a>
+        <a href="#home" class="nav-link active" id="nav-home"><i class="fas fa-home"></i> Home</a>
+        <a href="#about" class="nav-link" id="nav-about"><i class="fas fa-user"></i> About</a>
+        <a href="#projects" class="nav-link" id="nav-projects"><i class="fas fa-code"></i> Projects</a>
       </div>
     </div>
   </nav>
@@ -752,111 +877,138 @@
       </div>
       
       <div class="home-image">
-        <img src="mypic.jpg" alt="Hajar Cherrouk">
+        <img src="10435.jpg" alt="Hajar Cherrouk">
       </div>
     </div>
   </section>
 
   <!-- About Section -->
   <section id="about">
-    <h2 class="section-title">About Me</h2>
-    
-    <div class="about-container">
-      <div>
-        <p class="about-text">
-          Hello! I'm Hajar, a Computer Engineering and AI student with a passion for solving complex problems and creating innovative solutions. My journey in technology began with a curiosity about how things work, which has evolved into a deep interest in artificial intelligence and software development.
-        </p>
-        <p class="about-text">
-          When I'm not coding, you can find me playing chess, solving math problems, or staying active through sports. I believe in continuous learning and enjoy challenging myself with new technologies and concepts.
-        </p>
+    <div class="page-container">
+      <h2 class="section-title">About Me</h2>
+      
+      <div class="about-container">
+        <div>
+          <p class="about-text">
+            Hello! I'm Hajar, a Computer Engineering and AI student with a passion for solving complex problems and creating innovative solutions. My journey in technology began with a curiosity about how things work, which has evolved into a deep interest in artificial intelligence and software development.
+          </p>
+          
+          <div class="skills-container">
+            <div class="skills-category">
+              <h3>Technical Skills</h3>
+              <div class="skill-bubbles">
+                <div class="skill-bubble">
+                  <img src="icon.jpeg" alt="C">
+                  <span>C</span>
+                </div>
+                <div class="skill-bubble">
+                  <img src="icon.jpeg" alt="Python">
+                  <span>Python</span>
+                </div>
+                <div class="skill-bubble">
+                  <i class="fab fa-html5"></i>
+                  <span>HTML/CSS</span>
+                </div>
+                <div class="skill-bubble">
+                  <i class="fab fa-js"></i>
+                  <span>JavaScript</span>
+                </div>
+                <div class="skill-bubble">
+                  <i class="fas fa-file-word"></i>
+                  <span>Microsoft Office</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="skills-category">
+              <h3>Languages</h3>
+              <div class="languages-container">
+                <div class="language-item">
+                  <div class="language-circle">EN</div>
+                  <div class="language-name">English</div>
+                </div>
+                <div class="language-item">
+                  <div class="language-circle">FR</div>
+                  <div class="language-name">French</div>
+                </div>
+                <div class="language-item">
+                  <div class="language-circle">AR</div>
+                  <div class="language-name">Arabic</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         
-        <div class="skills-container">
+        <div>
           <div class="skills-category">
-            <h3>Technical Skills</h3>
-            <div class="skill-item">
-              <div class="skill-name">C & Python</div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 100%"></div>
+            <h3>Hobbies & Interests</h3>
+            <div class="hobbies-container">
+              <div class="hobby-item">
+                <i class="fas fa-chess"></i>
+                <span>Chess</span>
               </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name">HTML/CSS</div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 50%"></div>
+              <div class="hobby-item">
+                <i class="fas fa-calculator"></i>
+                <span>Math Problems</span>
               </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name">JavaScript</div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 25%"></div>
+              <div class="hobby-item">
+                <i class="fas fa-running"></i>
+                <span>Sports</span>
               </div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name">Microsoft Office</div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 100%"></div>
+              <div class="hobby-item">
+                <i class="fas fa-book"></i>
+                <span>Reading</span>
               </div>
             </div>
           </div>
           
           <div class="skills-category">
-            <h3>Languages</h3>
-            <div class="languages-container">
-              <div class="language-item">
-                <div class="language-circle">EN</div>
-                <div class="language-name">English</div>
+            <h3>Certifications</h3>
+            <div class="certificates-container">
+              <div class="certificate-card">
+                <div class="certificate-image">
+                  <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-content">
+                  <h4 class="certificate-title">Introduction to Python Programming</h4>
+                  <a href="https://coursera.org/share/443a46b3ed1df1f3ce3e756c9fd281c2" target="_blank" class="certificate-link">
+                    View Certificate <i class="fas fa-arrow-right"></i>
+                  </a>
+                </div>
               </div>
-              <div class="language-item">
-                <div class="language-circle">FR</div>
-                <div class="language-name">French</div>
+              <div class="certificate-card">
+                <div class="certificate-image">
+                  <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-content">
+                  <h4 class="certificate-title">Work Smarter with Microsoft Word</h4>
+                  <a href="https://coursera.org/share/246f4a1ea4e4e71caf8b805d97ee52c3" target="_blank" class="certificate-link">
+                    View Certificate <i class="fas fa-arrow-right"></i>
+                  </a>
+                </div>
               </div>
-              <div class="language-item">
-                <div class="language-circle">AR</div>
-                <div class="language-name">Arabic</div>
+              <div class="certificate-card">
+                <div class="certificate-image">
+                  <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-content">
+                  <h4 class="certificate-title">Work Smarter with Microsoft Excel</h4>
+                  <a href="https://coursera.org/share/a5fd432d507960e5fd70f8f6b5145c7e" target="_blank" class="certificate-link">
+                    View Certificate <i class="fas fa-arrow-right"></i>
+                  </a>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div>
-        <div class="skills-category">
-          <h3>Certifications</h3>
-          <div class="certificates-container">
-            <div class="certificate-card">
-              <div class="certificate-image">
-                <i class="fas fa-certificate"></i>
-              </div>
-              <div class="certificate-content">
-                <h4 class="certificate-title">Introduction to Python Programming</h4>
-                <a href="https://coursera.org/share/443a46b3ed1df1f3ce3e756c9fd281c2" target="_blank" class="certificate-link">View Certificate →</a>
-              </div>
-            </div>
-            <div class="certificate-card">
-              <div class="certificate-image">
-                <i class="fas fa-certificate"></i>
-              </div>
-              <div class="certificate-content">
-                <h4 class="certificate-title">Work Smarter with Microsoft Word</h4>
-                <a href="https://coursera.org/share/246f4a1ea4e4e71caf8b805d97ee52c3" target="_blank" class="certificate-link">View Certificate →</a>
-              </div>
-            </div>
-            <div class="certificate-card">
-              <div class="certificate-image">
-                <i class="fas fa-certificate"></i>
-              </div>
-              <div class="certificate-content">
-                <h4 class="certificate-title">Work Smarter with Microsoft Excel</h4>
-                <a href="https://coursera.org/share/a5fd432d507960e5fd70f8f6b5145c7e" target="_blank" class="certificate-link">View Certificate →</a>
-              </div>
-            </div>
-            <div class="certificate-card">
-              <div class="certificate-image">
-                <i class="fas fa-certificate"></i>
-              </div>
-              <div class="certificate-content">
-                <h4 class="certificate-title">Introduction to Web Development</h4>
-                <a href="https://coursera.org/share/84b220c7977604f1ce66acbda583d290" target="_blank" class="certificate-link">View Certificate →</a>
+              <div class="certificate-card">
+                <div class="certificate-image">
+                  <i class="fas fa-certificate"></i>
+                </div>
+                <div class="certificate-content">
+                  <h4 class="certificate-title">Introduction to Web Development</h4>
+                  <a href="https://coursera.org/share/84b220c7977604f1ce66acbda583d290" target="_blank" class="certificate-link">
+                    View Certificate <i class="fas fa-arrow-right"></i>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -867,37 +1019,39 @@
 
   <!-- Projects Section -->
   <section id="projects">
-    <h2 class="section-title">My Projects</h2>
-    
-    <div class="projects-container">
-      <div class="project-card" id="memory-game">
-        <div class="project-image">
-          <img src="memory1.jpeg" alt="Memory Game">
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Memory Game</h3>
-          <p class="project-description">A fun card matching game with score tracking and multiple difficulty levels.</p>
-          <div class="project-tags">
-            <span class="project-tag">HTML</span>
-            <span class="project-tag">CSS</span>
-            <span class="project-tag">JavaScript</span>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/ryosvoid/memory_game" target="_blank" class="btn">View Project</a>
-          </div>
-        </div>
-      </div>
+    <div class="page-container">
+      <h2 class="section-title">My Projects</h2>
       
-      <div class="project-card" id="project-2">
-        <div class="project-image">
-          <i class="fas fa-code"></i>
+      <div class="projects-container">
+        <div class="project-card" id="memory-game">
+          <div class="project-image">
+            <img src="memory1.jpeg" alt="Memory Game">
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Memory Game</h3>
+            <p class="project-description">A fun card matching game with score tracking and multiple difficulty levels.</p>
+            <div class="project-tags">
+              <span class="project-tag">HTML</span>
+              <span class="project-tag">CSS</span>
+              <span class="project-tag">JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/ryosvoid/memory_game" target="_blank" class="btn">View on GitHub</a>
+            </div>
+          </div>
         </div>
-        <div class="project-content">
-          <h3 class="project-title">Coming Soon</h3>
-          <p class="project-description">More exciting projects will be added here soon!</p>
-          <div class="project-tags">
-            <span class="project-tag">Python</span>
-            <span class="project-tag">AI</span>
+        
+        <div class="project-card" id="project-2">
+          <div class="project-image">
+            <i class="fas fa-code"></i>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Coming Soon</h3>
+            <p class="project-description">More exciting projects will be added here soon!</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">AI</span>
+            </div>
           </div>
         </div>
       </div>
@@ -951,10 +1105,8 @@
         const sectionId = link.getAttribute('href');
         document.querySelector(sectionId).classList.add('active');
         
-        // Scroll to top if not home section
-        if (sectionId !== '#home') {
-          window.scrollTo(0, 0);
-        }
+        // Scroll to top
+        window.scrollTo(0, 0);
       });
     });
 
