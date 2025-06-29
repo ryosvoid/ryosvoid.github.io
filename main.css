@@ -1,91 +1,148 @@
-/* Ghibli-Inspired Color Palette */
+/* 🌿 Ghibli-Inspired Color Palette */
 :root {
-  --ghibli-blue: #9fd3e6;
-  --ghibli-green: #b5d6b2;
-  --ghibli-yellow: #f7e6b5;
-  --ghibli-red: #e8a87c;
-  --ghibli-purple: #c38d9e;
-  --ghibli-dark: #3a3a5a;
-  --ghibli-light: #fff9f5;
-  --ghibli-sky: #e0f7fa;
-  --ghibli-cloud: rgba(255, 255, 255, 0.9);
+  --ghibli-blue: #a3dff2;
+  --ghibli-green: #c7e7c4;
+  --ghibli-yellow: #fdf0c2;
+  --ghibli-red: #f3b9a5;
+  --ghibli-purple: #d3a4bc;
+  --ghibli-dark: #3e3e4e;
+  --ghibli-light: #fffaf0;
+  --ghibli-sky: #e0f4f6;
+  --ghibli-cloud: rgba(255, 255, 255, 0.85);
+  --ghibli-brown: #a3876a;
+  --ghibli-shadow: rgba(0, 0, 0, 0.1);
+  --ghibli-font: 'Quicksand', 'DM Sans', sans-serif;
 }
 
-/* Smaller Contact Modal */
+/* 🌸 Ghibli Modal Styling */
 .contact-modal .contact-content {
   max-width: 500px;
   width: 90%;
+  background-color: var(--ghibli-light);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px var(--ghibli-shadow);
+  font-family: var(--ghibli-font);
+  padding: 2rem;
+  border: 2px dashed var(--ghibli-purple);
 }
 
 .contact-title {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--ghibli-dark);
+  text-align: center;
 }
 
 .contact-subtitle {
-  font-size: 1rem;
+  font-size: 1.1rem;
+  text-align: center;
   margin-bottom: 1.5rem;
+  color: var(--ghibli-brown);
 }
 
+/* 📝 Form Elements */
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .form-input, .form-textarea {
-  padding: 0.8rem;
-  font-size: 0.9rem;
+  padding: 0.9rem;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  border: 1px solid var(--ghibli-blue);
+  background-color: var(--ghibli-sky);
+  transition: all 0.3s ease-in-out;
+  font-family: var(--ghibli-font);
+}
+
+.form-input:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--ghibli-purple);
+  background-color: var(--ghibli-light);
 }
 
 .form-submit {
-  padding: 0.8rem;
-  font-size: 0.9rem;
+  background-color: var(--ghibli-purple);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem 1.4rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
+.form-submit:hover {
+  transform: scale(1.05);
+  background-color: var(--ghibli-red);
+}
+
+/* 🎉 Success Message */
 .success-message h3 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  color: var(--ghibli-green);
+  text-align: center;
 }
 
 .success-text {
   font-size: 1rem;
+  text-align: center;
+  color: var(--ghibli-dark);
 }
 
-/* Enhanced Ghibli Elements */
+/* ✨ Ghibli Element Animation */
 .ghibli-element {
-  opacity: 0.3;
-  transition: all 0.5s ease;
+  opacity: 0.25;
+  transition: all 0.6s ease;
+  filter: blur(0.5px);
 }
 
 .ghibli-element:hover {
   opacity: 0.6;
-  transform: scale(1.1);
+  transform: scale(1.05) rotate(1deg);
+  filter: blur(0);
 }
 
-/* Project Card Enhancements */
+/* 🎨 Project Card */
 .project-card {
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: var(--ghibli-light);
+  border-radius: 15px;
+  transition: all 0.6s ease;
+  box-shadow: 0 6px 12px var(--ghibli-shadow);
+  font-family: var(--ghibli-font);
 }
 
 .project-card:hover {
-  transform: translateY(-10px) rotate(1deg);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px) rotate(0.5deg);
+  box-shadow: 0 12px 24px var(--ghibli-shadow);
 }
 
-/* Modal Enhancements */
+/* 🪄 Modal Styling */
 .modal-content {
-  border: 2px solid var(--ghibli-purple);
-  border-radius: 15px;
-  overflow: hidden;
+  border: 3px solid var(--ghibli-purple);
+  border-radius: 20px;
+  background-color: var(--ghibli-light);
+  font-family: var(--ghibli-font);
 }
 
 .modal-title {
   color: var(--ghibli-purple);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+  text-shadow: 1px 1px 2px var(--ghibli-shadow);
 }
 
-/* Button Enhancements */
+/* 🌟 Button Enhancements */
 .btn {
+  background-color: var(--ghibli-yellow);
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-family: var(--ghibli-font);
   position: relative;
-  overflow: hidden;
+  border: none;
+  box-shadow: 0 5px 10px var(--ghibli-shadow);
+  cursor: pointer;
 }
 
 .btn::after {
@@ -97,55 +154,59 @@
   height: 200%;
   background: linear-gradient(
     to bottom right,
-    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.25),
     rgba(255, 255, 255, 0)
   );
   transform: rotate(30deg);
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 
 .btn:hover::after {
   transform: translateX(100%) rotate(30deg);
 }
 
-/* Section Title Enhancements */
+/* 🌈 Section Titles */
 .section-title {
   background: linear-gradient(to right, var(--ghibli-purple), var(--ghibli-blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
   padding: 0 1rem;
+  font-size: 2rem;
+  font-family: var(--ghibli-font);
 }
 
-/* Profile Image Enhancements */
+/* 🎭 Profile Image Styling */
 .profile-image {
-  border: 5px solid white;
+  border: 4px solid white;
+  border-radius: 50%;
   box-shadow: 
-    0 0 0 5px var(--ghibli-purple),
-    0 0 0 10px var(--ghibli-blue),
-    0 0 20px rgba(0, 0, 0, 0.2);
+    0 0 0 4px var(--ghibli-purple),
+    0 0 0 8px var(--ghibli-blue),
+    0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Skill Bar Enhancements */
+/* 📊 Skill Bar Shine */
 .skill-progress {
   position: relative;
   overflow: hidden;
+  border-radius: 10px;
 }
 
 .skill-progress::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
   background: linear-gradient(
     to right,
     rgba(255, 255, 255, 0.1),
     rgba(255, 255, 255, 0.4),
     rgba(255, 255, 255, 0.1)
   );
-  animation: shine 2s infinite;
+  animation: shine 2.5s infinite;
 }
 
 @keyframes shine {
@@ -153,14 +214,14 @@
   100% { transform: translateX(100%); }
 }
 
-/* Responsive Adjustments */
+/* 📱 Responsive */
 @media (max-width: 768px) {
   .contact-modal .contact-content {
     width: 95%;
     padding: 1.5rem;
   }
-  
+
   .contact-title {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 }
