@@ -1,76 +1,136 @@
-// Enhanced Ghibli Animations
+// Enhanced Ghibli Animations with Error Handling
 function createGhibliElements() {
-  const container = document.getElementById('ghibli-elements');
-  const elementCount = window.innerWidth < 768 ? 15 : 30;
-  
-  // Ghibli-inspired elements
-  const elements = [
-    { class: 'soot-sprite', emoji: '⚫', color: 'black' },
-    { class: 'leaf', emoji: '🍃', color: '#8da67b' },
-    { class: 'star', emoji: '✨', color: '#f5d76e' },
-    { class: 'cloud', emoji: '☁️', color: '#f8f9fa' }
-  ];
+  try {
+    const container = document.getElementById('ghibli-elements');
+    if (!container) {
+      console.error("Ghibli elements container not found");
+      return;
+    }
 
-  for (let i = 0; i < elementCount; i++) {
-    const element = document.createElement('div');
-    const type = elements[Math.floor(Math.random() * elements.length)];
+    const elementCount = window.innerWidth < 768 ? 15 : 30;
     
-    element.classList.add('ghibli-element', type.class);
-    element.innerHTML = type.emoji;
-    element.style.color = type.color;
-    
-    // Random properties
-    const size = Math.random() * 30 + 20;
-    const posX = Math.random() * 100;
-    const posY = Math.random() * 100;
-    const delay = Math.random() * 5;
-    const duration = Math.random() * 15 + 10;
-    const opacity = Math.random() * 0.6 + 0.4;
-    
-    element.style.fontSize = `${size}px`;
-    element.style.left = `${posX}%`;
-    element.style.top = `${posY}%`;
-    element.style.animationDelay = `${delay}s`;
-    element.style.animationDuration = `${duration}s`;
-    element.style.opacity = opacity;
-    element.style.transform = `rotate(${Math.random() * 360}deg)`;
-    
-    container.appendChild(element);
+    const elements = [
+      { class: 'soot-sprite', emoji: '⚫', color: 'black' },
+      { class: 'leaf', emoji: '🍃', color: '#8da67b' },
+      { class: 'star', emoji: '✨', color: '#f5d76e' },
+      { class: 'cloud', emoji: '☁️', color: '#f8f9fa' }
+    ];
+
+    // Clear existing elements first
+    container.innerHTML = '';
+
+    for (let i = 0; i < elementCount; i++) {
+      const element = document.createElement('div');
+      const type = elements[Math.floor(Math.random() * elements.length)];
+      
+      element.className = `ghibli-element ${type.class}`;
+      element.innerHTML = type.emoji;
+      element.style.cssText = `
+        color: ${type.color};
+        font-size: ${Math.random() * 30 + 20}px;
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        animation-delay: ${Math.random() * 5}s;
+        animation-duration: ${Math.random() * 15 + 10}s;
+        opacity: ${Math.random() * 0.6 + 0.4};
+        transform: rotate(${Math.random() * 360}deg);
+        position: absolute;
+        pointer-events: none;
+        z-index: -1;
+      `;
+      
+      container.appendChild(element);
+    }
+  } catch (error) {
+    console.error("Error creating Ghibli elements:", error);
   }
 }
 
-// Ghibli-inspired page transitions
+// Enhanced Navigation with History API
 function setupNavigation() {
-  const navButtons = document.querySelectorAll('.nav-btn');
-  const pages = document.querySelectorAll('.page');
+  try {
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const pages = document.querySelectorAll('.page');
 
-  navButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      
-      // Add Ghibli-style transition
-      document.querySelector('.content-container').style.animation = 'ghibliFade 0.5s ease';
-      
-      setTimeout(() => {
+    if (!navButtons.length || !pages.length) {
+      console.error("Navigation elements not found");
+      return;
+    }
+
+    navButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetPage = button.getAttribute('href');
+        
+        // Add transition
+        document.querySelector('.content-container').style.animation = 'ghibliFade 0.5s ease';
+        
+        setTimeout(() => {
+          // Update active states
+          navButtons.forEach(btn => btn.classList.remove('active'));
+          pages.forEach(page => page.classList.remove('active'));
+          
+          button.classList.add('active');
+          document.querySelector(targetPage).classList.add('active');
+          
+          // Update URL without reload
+          history.pushState(null, '', targetPage);
+          
+          // Reset animation
+          document.querySelector('.content-container').style.animation = '';
+          window.scrollTo(0, 0);
+        }, 500);
+      });
+    });
+
+    // Handle browser back/forward
+    window.addEventListener('popstate', () => {
+      const currentPage = window.location.hash || '#home';
+      const activeButton = document.querySelector(`.nav-btn[href="${currentPage}"]`);
+      if (activeButton) {
         navButtons.forEach(btn => btn.classList.remove('active'));
         pages.forEach(page => page.classList.remove('active'));
         
-        button.classList.add('active');
-        const pageId = button.getAttribute('href');
-        document.querySelector(pageId).classList.add('active');
-        
-        document.querySelector('.content-container').style.animation = '';
-        window.scrollTo(0, 0);
-      }, 500);
+        activeButton.classList.add('active');
+        document.querySelector(currentPage).classList.add('active');
+      }
     });
-  });
+  } catch (error) {
+    console.error("Error setting up navigation:", error);
+  }
 }
 
-// Initialize everything
+// Initialize with error handling
 document.addEventListener('DOMContentLoaded', () => {
-  createGhibliElements();
-  setupNavigation();
-  // Other setup functions...
+  try {
+    createGhibliElements();
+    setupNavigation();
+    
+    // Initialize EmailJS
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init({
+        publicKey: "AX9ZtVpZPmydtAaFI",
+        blockHeadless: true
+      });
+    }
+  } catch (error) {
+    console.error("Initialization error:", error);
+  }
 });
 
-// Add EmailJS and other functionality...
+// Add animation to CSS dynamically if not present
+document.head.insertAdjacentHTML('beforeend', `
+  <style>
+    @keyframes ghibliFade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .ghibli-element {
+      animation: float linear infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+  </style>
+`);
