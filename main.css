@@ -1,0 +1,97 @@
+:root {
+  /* Ghibli Color Palette */
+  --ghibli-sky: #a7c4d4;
+  --ghibli-green: #8da67b;
+  --ghibli-cream: #f5f1e6;
+  --ghibli-wood: #a38a6d;
+  --ghibli-dark: #3a3a3a;
+  --ghibli-sun: #f5d76e;
+  --ghibli-red: #e74c3c;
+  --ghibli-cloud: #f8f9fa;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Zen Maru Gothic', 'Quicksand', sans-serif;
+  color: var(--ghibli-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-color: var(--ghibli-cream);
+}
+
+.ghibli-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://i.pinimg.com/originals/fb/bc/e8/fbbce8ab82be7da2272ab316fef08b2d.gif');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  opacity: 0.8;
+}
+
+.content-container {
+  background-color: rgba(245, 241, 230, 0.85);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Ghibli Navigation */
+.ghibli-nav {
+  background-color: rgba(245, 241, 230, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--ghibli-wood);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-btn {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-weight: 500;
+  color: var(--ghibli-dark);
+  background-color: transparent;
+  border: 2px solid var(--ghibli-wood);
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  background-color: var(--ghibli-green);
+  color: white;
+  border-color: var(--ghibli-green);
+  transform: translateY(-3px);
+}
+
+/* Ghibli Cards */
+.ghibli-card {
+  background-color: var(--ghibli-cloud);
+  border: 2px solid var(--ghibli-wood);
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ghibli-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--ghibli-sky), var(--ghibli-green));
+}
+
+.ghibli-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Add more Ghibli-specific styles... */
