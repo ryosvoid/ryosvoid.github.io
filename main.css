@@ -11,461 +11,140 @@
   --ghibli-cloud: rgba(255, 255, 255, 0.9);
 }
 
-/* Base Styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* Smaller Contact Modal */
+.contact-modal .contact-content {
+  max-width: 500px;
+  width: 90%;
 }
 
-body {
-  font-family: 'Fredoka', 'Kosugi Maru', sans-serif;
-  color: var(--ghibli-dark);
-  background-color: var(--ghibli-light);
-  line-height: 1.6;
-  overflow-x: hidden;
-  min-height: 100vh;
+.contact-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
 }
 
-/* Ghibli Background Elements */
-.ghibli-sky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, var(--ghibli-sky), var(--ghibli-blue));
-  z-index: -3;
-  animation: skyGradient 15s infinite alternate;
+.contact-subtitle {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
 }
 
-@keyframes skyGradient {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
+.form-group {
+  margin-bottom: 1rem;
 }
 
-.clouds-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  overflow: hidden;
+.form-input, .form-textarea {
+  padding: 0.8rem;
+  font-size: 0.9rem;
 }
 
-.cloud {
-  position: absolute;
-  background: var(--ghibli-cloud);
-  border-radius: 50%;
-  filter: blur(5px);
-  animation: floatCloud linear infinite;
+.form-submit {
+  padding: 0.8rem;
+  font-size: 0.9rem;
 }
 
-@keyframes floatCloud {
-  0% { transform: translateX(-100px); }
-  100% { transform: translateX(calc(100vw + 100px)); }
-}
-
-/* Ghibli Character Elements */
-.ghibli-element {
-  position: fixed;
-  z-index: -1;
-  opacity: 0.2;
-  animation-duration: 20s;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-}
-
-.totoro {
-  bottom: 5%;
-  left: 5%;
-  width: 150px;
-  height: 150px;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 20c-15 0-25 10-25 25s10 25 25 25 25-10 25-25-10-25-25-25zm0 5c5 0 10 5 10 10s-5 10-10 10-10-5-10-10 5-10 10-10z" fill="%233a3a5a"/></svg>');
-  background-size: contain;
-  background-repeat: no-repeat;
-  animation-name: bounce;
-}
-
-.soot-sprite {
-  top: 20%;
-  right: 10%;
-  width: 50px;
-  height: 50px;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%233a3a5a"/><circle cx="35" cy="40" r="5" fill="white"/><circle cx="65" cy="40" r="5" fill="white"/></svg>');
-  background-size: contain;
-  animation-name: float;
-}
-
-.kodama {
-  top: 60%;
-  right: 15%;
-  width: 80px;
-  height: 80px;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23b5d6b2"/><circle cx="35" cy="40" r="5" fill="black"/><circle cx="65" cy="40" r="5" fill="black"/></svg>');
-  background-size: contain;
-  animation-name: sway;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  25% { transform: translateY(-10px) translateX(10px); }
-  50% { transform: translateY(0) translateX(20px); }
-  75% { transform: translateY(-10px) translateX(10px); }
-}
-
-@keyframes sway {
-  0%, 100% { transform: rotate(-5deg); }
-  50% { transform: rotate(5deg); }
-}
-
-/* Navigation */
-.main-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.nav-buttons {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.nav-btn {
-  font-family: 'Kosugi Maru', sans-serif;
-  font-size: 1.2rem;
-  color: var(--ghibli-dark);
-  text-decoration: none;
-  padding: 0.7rem 1.5rem;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.nav-btn:hover {
-  background: var(--ghibli-blue);
-  color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(159, 211, 230, 0.4);
-}
-
-.nav-btn.active {
-  background: var(--ghibli-purple);
-  color: white;
-}
-
-/* Page Sections */
-.page {
-  display: none;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 6rem 2rem 2rem;
-  animation: fadeIn 0.5s ease;
-}
-
-.page.active {
-  display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Home Section */
-#home {
-  text-align: center;
-  padding-top: 8rem;
-}
-
-.profile-container {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 2rem;
-}
-
-.profile-image {
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 5px solid white;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  position: relative;
-  z-index: 1;
-  transition: transform 0.3s ease;
-}
-
-.profile-image:hover {
-  transform: scale(1.05) rotate(5deg);
-}
-
-.profile-frame {
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  right: -15px;
-  bottom: -15px;
-  border: 3px dashed var(--ghibli-purple);
-  border-radius: 50%;
-  animation: rotate 20s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.home-title {
-  font-family: 'Kosugi Maru', sans-serif;
-  font-size: 3.5rem;
-  margin: 0 0 1rem 0;
-  line-height: 1.2;
-  color: var(--ghibli-dark);
-  position: relative;
-  display: inline-block;
-}
-
-.home-title span {
-  color: var(--ghibli-purple);
-}
-
-.home-subtitle {
+.success-message h3 {
   font-size: 1.5rem;
-  color: var(--ghibli-dark);
-  margin: 0 auto 2rem;
-  max-width: 700px;
-  opacity: 0.9;
 }
 
-.contact-info {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: white;
-  padding: 0.8rem 1.5rem;
-  border-radius: 50px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
-
-.contact-item:hover {
-  transform: translateY(-5px);
-  background: var(--ghibli-blue);
-  color: white;
-}
-
-.contact-item:hover .contact-icon {
-  background: white;
-  color: var(--ghibli-blue);
-}
-
-.contact-item:hover .contact-text a {
-  color: white;
-}
-
-.contact-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(159, 211, 230, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ghibli-blue);
-  font-size: 1.2rem;
-  transition: all 0.3s;
-}
-
-.contact-text a {
-  color: var(--ghibli-dark);
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.btn-container {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  margin-top: 2rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background: var(--ghibli-purple);
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 50px;
-  font-family: 'Fredoka', sans-serif;
-  font-weight: 500;
-  text-decoration: none;
-  box-shadow: 0 5px 15px rgba(195, 141, 158, 0.3);
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
+.success-text {
   font-size: 1rem;
 }
 
-.btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(195, 141, 158, 0.4);
-  background: var(--ghibli-red);
+/* Enhanced Ghibli Elements */
+.ghibli-element {
+  opacity: 0.3;
+  transition: all 0.5s ease;
 }
 
-.btn-outline {
-  background: transparent;
+.ghibli-element:hover {
+  opacity: 0.6;
+  transform: scale(1.1);
+}
+
+/* Project Card Enhancements */
+.project-card {
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card:hover {
+  transform: translateY(-10px) rotate(1deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Enhancements */
+.modal-content {
   border: 2px solid var(--ghibli-purple);
-  color: var(--ghibli-purple);
-  box-shadow: none;
-}
-
-.btn-outline:hover {
-  background: var(--ghibli-purple);
-  color: white;
-}
-
-/* Section Titles */
-.section-title {
-  font-family: 'Kosugi Maru', sans-serif;
-  font-size: 3rem;
-  text-align: center;
-  margin-bottom: 3rem;
-  color: var(--ghibli-dark);
-  position: relative;
-  display: inline-block;
-}
-
-.section-title::before, .section-title::after {
-  content: '✿';
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--ghibli-purple);
-  font-size: 1.5rem;
-}
-
-.section-title::before {
-  left: -50px;
-}
-
-.section-title::after {
-  right: -50px;
-}
-
-/* About Section */
-.about-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.about-text {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 2rem;
-  background: white;
-  padding: 1.8rem;
   border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  position: relative;
-}
-
-.about-text::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 5px;
-  height: 100%;
-  background: linear-gradient(to bottom, var(--ghibli-blue), var(--ghibli-purple));
-  border-radius: 15px 0 0 15px;
-}
-
-.skills-container {
-  margin-top: 2rem;
-}
-
-.skills-category {
-  margin-bottom: 2rem;
-  background: white;
-  padding: 1.5rem;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.skills-category h3 {
-  font-family: 'Kosugi Maru', sans-serif;
-  font-size: 1.3rem;
-  margin-bottom: 1.5rem;
-  color: var(--ghibli-purple);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.skill-item {
-  margin-bottom: 1.2rem;
-}
-
-.skill-name {
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-.skill-bar {
-  height: 8px;
-  background: #f0f0f0;
-  border-radius: 10px;
   overflow: hidden;
 }
 
-.skill-progress {
-  height: 100%;
-  background: linear-gradient(to right, var(--ghibli-blue), var(--ghibli-purple));
-  border-radius: 10px;
-  position: relative;
+.modal-title {
+  color: var(--ghibli-purple);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.skill-progress::after {
+/* Button Enhancements */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+  transform: rotate(30deg);
+  transition: all 0.3s ease;
+}
+
+.btn:hover::after {
+  transform: translateX(100%) rotate(30deg);
+}
+
+/* Section Title Enhancements */
+.section-title {
+  background: linear-gradient(to right, var(--ghibli-purple), var(--ghibli-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding: 0 1rem;
+}
+
+/* Profile Image Enhancements */
+.profile-image {
+  border: 5px solid white;
+  box-shadow: 
+    0 0 0 5px var(--ghibli-purple),
+    0 0 0 10px var(--ghibli-blue),
+    0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Skill Bar Enhancements */
+.skill-progress {
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-progress::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.1)
+  );
   animation: shine 2s infinite;
 }
 
@@ -474,721 +153,14 @@ body {
   100% { transform: translateX(100%); }
 }
 
-.languages-container {
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 1rem;
-  justify-content: center;
-}
-
-.language-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-.language-item:hover {
-  transform: translateY(-5px);
-}
-
-.language-circle {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: var(--ghibli-blue);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.language-item:hover .language-circle {
-  background: var(--ghibli-purple);
-}
-
-.language-name {
-  font-weight: 500;
-}
-
-/* Hobbies */
-.hobbies-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.hobby-item {
-  display: flex;
-  align-items: center;
-  background: white;
-  padding: 1.2rem;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
-
-.hobby-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  background: var(--ghibli-blue);
-  color: white;
-}
-
-.hobby-item:hover h4, .hobby-item:hover p {
-  color: white;
-}
-
-.hobby-item:hover .hobby-icon {
-  background: white;
-  color: var(--ghibli-blue);
-}
-
-.hobby-icon {
-  width: 45px;
-  height: 45px;
-  background: rgba(159, 211, 230, 0.2);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ghibli-blue);
-  font-size: 1.3rem;
-  margin-right: 1.2rem;
-  transition: all 0.3s;
-}
-
-.hobby-item h4 {
-  font-size: 1.1rem;
-  margin-bottom: 0.2rem;
-  color: var(--ghibli-dark);
-}
-
-.hobby-item p {
-  font-size: 0.9rem;
-  color: #666;
-}
-
-/* Certificates */
-.certificates-list {
-  background: white;
-  border-radius: 15px;
-  padding: 1.5rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.certificate-item {
-  padding: 1rem 0;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-.certificate-item:hover {
-  background: rgba(159, 211, 230, 0.1);
-}
-
-.certificate-item:last-child {
-  border-bottom: none;
-}
-
-.certificate-title {
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-.certificate-link {
-  color: var(--ghibli-blue);
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.certificate-link:hover {
-  color: var(--ghibli-purple);
-  transform: translateX(5px);
-}
-
-/* Projects */
-.projects-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
-}
-
-.project-card {
-  background: white;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.project-image {
-  height: 200px;
-  overflow: hidden;
-  position: relative;
-}
-
-.project-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.project-card:hover .project-image img {
-  transform: scale(1.1);
-}
-
-.project-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  color: white;
-  font-size: 2rem;
-}
-
-.project-card:hover .project-overlay {
-  opacity: 1;
-}
-
-.coming-soon {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: var(--ghibli-blue);
-  color: white;
-}
-
-.coming-soon i {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.coming-soon h3 {
-  font-family: 'Kosugi Maru', sans-serif;
-}
-
-.project-content {
-  padding: 1.5rem;
-}
-
-.project-title {
-  font-size: 1.5rem;
-  margin: 0 0 0.8rem 0;
-  color: var(--ghibli-dark);
-  transition: color 0.3s;
-}
-
-.project-card:hover .project-title {
-  color: var(--ghibli-purple);
-}
-
-.project-description {
-  color: #666;
-  margin-bottom: 1.2rem;
-  line-height: 1.6;
-}
-
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.project-tag {
-  background: rgba(159, 211, 230, 0.2);
-  color: var(--ghibli-blue);
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  transition: all 0.3s;
-}
-
-.project-card:hover .project-tag {
-  background: rgba(195, 141, 158, 0.2);
-  color: var(--ghibli-purple);
-}
-
-/* Modals */
-.project-modal, .contact-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 2rem;
-  box-sizing: border-box;
-}
-
-.project-modal.active, .contact-modal.active {
-  display: flex;
-  animation: fadeIn 0.3s ease;
-}
-
-.modal-content, .contact-content {
-  background: white;
-  border-radius: 20px;
-  max-width: 900px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-  transform: scale(0.95);
-  transition: transform 0.3s ease;
-}
-
-.project-modal.active .modal-content, .contact-modal.active .contact-content {
-  transform: scale(1);
-}
-
-.modal-close, .contact-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--ghibli-purple);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 1.5rem;
-  z-index: 10;
-  transition: all 0.3s ease;
-  border: none;
-}
-
-.modal-close:hover, .contact-close:hover {
-  transform: rotate(90deg) scale(1.1);
-  background: var(--ghibli-red);
-}
-
-.modal-image {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-
-.modal-body {
-  padding: 2rem;
-}
-
-.modal-title {
-  font-family: 'Kosugi Maru', sans-serif;
-  font-size: 2.2rem;
-  margin: 0 0 1.5rem 0;
-  color: var(--ghibli-purple);
-  line-height: 1.2;
-}
-
-.modal-description {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 2rem;
-  color: #555;
-}
-
-.modal-tech {
-  display: inline-block;
-  background: rgba(159, 211, 230, 0.2);
-  color: var(--ghibli-blue);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-weight: 500;
-  margin-bottom: 2rem;
-}
-
-.modal-features {
-  list-style: none;
-  margin-bottom: 2rem;
-}
-
-.modal-features li {
-  margin-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.modal-features i {
-  color: var(--ghibli-purple);
-}
-
-.modal-buttons {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.modal-subtitle {
-  font-family: 'Kosugi Maru', sans-serif;
-  font-size: 1.5rem;
-  margin: 2rem 0 1rem 0;
-  color: var(--ghibli-dark);
-}
-
-.modal-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.gallery-image {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.gallery-image:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-/* Contact Form */
-.contact-title {
-  font-family: 'Kosugi Maru', sans-serif;
-  font-size: 2.2rem;
-  color: var(--ghibli-purple);
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.contact-subtitle {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #666;
-  font-size: 1.1rem;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-label {
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  color: var(--ghibli-dark);
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.form-label i {
-  color: var(--ghibli-purple);
-}
-
-.form-input {
-  padding: 1rem;
-  border: 2px solid #f0f0f0;
-  border-radius: 10px;
-  font-family: 'Fredoka', sans-serif;
-  font-size: 1rem;
-  transition: all 0.3s;
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: var(--ghibli-blue);
-  box-shadow: 0 0 0 3px rgba(159, 211, 230, 0.3);
-}
-
-.form-textarea {
-  min-height: 150px;
-  resize: vertical;
-}
-
-.form-submit {
-  background: var(--ghibli-purple);
-  color: white;
-  padding: 1rem;
-  border: none;
-  border-radius: 10px;
-  font-family: 'Fredoka', sans-serif;
-  font-weight: 500;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 1rem;
-}
-
-.form-submit:hover {
-  background: var(--ghibli-red);
-  transform: translateY(-3px);
-}
-
-.form-submit:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* Success Message */
-.success-message {
-  display: none;
-  text-align: center;
-  padding: 2rem;
-  animation: fadeIn 0.5s ease;
-}
-
-.success-icon {
-  font-size: 4rem;
-  color: var(--ghibli-green);
-  margin-bottom: 1.5rem;
-  animation: bounce 1s ease infinite alternate;
-}
-
-@keyframes bounce {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-10px); }
-}
-
-.success-text {
-  font-size: 1.2rem;
-  color: var(--ghibli-dark);
-  margin-bottom: 1.5rem;
-}
-
-.success-btn {
-  background: var(--ghibli-purple);
-  color: white;
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: 50px;
-  font-family: 'Fredoka', sans-serif;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.success-btn:hover {
-  background: var(--ghibli-red);
-}
-
-.message-decoration {
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 1.5rem;
-  color: var(--ghibli-purple);
-  line-height: 1;
-  font-family: 'Kosugi Maru', sans-serif;
-}
-
-/* Lightbox */
-.lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.95);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1001;
-}
-
-.lightbox.active {
-  display: flex;
-  animation: fadeIn 0.3s ease;
-}
-
-.lightbox-img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-}
-
-.lightbox-close {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  color: white;
-  font-size: 2.5rem;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.lightbox-close:hover {
-  transform: scale(1.2);
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .about-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .modal-gallery {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  }
-}
-
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .home-title {
-    font-size: 2.5rem;
-  }
-
-  .home-subtitle {
-    font-size: 1.2rem;
-  }
-
-  .section-title {
-    font-size: 2.2rem;
-  }
-
-  .section-title::before, .section-title::after {
-    display: none;
-  }
-
-  .nav-buttons {
-    gap: 0.5rem;
-  }
-
-  .nav-btn {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-  }
-
-  .profile-image {
-    width: 180px;
-    height: 180px;
-  }
-
-  .hobbies-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-content {
+  .contact-modal .contact-content {
+    width: 95%;
     padding: 1.5rem;
   }
   
-  .modal-body {
-    padding: 1.5rem;
+  .contact-title {
+    font-size: 1.5rem;
   }
-  
-  .modal-title {
-    font-size: 1.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .home-title {
-    font-size: 2rem;
-  }
-
-  .section-title {
-    font-size: 1.8rem;
-  }
-
-  .nav-buttons {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .projects-container {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-item {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .modal-gallery {
-    grid-template-columns: 1fr;
-  }
-
-  .btn-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .btn {
-    width: 100%;
-    text-align: center;
-  }
-  
-  .contact-content {
-    width: 95%;
-    padding: 1.2rem;
-  }
-  
-  .modal-content {
-    width: 95%;
-  }
-  
-  .modal-image {
-    height: 200px;
-  }
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--ghibli-purple);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--ghibli-red);
 }
