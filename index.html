@@ -3,198 +3,498 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hajar | Portfolio</title>
+    <title>Neon Dreams | Cyberpunk Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="main.css">
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <!-- Floating Particles -->
-    <div id="particles-js"></div>
+    <!-- Audio Elements -->
+    <audio id="hover-sound" src="./assets/sounds/hover-soft.mp3" preload="auto"></audio>
+    <audio id="click-sound" src="./assets/sounds/click-futuristic.mp3" preload="auto"></audio>
+    <audio id="modal-sound" src="./assets/sounds/modal-open.wav" preload="auto"></audio>
+    <audio id="success-sound" src="./assets/sounds/success-chime.mp3" preload="auto"></audio>
+    <audio id="typing-sound" src="./assets/sounds/terminal-typing.wav" preload="auto" loop></audio>
+    <audio id="powerup-sound" src="./assets/sounds/power-up.wav" preload="auto"></audio>
     
-    <!-- Navigation -->
-    <nav class="cyber-nav">
-        <div class="nav-logo">✩°｡ ⋆⸜</div>
-        <ul class="nav-links">
-            <li><a href="#home" class="nav-link">Home</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#projects" class="nav-link">Projects</a></li>
-            <li><a href="#certificates" class="nav-link">Certificates</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="hero-bg" style="background-image: url('./assets/images/decorations/starry-bg.gif')"></div>
-        <div class="hero-content">
-            <div class="profile-container">
-                <img src="./assets/images/profile.jpeg" alt="Profile" class="profile-img">
-                <div class="glow"></div>
-            </div>
-            <h1 class="cyber-title">Your Name</h1>
-            <div class="cyber-subtitle">
-                <span id="typed-text"></span>
-                <span class="blinking-cursor">|</span>
-            </div>
-            <div class="hero-contacts">
-                <a href="https://github.com/ryosvoid" class="contact-link">
-                    <img src="./assets/images/icons/github.svg" alt="GitHub">
-                </a>
-                <a href="mailto:hajarcrk26@gmail.com" class="contact-link">
-                    <img src="./assets/images/icons/email.svg" alt="Email">
-                </a>
-                <a href="tel:+212724600991" class="contact-link">
-                    <img src="./assets/images/icons/phone.svg" alt="Phone">
-                </a>
-            </div>
-            <button id="contact-btn" class="cyber-button">Contact Me</button>
-        </div>
-    </section>
-
-    <!-- About Me Section -->
-    <section id="about" class="section about-section">
-        <div class="section-bg" style="background-image: url('./assets/images/decorations/neon-grid.jpg')"></div>
-        <h2 class="section-title">About Me</h2>
+    <!-- Background Layers -->
+    <div class="bg-layer grid-layer" style="background-image: url('https://i.pinimg.com/736x/a9/ef/f4/a9eff4cd3f6facde6903cfcec96f5319.jpg')"></div>
+    <div class="bg-layer particle-layer" id="particles-js"></div>
+    <div class="bg-layer scanlines"></div>
+    
+    <!-- Main Container -->
+    <div class="cyber-container">
+        <!-- Cyber Terminal Frame -->
+        <div class="terminal-frame top-frame"></div>
+        <div class="terminal-frame right-frame"></div>
+        <div class="terminal-frame bottom-frame"></div>
+        <div class="terminal-frame left-frame"></div>
         
-        <div class="about-content">
-            <div class="about-text">
-                <p>Tech enthusiast with a passion for problem solving and creative development.</p>
-                <div class="ghibli-decoration">
-                    <img src="./assets/images/decorations/totoro.gif" alt="Totoro" class="totoro">
-                    <img src="./assets/images/decorations/whispering-wind.gif" alt="Wind" class="wind">
-                </div>
+        <!-- Animated Corner Decorations -->
+        <div class="corner-decor tl"></div>
+        <div class="corner-decor tr"></div>
+        <div class="corner-decor bl"></div>
+        <div class="corner-decor br"></div>
+        
+        <!-- Navigation -->
+        <nav class="cyber-nav">
+            <div class="nav-logo glitch" data-text="✩°｡ ⋆⸜ 🕹️">✩°｡ ⋆⸜ 🕹️</div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link" data-sound="hover"><span class="nav-number">01.</span> Home</a></li>
+                <li><a href="#about" class="nav-link" data-sound="hover"><span class="nav-number">02.</span> About</a></li>
+                <li><a href="#projects" class="nav-link" data-sound="hover"><span class="nav-number">03.</span> Projects</a></li>
+                <li><a href="#certificates" class="nav-link" data-sound="hover"><span class="nav-number">04.</span> Certificates</a></li>
+                <li><button id="contact-nav-btn" class="cyber-button small" data-sound="modal">Contact</button></li>
+            </ul>
+            <div class="mobile-menu-btn">
+                <div class="menu-bar top"></div>
+                <div class="menu-bar middle"></div>
+                <div class="menu-bar bottom"></div>
             </div>
-            
-            <div class="skills-section">
-                <h3>Technical Skills</h3>
-                <div class="skill-bars">
-                    <div class="skill" data-percent="85">
-                        <span class="skill-name">Python</span>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    <!-- More skill bars... -->
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-bg" style="background-image: url('./assets/images/decorations/starry-bg.gif')"></div>
+            <div class="hero-content">
+                <div class="intro-text">
+                    <p class="cyber-subtitle"><span class="highlight">>> Welcome to my digital realm</span></p>
+                    <h1 class="cyber-title glitch" data-text="YOUR_NAME">YOUR_NAME</h1>
+                    <h2 class="cyber-subtitle">
+                        <span id="typed-text"></span>
+                        <span class="blinking-cursor">_</span>
+                    </h2>
+                    <p class="hero-description">Building digital experiences at the intersection of technology and creativity</p>
                 </div>
                 
-                <h3>Languages</h3>
-                <div class="language-bubbles">
-                    <div class="bubble" data-lang="EN">EN</div>
-                    <div class="bubble" data-lang="FR">FR</div>
-                    <div class="bubble" data-lang="AR">AR</div>
-                </div>
-            </div>
-            
-            <div class="hobbies-section">
-                <h3>Hobbies & Interests</h3>
-                <div class="hobby-tags">
-                    <span class="hobby-tag">♟️ Chess</span>
-                    <span class="hobby-tag">🧮 Math</span>
-                    <span class="hobby-tag">💪 Fitness</span>
-                    <span class="hobby-tag">📚 Reading</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section projects-section">
-        <h2 class="section-title">My Projects</h2>
-        
-        <div class="project-grid">
-            <!-- Memory Game Project -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="./assets/images/projects/memory game/memory3.jpeg" alt="Memory Game">
-                    <div class="project-overlay">
-                        <button class="view-gallery">View Gallery</button>
+                <div class="profile-container">
+                    <div class="profile-frame">
+                        <img src="./assets/images/profile.jpeg" alt="Profile" class="profile-img glitch" data-glitch-offset="5">
+                        <div class="profile-overlay"></div>
+                        <div class="profile-grid"></div>
+                        <div class="profile-dots"></div>
                     </div>
                 </div>
-                <div class="project-details">
-                    <h3>Memory Game</h3>
-                    <p>A interactive card matching game with user accounts and score tracking.</p>
-                    <div class="tech-tags">
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                        <span>Python</span>
-                    </div>
-                    <a href="https://github.com/ryosvoid/memory_game" class="github-link">
-                        <img src="./assets/images/icons/github.svg" alt="GitHub"> View on GitHub
+                
+                <div class="hero-contacts">
+                    <a href="https://github.com/ryosvoid" class="contact-link" data-sound="click">
+                        <img src="./assets/images/icons/github.svg" alt="GitHub" class="contact-icon">
+                        <span>@ryosvoid</span>
+                    </a>
+                    <a href="mailto:hajarcrk26@gmail.com" class="contact-link" data-sound="click">
+                        <img src="./assets/images/icons/email.svg" alt="Email" class="contact-icon">
+                        <span>hajarcrk26@gmail.com</span>
+                    </a>
+                    <a href="tel:+212724600991" class="contact-link" data-sound="click">
+                        <img src="./assets/images/icons/phone.svg" alt="Phone" class="contact-icon">
+                        <span>+212 724 600 991</span>
+                    </a>
+                </div>
+                
+                <div class="hero-actions">
+                    <button id="contact-btn" class="cyber-button" data-sound="modal">
+                        <span>Contact Me</span>
+                        <div class="button-hover"></div>
+                    </button>
+                    <a href="#projects" class="cyber-button outline" data-sound="hover">
+                        <span>View Projects</span>
+                        <div class="button-hover"></div>
                     </a>
                 </div>
             </div>
             
-            <!-- Maths Pyramid Game -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="./assets/images/projects/maths game/pyramid_equation1.png" alt="Maths Pyramid">
-                    <div class="project-overlay">
-                        <button class="view-gallery">View Gallery</button>
+            <div class="hero-decoration">
+                <img src="./assets/images/decorations/totoro.gif" alt="Totoro" class="totoro">
+                <img src="./assets/images/decorations/whispering-wind.gif" alt="Wind" class="wind">
+                <div class="floating-shapes">
+                    <div class="shape triangle"></div>
+                    <div class="shape circle"></div>
+                    <div class="shape square"></div>
+                </div>
+            </div>
+            
+            <div class="scroll-down">
+                <div class="scroll-line"></div>
+                <span>Scroll Down</span>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section about-section">
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="About Me"><span class="section-number">02.</span> About Me</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <div class="terminal-btn close"></div>
+                                <div class="terminal-btn minimize"></div>
+                                <div class="terminal-btn maximize"></div>
+                            </div>
+                            <span class="terminal-title">user@portfolio:~</span>
+                        </div>
+                        <div class="terminal-body">
+                            <p class="terminal-line"><span class="prompt">></span> <span class="command">whoami</span></p>
+                            <p class="terminal-line output">Tech enthusiast | Creative developer | Problem solver</p>
+                            
+                            <p class="terminal-line"><span class="prompt">></span> <span class="command">cat bio.txt</span></p>
+                            <p class="terminal-line output multi-line">
+                                Passionate about building digital experiences that blend technology and art. 
+                                With expertise in multiple programming languages and frameworks, I create 
+                                solutions that are both functional and visually stunning.
+                            </p>
+                            
+                            <p class="terminal-line"><span class="prompt">></span> <span class="command">skills --show-progress</span></p>
+                            <div class="terminal-line output">
+                                <div class="skills-container">
+                                    <!-- Skills will be injected here by JS -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="project-details">
-                    <h3>Maths Pyramid Game</h3>
-                    <p>Solve pyramid equations by memorizing and calculating number patterns.</p>
-                    <div class="tech-tags">
-                        <span>Python</span>
-                        <span>JavaScript</span>
+                
+                <div class="about-details">
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Development</h3>
+                        <p>Full-stack development with focus on clean, efficient code and intuitive UX</p>
                     </div>
-                    <a href="https://github.com/ryosvoid/maths-pyramid-game" class="github-link">
-                        <img src="./assets/images/icons/github.svg" alt="GitHub"> View on GitHub
+                    
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>Design</h3>
+                        <p>Pixel-perfect interfaces with attention to detail and user experience</p>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>Constantly exploring new technologies and creative solutions</p>
+                    </div>
+                    
+                    <div class="languages-section">
+                        <h3>Languages</h3>
+                        <div class="language-bubbles">
+                            <div class="bubble" data-lang="EN">
+                                <div class="bubble-inner">
+                                    <span>EN</span>
+                                    <div class="bubble-percent">100%</div>
+                                </div>
+                            </div>
+                            <div class="bubble" data-lang="FR">
+                                <div class="bubble-inner">
+                                    <span>FR</span>
+                                    <div class="bubble-percent">90%</div>
+                                </div>
+                            </div>
+                            <div class="bubble" data-lang="AR">
+                                <div class="bubble-inner">
+                                    <span>AR</span>
+                                    <div class="bubble-percent">100%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="My Projects"><span class="section-number">03.</span> My Projects</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Memory Game Project -->
+                <div class="project-card" data-project="memory">
+                    <div class="project-image">
+                        <img src="./assets/images/projects/memory game/memory3.jpeg" alt="Memory Game">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <h3>Memory Game</h3>
+                                <div class="tech-tags">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JavaScript</span>
+                                    <span>Python</span>
+                                </div>
+                                <button class="view-gallery" data-sound="click">View Gallery</button>
+                            </div>
+                            <div class="overlay-bg"></div>
+                        </div>
+                        <div class="project-label">Featured</div>
+                    </div>
+                    <div class="project-details">
+                        <h3>Memory Game <span class="project-emoji">🧠</span></h3>
+                        <p>Interactive card matching game with user accounts and score tracking.</p>
+                        <div class="project-actions">
+                            <a href="https://github.com/ryosvoid/memory_game" class="github-link" data-sound="click">
+                                <img src="./assets/images/icons/github.svg" alt="GitHub"> View Code
+                            </a>
+                            <button class="view-details" data-sound="hover">Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Maths Pyramid Game -->
+                <div class="project-card" data-project="maths">
+                    <div class="project-image">
+                        <img src="./assets/images/projects/maths game/pyramid_equation1.png" alt="Maths Pyramid">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <h3>Maths Pyramid</h3>
+                                <div class="tech-tags">
+                                    <span>Python</span>
+                                    <span>JavaScript</span>
+                                </div>
+                                <button class="view-gallery" data-sound="click">View Gallery</button>
+                            </div>
+                            <div class="overlay-bg"></div>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h3>Maths Pyramid <span class="project-emoji">🧮</span></h3>
+                        <p>Solve pyramid equations by memorizing and calculating number patterns.</p>
+                        <div class="project-actions">
+                            <a href="https://github.com/ryosvoid/maths-pyramid-game" class="github-link" data-sound="click">
+                                <img src="./assets/images/icons/github.svg" alt="GitHub"> View Code
+                            </a>
+                            <button class="view-details" data-sound="hover">Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="section certificates-section">
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="Certificates"><span class="section-number">04.</span> Certificates</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="certificates-slider">
+                <div class="certificate-card">
+                    <div class="certificate-image">
+                        <div class="certificate-bg" style="background-image: url('./assets/images/decorations/ghibli-scroll.png')"></div>
+                        <div class="certificate-content">
+                            <h3>Introduction to Python Programming</h3>
+                            <div class="certificate-meta">
+                                <span class="platform">Coursera</span>
+                                <span class="year">2024</span>
+                            </div>
+                            <a href="https://www.coursera.org/account/accomplishments/verify/ASU8HQFZK59D" 
+                               class="view-certificate" data-sound="click">
+                                View Certificate
+                            </a>
+                        </div>
+                        <div class="certificate-ribbon">Achievement</div>
+                    </div>
+                </div>
+                
+                <!-- Additional certificates would go here -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section contact-section">
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="Get In Touch"><span class="section-number">05.</span> Get In Touch</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's create something amazing together</h3>
+                    <p>Whether you have a project in mind or just want to chat about tech, feel free to reach out!</p>
+                    
+                    <div class="contact-methods">
+                        <a href="mailto:hajarcrk26@gmail.com" class="contact-method" data-sound="hover">
+                            <div class="method-icon">
+                                <img src="./assets/images/icons/email.svg" alt="Email">
+                            </div>
+                            <div class="method-details">
+                                <span class="method-title">Email Me</span>
+                                <span class="method-value">hajarcrk26@gmail.com</span>
+                            </div>
+                        </a>
+                        
+                        <a href="tel:+212724600991" class="contact-method" data-sound="hover">
+                            <div class="method-icon">
+                                <img src="./assets/images/icons/phone.svg" alt="Phone">
+                            </div>
+                            <div class="method-details">
+                                <span class="method-title">Call Me</span>
+                                <span class="method-value">+212 724 600 991</span>
+                            </div>
+                        </a>
+                        
+                        <a href="https://github.com/ryosvoid" class="contact-method" data-sound="hover">
+                            <div class="method-icon">
+                                <img src="./assets/images/icons/github.svg" alt="GitHub">
+                            </div>
+                            <div class="method-details">
+                                <span class="method-title">GitHub</span>
+                                <span class="method-value">@ryosvoid</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Name</label>
+                            <div class="form-line"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email</label>
+                            <div class="form-line"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" required>
+                            <label for="subject">Subject</label>
+                            <div class="form-line"></div>
+                        </div>
+                        
+                        <div class="form-group textarea-group">
+                            <textarea id="message" name="message" required></textarea>
+                            <label for="message">Message</label>
+                            <div class="form-line"></div>
+                        </div>
+                        
+                        <button type="submit" class="cyber-button" data-sound="click">
+                            <span id="submit-text">Send Message</span>
+                            <div id="loading-spinner" class="spinner"></div>
+                            <div id="success-check" class="checkmark">✓</div>
+                            <div class="button-hover"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="cyber-footer">
+            <div class="footer-content">
+                <div class="footer-logo glitch" data-text="✩°｡ ⋆⸜ 🕹️">✩°｡ ⋆⸜ 🕹️</div>
+                <p class="footer-text">Designed & Built with ❤️ and neon lights</p>
+                
+                <div class="footer-links">
+                    <a href="#home" data-sound="click">Home</a>
+                    <a href="#about" data-sound="click">About</a>
+                    <a href="#projects" data-sound="click">Projects</a>
+                    <a href="#certificates" data-sound="click">Certificates</a>
+                    <button id="footer-contact-btn" data-sound="modal">Contact</button>
+                </div>
+                
+                <div class="footer-social">
+                    <a href="https://github.com/ryosvoid" data-sound="click">
+                        <img src="./assets/images/icons/github.svg" alt="GitHub">
+                    </a>
+                    <a href="mailto:hajarcrk26@gmail.com" data-sound="click">
+                        <img src="./assets/images/icons/email.svg" alt="Email">
+                    </a>
+                    <a href="tel:+212724600991" data-sound="click">
+                        <img src="./assets/images/icons/phone.svg" alt="Phone">
                     </a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Certificates Section -->
-    <section id="certificates" class="section certificates-section">
-        <h2 class="section-title">Certificates</h2>
-        
-        <div class="certificate-scroll">
-            <div class="certificate-card">
-                <h3>Introduction to Python Programming</h3>
-                <p>Coursera · 2024</p>
-                <a href="https://www.coursera.org/account/accomplishments/verify/ASU8HQFZK59D" class="view-cert">View Certificate</a>
+            
+            <div class="footer-copyright">
+                <p>© 2023 YOUR_NAME. All rights reserved.</p>
+                <div class="footer-decoration">
+                    <img src="./assets/images/decorations/totoro.gif" alt="Totoro" class="footer-totoro">
+                </div>
             </div>
-            <!-- More certificates... -->
-        </div>
-    </section>
+        </footer>
+    </div>
 
-    <!-- Contact Modal -->
-    <div id="contact-modal" class="modal">
+    <!-- Project Gallery Modal -->
+    <div id="gallery-modal" class="modal">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Send Me a Message</h2>
-            <form id="contact-form">
-                <div class="form-group">
-                    <input type="text" id="name" name="name" required>
-                    <label for="name">Name</label>
+            <span class="close-modal" data-sound="click">&times;</span>
+            <h2 id="gallery-title">Project Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-slide active">
+                    <img src="" alt="Gallery Image" class="gallery-image">
                 </div>
-                <div class="form-group">
-                    <input type="text" id="surname" name="surname" required>
-                    <label for="surname">Surname</label>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="email" name="email" required>
-                    <label for="email">Email</label>
-                </div>
-                <div class="form-group">
-                    <textarea id="message" name="message" required></textarea>
-                    <label for="message">Message</label>
-                </div>
-                <button type="submit" class="cyber-button">
-                    <span id="submit-text">Send Message</span>
-                    <div id="loading-spinner" class="spinner"></div>
-                    <div id="success-check" class="checkmark">✓</div>
+            </div>
+            <div class="gallery-controls">
+                <button id="prev-btn" class="gallery-btn" data-sound="click">
+                    <i class="fas fa-chevron-left"></i>
                 </button>
+                <div class="gallery-pagination">
+                    <span id="current-slide">1</span> / <span id="total-slides">3</span>
+                </div>
+                <button id="next-btn" class="gallery-btn" data-sound="click">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="gallery-thumbnails">
+                <!-- Thumbnails will be injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Details Modal -->
+    <div id="details-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-sound="click">&times;</span>
+            <h2 id="details-title">Project Details</h2>
+            <div class="details-content">
+                <!-- Content will be injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal (for mobile) -->
+    <div id="mobile-contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-sound="click">&times;</span>
+            <h2>Contact Me</h2>
+            <form id="mobile-contact-form">
+                <!-- Same form fields as main contact form -->
             </form>
         </div>
     </div>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top">↑</button>
+    <button id="back-to-top" class="back-to-top" data-sound="click">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo glitch" data-text="✩°｡ ⋆⸜ 🕹️">✩°｡ ⋆⸜ 🕹️</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Initializing system...</p>
+        </div>
+    </div>
 
     <script src="main.js"></script>
 </body>
