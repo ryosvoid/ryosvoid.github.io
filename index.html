@@ -1,54 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Hajar Cherrouk | Ghibli-Inspired Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A Studio Ghibli inspired portfolio of a Computer Engineering and AI student">
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="main.css">
-  <link rel="icon" href="assets/images/icons/ghibli-icon.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hajar | Portfolio</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
-  <div class="ghibli-background">
-    <!-- Animated Ghibli elements will be added by JS -->
-    <div id="ghibli-elements"></div>
-  </div>
-
-  <div class="content-container">
-    <nav class="ghibli-nav">
-      <div class="nav-buttons">
-        <a href="#home" class="nav-btn active" id="nav-home">
-          <i class="fas fa-home"></i> Home
-        </a>
-        <a href="#about" class="nav-btn" id="nav-about">
-          <i class="fas fa-scroll"></i> About
-        </a>
-        <a href="#projects" class="nav-btn" id="nav-projects">
-          <i class="fas fa-code"></i> Projects
-        </a>
-      </div>
+    <!-- Floating Particles -->
+    <div id="particles-js"></div>
+    
+    <!-- Navigation -->
+    <nav class="cyber-nav">
+        <div class="nav-logo">✩°｡ ⋆⸜</div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#certificates" class="nav-link">Certificates</a></li>
+        </ul>
     </nav>
 
-    <main>
-      <section id="home" class="page active">
-        <!-- Home content with Ghibli styling -->
-      </section>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg" style="background-image: url('./assets/images/decorations/starry-bg.gif')"></div>
+        <div class="hero-content">
+            <div class="profile-container">
+                <img src="./assets/images/profile.jpeg" alt="Profile" class="profile-img">
+                <div class="glow"></div>
+            </div>
+            <h1 class="cyber-title">Your Name</h1>
+            <div class="cyber-subtitle">
+                <span id="typed-text"></span>
+                <span class="blinking-cursor">|</span>
+            </div>
+            <div class="hero-contacts">
+                <a href="https://github.com/ryosvoid" class="contact-link">
+                    <img src="./assets/images/icons/github.svg" alt="GitHub">
+                </a>
+                <a href="mailto:hajarcrk26@gmail.com" class="contact-link">
+                    <img src="./assets/images/icons/email.svg" alt="Email">
+                </a>
+                <a href="tel:+212724600991" class="contact-link">
+                    <img src="./assets/images/icons/phone.svg" alt="Phone">
+                </a>
+            </div>
+            <button id="contact-btn" class="cyber-button">Contact Me</button>
+        </div>
+    </section>
 
-      <section id="about" class="page">
-        <!-- About content with Ghibli styling -->
-      </section>
+    <!-- About Me Section -->
+    <section id="about" class="section about-section">
+        <div class="section-bg" style="background-image: url('./assets/images/decorations/neon-grid.jpg')"></div>
+        <h2 class="section-title">About Me</h2>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <p>Tech enthusiast with a passion for problem solving and creative development.</p>
+                <div class="ghibli-decoration">
+                    <img src="./assets/images/decorations/totoro.gif" alt="Totoro" class="totoro">
+                    <img src="./assets/images/decorations/whispering-wind.gif" alt="Wind" class="wind">
+                </div>
+            </div>
+            
+            <div class="skills-section">
+                <h3>Technical Skills</h3>
+                <div class="skill-bars">
+                    <div class="skill" data-percent="85">
+                        <span class="skill-name">Python</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <!-- More skill bars... -->
+                </div>
+                
+                <h3>Languages</h3>
+                <div class="language-bubbles">
+                    <div class="bubble" data-lang="EN">EN</div>
+                    <div class="bubble" data-lang="FR">FR</div>
+                    <div class="bubble" data-lang="AR">AR</div>
+                </div>
+            </div>
+            
+            <div class="hobbies-section">
+                <h3>Hobbies & Interests</h3>
+                <div class="hobby-tags">
+                    <span class="hobby-tag">♟️ Chess</span>
+                    <span class="hobby-tag">🧮 Math</span>
+                    <span class="hobby-tag">💪 Fitness</span>
+                    <span class="hobby-tag">📚 Reading</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <section id="projects" class="page">
-        <!-- Projects content with Ghibli styling -->
-      </section>
-    </main>
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+        <h2 class="section-title">My Projects</h2>
+        
+        <div class="project-grid">
+            <!-- Memory Game Project -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="./assets/images/projects/memory game/memory3.jpeg" alt="Memory Game">
+                    <div class="project-overlay">
+                        <button class="view-gallery">View Gallery</button>
+                    </div>
+                </div>
+                <div class="project-details">
+                    <h3>Memory Game</h3>
+                    <p>A interactive card matching game with user accounts and score tracking.</p>
+                    <div class="tech-tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>Python</span>
+                    </div>
+                    <a href="https://github.com/ryosvoid/memory_game" class="github-link">
+                        <img src="./assets/images/icons/github.svg" alt="GitHub"> View on GitHub
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Maths Pyramid Game -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="./assets/images/projects/maths game/pyramid_equation1.png" alt="Maths Pyramid">
+                    <div class="project-overlay">
+                        <button class="view-gallery">View Gallery</button>
+                    </div>
+                </div>
+                <div class="project-details">
+                    <h3>Maths Pyramid Game</h3>
+                    <p>Solve pyramid equations by memorizing and calculating number patterns.</p>
+                    <div class="tech-tags">
+                        <span>Python</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <a href="https://github.com/ryosvoid/maths-pyramid-game" class="github-link">
+                        <img src="./assets/images/icons/github.svg" alt="GitHub"> View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Modals and other components -->
-  </div>
+    <!-- Certificates Section -->
+    <section id="certificates" class="section certificates-section">
+        <h2 class="section-title">Certificates</h2>
+        
+        <div class="certificate-scroll">
+            <div class="certificate-card">
+                <h3>Introduction to Python Programming</h3>
+                <p>Coursera · 2024</p>
+                <a href="https://www.coursera.org/account/accomplishments/verify/ASU8HQFZK59D" class="view-cert">View Certificate</a>
+            </div>
+            <!-- More certificates... -->
+        </div>
+    </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script src="main.js"></script>
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Send Me a Message</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" required>
+                    <label for="name">Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="surname" name="surname" required>
+                    <label for="surname">Surname</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" required></textarea>
+                    <label for="message">Message</label>
+                </div>
+                <button type="submit" class="cyber-button">
+                    <span id="submit-text">Send Message</span>
+                    <div id="loading-spinner" class="spinner"></div>
+                    <div id="success-check" class="checkmark">✓</div>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top">↑</button>
+
+    <script src="main.js"></script>
 </body>
 </html>
