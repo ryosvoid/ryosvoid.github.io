@@ -22,7 +22,7 @@
     <audio id="powerup-sound" src="./assets/sounds/power-up.wav" preload="auto"></audio>
     
     <!-- Background Layers -->
-    <div class="bg-layer grid-layer" style="background-image: url('https://i.pinimg.com/736x/a9/ef/f4/a9eff4cd3f6facde6903cfcec96f5319.jpg')"></div>
+    <div class="bg-layer grid-layer" style="background-image: url('./assets/images/decorations/cyber-grid-bg.jpg')"></div>
     <div class="bg-layer particle-layer" id="particles-js"></div>
     <div class="bg-layer scanlines"></div>
     
@@ -42,14 +42,44 @@
         
         <!-- Navigation -->
         <nav class="cyber-nav">
-            <div class="nav-logo glitch" data-text="✩°｡ ⋆⸜ 🕹">✩°｡ ⋆⸜ 🕹️</div>
+            <div class="nav-logo glitch" data-text="✩°｡ ⋆⸜ 🕹">ﮩ٨ـﮩﮩ٨ـ♡ﮩ٨ـﮩﮩ٨ـ</div>
             <ul class="nav-links">
-                <li><a href="#home" class="nav-link" data-sound="hover"><span class="nav-number">01.</span> Home</a></li>
-                <li><a href="#about" class="nav-link" data-sound="hover"><span class="nav-number">02.</span> About</a></li>
-                <li><a href="#projects" class="nav-link" data-sound="hover"><span class="nav-number">03.</span> Projects</a></li>
-                <li><a href="#certificates" class="nav-link" data-sound="hover"><span class="nav-number">04.</span> Certificates</a></li>
-                <li><button id="contact-nav-btn" class="cyber-button small" data-sound="modal">Contact</button></li>
-            </ul>
+    <li>
+        <a href="#home" class="nav-link" data-sound="hover">
+            <span class="nav-number glitch" data-text="01">01</span>
+            <span class="nav-text">HOME_</span>
+            <span class="nav-hover">[DASHBOARD]</span>
+        </a>
+    </li>
+    <li>
+        <a href="#about" class="nav-link" data-sound="hover">
+            <span class="nav-number glitch" data-text="02">02</span>
+            <span class="nav-text">ABOUT_</span>
+            <span class="nav-hover">[PROFILE.EXE]</span>
+        </a>
+    </li>
+    <li>
+        <a href="#projects" class="nav-link" data-sound="hover">
+            <span class="nav-number glitch" data-text="03">03</span>
+            <span class="nav-text">PROJECTS_</span>
+            <span class="nav-hover">[DATA_ACCESS]</span>
+        </a>
+    </li>
+    <li>
+        <a href="#certificates" class="nav-link" data-sound="hover">
+            <span class="nav-number glitch" data-text="04">04</span>
+            <span class="nav-text">CERTIFICATES_</span>
+            <span class="nav-hover">[CREDENTIALS]</span>
+        </a>
+    </li>
+    <li>
+        <button id="contact-nav-btn" class="cyber-button" data-sound="modal">
+            <span class="button-text">CONTACT_</span>
+            <span class="button-hover">[SEND_MAIL]</span>
+            <div class="button-pulse"></div>
+        </button>
+    </li>
+</ul>
             <div class="mobile-menu-btn">
                 <div class="menu-bar top"></div>
                 <div class="menu-bar middle"></div>
@@ -59,16 +89,16 @@
 
         <!-- Hero Section -->
         <section id="home" class="hero-section">
-            <div class="hero-bg" style="background-image: url('./assets/images/decorations/starry-bg.gif')"></div>
+            <div class="hero-bg" style="background-image: url('./assets/images/decorations/cyber-grid-bg.jpg')"><div>
             <div class="hero-content">
                 <div class="intro-text">
-                    <p class="cyber-subtitle"><span class="highlight">>> Welcome to my digital realm</span></p>
-                    <h1 class="cyber-title glitch" data-text="YOUR_NAME">YOUR_NAME</h1>
+                    <p class="cyber-subtitle"><span class="highlight" Welcome </span></p>
+                    <h1 class="cyber-title glitch" data-text="YOUR_NAME">HAJAR</h1>
                     <h2 class="cyber-subtitle">
                         <span id="typed-text"></span>
                         <span class="blinking-cursor">_</span>
                     </h2>
-                    <p class="hero-description">Building digital experiences at the intersection of technology and creativity</p>
+                    <p class="hero-description">Always learning, always building.</p>
                 </div>
                 
                 <div class="profile-container">
@@ -139,17 +169,16 @@
                                 <div class="terminal-btn minimize"></div>
                                 <div class="terminal-btn maximize"></div>
                             </div>
-                            <span class="terminal-title">user@portfolio:~</span>
+                            <span class="terminal-title">Hajar@portfolio:~</span>
                         </div>
                         <div class="terminal-body">
                             <p class="terminal-line"><span class="prompt">></span> <span class="command">whoami</span></p>
-                            <p class="terminal-line output">Tech enthusiast | Creative developer | Problem solver</p>
+                            <p class="terminal-line output">Tech enthusiast | Creative developer | Problem solver | AI ethusiast | Curious</p>
                             
                             <p class="terminal-line"><span class="prompt">></span> <span class="command">cat bio.txt</span></p>
                             <p class="terminal-line output multi-line">
-                                Passionate about building digital experiences that blend technology and art. 
-                                With expertise in multiple programming languages and frameworks, I create 
-                                solutions that are both functional and visually stunning.
+                                I’m fascinated by how technology and AI are shaping the future. 
+                                Whether it’s coding or learning, I enjoy working at the edge of what’s next.
                             </p>
                             
                             <p class="terminal-line"><span class="prompt">></span> <span class="command">skills --show-progress</span></p>
@@ -161,32 +190,80 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="about-details">
-                    <div class="detail-card">
-                        <div class="detail-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Development</h3>
-                        <p>Full-stack development with focus on clean, efficient code and intuitive UX</p>
-                    </div>
-                    
-                    <div class="detail-card">
-                        <div class="detail-icon">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <h3>Design</h3>
-                        <p>Pixel-perfect interfaces with attention to detail and user experience</p>
-                    </div>
-                    
-                    <div class="detail-card">
-                        <div class="detail-icon">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <h3>Innovation</h3>
-                        <p>Constantly exploring new technologies and creative solutions</p>
-                    </div>
-                    
+<!-- Replace the existing about-details section with this: -->
+<div class="cyber-skills-grid">
+    <!-- Python Skill -->
+    <div class="cyber-skill-card" data-skill="python">
+        <div class="skill-header">
+            <div class="skill-icon">
+                <img src="./assets/images/icons/skill-icons/python.svg" alt="Python">
+            </div>
+            <h3>PYTHON</h3>
+            <span class="skill-percent" data-target="85">0%</span>
+        </div>
+        <div class="skill-bar-container">
+            <div class="skill-bar" style="--target-width:85%;">
+                <div class="skill-progress"></div>
+                <div class="skill-glows"></div>
+            </div>
+            <div class="skill-desc">Web Scraping • Automation • Data Analysis</div>
+        </div>
+    </div>
+
+    <!-- C Skill -->
+    <div class="cyber-skill-card" data-skill="c">
+        <div class="skill-header">
+            <div class="skill-icon">
+                <img src="./assets/images/icons/skill-icons/c.svg" alt="C">
+            </div>
+            <h3>C LANGUAGE</h3>
+            <span class="skill-percent" data-target="85">0%</span>
+        </div>
+        <div class="skill-bar-container">
+            <div class="skill-bar" style="--target-width:85%;">
+                <div class="skill-progress"></div>
+                <div class="skill-glows"></div>
+            </div>
+            <div class="skill-desc">System Programming • Algorithms</div>
+        </div>
+    </div>
+
+    <!-- Web Dev Skill -->
+    <div class="cyber-skill-card" data-skill="web">
+        <div class="skill-header">
+            <div class="skill-icon">
+                <img src="./assets/images/icons/skill-icons/js.svg" alt="JavaScript">
+            </div>
+            <h3>WEB DEV</h3>
+            <span class="skill-percent" data-target="70">0%</span>
+        </div>
+        <div class="skill-bar-container">
+            <div class="skill-bar" style="--target-width:70%;">
+                <div class="skill-progress"></div>
+                <div class="skill-glows"></div>
+            </div>
+            <div class="skill-desc">HTML/CSS (85%) • JavaScript (40%)</div>
+        </div>
+    </div>
+
+    <!-- Database Skill -->
+    <div class="cyber-skill-card" data-skill="sql">
+        <div class="skill-header">
+            <div class="skill-icon">
+                <img src="./assets/images/icons/skill-icons/sql.svg" alt="SQL">
+            </div>
+            <h3>DATABASES</h3>
+            <span class="skill-percent" data-target="60">0%</span>
+        </div>
+        <div class="skill-bar-container">
+            <div class="skill-bar" style="--target-width:60%;">
+                <div class="skill-progress"></div>
+                <div class="skill-glows"></div>
+            </div>
+            <div class="skill-desc">SQL • Database Design</div>
+        </div>
+    </div>
+</div>
                     <div class="languages-section">
                         <h3>Languages</h3>
                         <div class="language-bubbles">
