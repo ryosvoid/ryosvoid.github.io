@@ -746,7 +746,45 @@ class CyberpunkPortfolio {
                 image: './assets/images/projects/maths game/pyramid_equation1.png'
             }
         };
+        // Animate skill percentages
+function animateSkillBars() {
+    const skillCards = document.querySelectorAll('.cyber-skill-card');
+    
+    skillCards.forEach(card => {
+        const percentElement = card.querySelector('.skill-percent');
+        const targetPercent = parseInt(percentElement.getAttribute('data-target'));
+        const progressBar = card.querySelector('.skill-progress');
         
+        let currentPercent = 0;
+        const increment = targetPercent / 50; // Adjust speed
+        
+        const animate = () => {
+            if (currentPercent < targetPercent) {
+                currentPercent += increment;
+                percentElement.textContent = Math.round(currentPercent) + '%';
+                progressBar.style.width = currentPercent + '%';
+                requestAnimationFrame(animate);
+            } else {
+                percentElement.textContent = targetPercent + '%';
+                progressBar.style.width = targetPercent + '%';
+            }
+        };
+        
+        // Trigger on scroll
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                playSound('power-up.wav');
+                animate();
+                observer.unobserve(card);
+            }
+        }, { threshold: 0.5 });
+        
+        observer.observe(card);
+    });
+}
+
+// Call this when page loads
+window.addEventListener('load', animateSkillBars);
         const project = projects[projectName];
         if (!project) return;
         
