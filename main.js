@@ -2,7 +2,6 @@
 class CyberpunkPortfolio {
     constructor() {
         // Initialize all components
-        this.initLoadingScreen();
         this.initTypedJS();
         this.initEmailJS();
         this.initParticlesJS();
@@ -23,48 +22,6 @@ class CyberpunkPortfolio {
         this.initialized = true;
         
         console.log('Cyberpunk Portfolio initialized!');
-    }
-    
-    initLoadingScreen() {
-        // Simulate loading progress
-        const loadingProgress = document.querySelector('.loading-progress');
-        const loadingText = document.querySelector('.loading-text');
-        const loadingPhrases = [
-            "Booting up systems...",
-            "Initializing interface...",
-            "Loading assets...",
-            "Almost there...",
-            "Ready to go!"
-        ];
-        
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.random() * 10;
-            loadingProgress.style.width = `${Math.min(progress, 100)}%`;
-            
-            // Update loading text at certain intervals
-            if (progress < 25) {
-                loadingText.textContent = loadingPhrases[0];
-            } else if (progress < 50) {
-                loadingText.textContent = loadingPhrases[1];
-            } else if (progress < 75) {
-                loadingText.textContent = loadingPhrases[2];
-            } else if (progress < 90) {
-                loadingText.textContent = loadingPhrases[3];
-            } else {
-                loadingText.textContent = loadingPhrases[4];
-            }
-            
-            if (progress >= 100) {
-                clearInterval(interval);
-                setTimeout(() => {
-                    document.getElementById('loading-screen').style.opacity = '0';
-                    setTimeout(() => {
-                        document.getElementById('loading-screen').style.display = 'none';
-                    }, 500);
-                }, 500);
-            }
-        }, 200);
     }
     
     initTypedJS() {
