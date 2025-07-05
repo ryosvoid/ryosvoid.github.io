@@ -27,11 +27,11 @@ class CyberpunkPortfolio {
     initTypedJS() {
         this.typed = new Typed('#typed-text', {
             strings: [
-                "Tech Enthusiast",
-                "Problem Solver",
-                "AI Developer",
-                "Creative Coder",
-                "Gamer 🎮"
+                "TECH_ENthusiast",
+                "PROBLEM_SOLVER",
+                "AI_DEVELOPER",
+                "CREATIVE_CODER",
+                "GAMER_🎮"
             ],
             typeSpeed: 50,
             backSpeed: 30,
@@ -90,7 +90,7 @@ class CyberpunkPortfolio {
     }
     
     initParticlesJS() {
-        particlesJS('particles-js', {
+        particlesJS('neon-particles', {
             particles: {
                 number: {
                     value: 80,
@@ -212,46 +212,61 @@ class CyberpunkPortfolio {
             });
         });
         
-        // Floating animations for decorative elements
-        gsap.to('.totoro', {
-            y: 20,
-            duration: 3,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
-        
-        gsap.to('.wind', {
-            y: -15,
-            duration: 4,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-        });
-        
-        // Floating shapes animation
-        const shapes = document.querySelectorAll('.floating-shapes .shape');
-        shapes.forEach((shape, i) => {
-            const duration = 4 + Math.random() * 3;
-            const delay = i * 0.5;
-            
-            gsap.to(shape, {
-                y: (i % 2 === 0) ? 20 : -20,
-                duration: duration,
-                delay: delay,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
+        // Animate skill bars on scroll
+        document.querySelectorAll('.cyber-skill-card').forEach((card, i) => {
+            ScrollTrigger.create({
+                trigger: card,
+                start: "top 80%",
+                onEnter: () => {
+                    const percent = card.querySelector('.skill-percent').getAttribute('data-target');
+                    const progressBar = card.querySelector('.skill-progress');
+                    
+                    gsap.to(progressBar, {
+                        width: `${percent}%`,
+                        duration: 1.5,
+                        ease: "power3.out",
+                        onStart: () => {
+                            this.playSound('power-up.wav', 0.2);
+                            
+                            // Animate the percentage counter
+                            let currentPercent = 0;
+                            const targetPercent = parseInt(percent);
+                            const increment = targetPercent / 50;
+                            
+                            const counter = card.querySelector('.skill-percent');
+                            
+                            const animateCounter = () => {
+                                if (currentPercent < targetPercent) {
+                                    currentPercent += increment;
+                                    counter.textContent = Math.round(currentPercent) + '%';
+                                    requestAnimationFrame(animateCounter);
+                                } else {
+                                    counter.textContent = targetPercent + '%';
+                                }
+                            };
+                            
+                            animateCounter();
+                        }
+                    });
+                }
             });
-            
-            if (i % 2 === 0) {
-                gsap.to(shape, {
-                    rotation: 360,
-                    duration: duration * 2,
-                    repeat: -1,
-                    ease: "none"
-                });
-            }
+        });
+        
+        // Animate language bubbles
+        const languageBubbles = document.querySelectorAll('.language-bubbles .bubble');
+        languageBubbles.forEach(bubble => {
+            ScrollTrigger.create({
+                trigger: bubble,
+                start: "top 80%",
+                onEnter: () => {
+                    gsap.from(bubble, {
+                        scale: 0,
+                        duration: 0.8,
+                        ease: "back.out(1.7)",
+                        delay: 0.1 * Array.from(languageBubbles).indexOf(bubble)
+                    });
+                }
+            });
         });
     }
     
@@ -391,10 +406,10 @@ class CyberpunkPortfolio {
         
         // Update modal title
         const titleMap = {
-            'memory': 'Memory Game Gallery',
-            'maths': 'Maths Pyramid Gallery'
+            'memory': 'MEMORY_GAME_GALLERY',
+            'maths': 'MATHS_PYRAMID_GALLERY'
         };
-        document.getElementById('gallery-title').textContent = titleMap[projectName] || 'Project Gallery';
+        document.getElementById('gallery-title').textContent = titleMap[projectName] || 'PROJECT_GALLERY';
         
         // Update pagination
         document.getElementById('total-slides').textContent = this.gallery.images.length;
@@ -718,7 +733,7 @@ class CyberpunkPortfolio {
         // Project data
         const projects = {
             'memory': {
-                title: 'Memory Game',
+                title: 'MEMORY_GAME',
                 description: 'An interactive card matching game with user accounts and score tracking. Players can create accounts, track their progress, and compete for high scores. The game features multiple difficulty levels and themes.',
                 features: [
                     'User authentication system',
@@ -732,7 +747,7 @@ class CyberpunkPortfolio {
                 image: './assets/images/projects/memory game/memory3.jpeg'
             },
             'maths': {
-                title: 'Maths Pyramid Game',
+                title: 'MATHS_PYRAMID',
                 description: 'A challenging math puzzle game where players solve pyramid equations by memorizing and calculating number patterns. The game helps improve mental math skills and memory through progressively difficult levels.',
                 features: [
                     'Progressive difficulty system',
@@ -746,45 +761,7 @@ class CyberpunkPortfolio {
                 image: './assets/images/projects/maths game/pyramid_equation1.png'
             }
         };
-        // Animate skill percentages
-function animateSkillBars() {
-    const skillCards = document.querySelectorAll('.cyber-skill-card');
-    
-    skillCards.forEach(card => {
-        const percentElement = card.querySelector('.skill-percent');
-        const targetPercent = parseInt(percentElement.getAttribute('data-target'));
-        const progressBar = card.querySelector('.skill-progress');
         
-        let currentPercent = 0;
-        const increment = targetPercent / 50; // Adjust speed
-        
-        const animate = () => {
-            if (currentPercent < targetPercent) {
-                currentPercent += increment;
-                percentElement.textContent = Math.round(currentPercent) + '%';
-                progressBar.style.width = currentPercent + '%';
-                requestAnimationFrame(animate);
-            } else {
-                percentElement.textContent = targetPercent + '%';
-                progressBar.style.width = targetPercent + '%';
-            }
-        };
-        
-        // Trigger on scroll
-        const observer = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                playSound('power-up.wav');
-                animate();
-                observer.unobserve(card);
-            }
-        }, { threshold: 0.5 });
-        
-        observer.observe(card);
-    });
-}
-
-// Call this when page loads
-window.addEventListener('load', animateSkillBars);
         const project = projects[projectName];
         if (!project) return;
         
@@ -797,24 +774,24 @@ window.addEventListener('load', animateSkillBars);
                 <img src="${project.image}" alt="${project.title}">
             </div>
             <div class="details-text">
-                <h3>About the Project</h3>
+                <h3>ABOUT_THE_PROJECT</h3>
                 <p>${project.description}</p>
                 
                 <div class="details-features">
-                    <h4>Key Features</h4>
+                    <h4>KEY_FEATURES</h4>
                     <ul>
                         ${project.features.map(feat => `<li>${feat}</li>`).join('')}
                     </ul>
                 </div>
                 
                 <div class="details-tech">
-                    <h4>Technologies Used</h4>
+                    <h4>TECHNOLOGIES_USED</h4>
                     ${project.tech.map(tech => `<span>${tech}</span>`).join('')}
                 </div>
                 
                 <div class="details-links">
                     <a href="${project.github}" class="cyber-button" target="_blank" rel="noopener">
-                        <i class="fab fa-github"></i> View on GitHub
+                        <i class="fab fa-github"></i> VIEW_ON_GITHUB
                     </a>
                 </div>
             </div>
