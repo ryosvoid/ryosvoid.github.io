@@ -342,6 +342,69 @@ document.addEventListener('DOMContentLoaded', function() {
         audio.volume = 0.3;
         audio.play().catch(e => console.log("Audio play failed:", e));
     }
+    // Add this to the DOMContentLoaded event listener
+
+// EmailJS Integration
+(function() {
+    // Initialize EmailJS with your public key
+    emailjs.init('AX9ZtVpZPmydtAaFI');
+
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Play sound
+            playSound('./assets/sounds/modal-open.wav');
+            
+            // Show loading state
+            formStatus.innerHTML = '<div class="loading-spinner"></div>Sending message...';
+            
+            // Send form data via EmailJS
+            emailjs.sendForm('ryoscoid', 'template_jai0z9m', this)
+                .then(function() {
+                    // Success message
+                    formStatus.innerHTML = '<div class="success-message">✓ Message sent successfully!</div>';
+                    playSound('./assets/sounds/success-chime.mp3');
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Clear status after 5 seconds
+                    setTimeout(() => {
+                        formStatus.innerHTML = '';
+                    }, 5000);
+                }, function(error) {
+                    // Error message
+                    formStatus.innerHTML = `<div class="error-message">✗ Failed to send message. Please try again.</div>`;
+                    console.error('EmailJS error:', error);
+                });
+        });
+    }
+
+    // Add loading spinner styles dynamically
+    const style = document.createElement('style');
+    style.textContent = `
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: var(--secondary);
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    `;
+    document.head.appendChild(style);
+})();
 
     // Initialize animations when page loads
     animateSkillBars();
