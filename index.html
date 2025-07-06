@@ -67,6 +67,32 @@
                         <div class="profile-holo"></div>
                     </div>
                 </div>
+                <!-- Add this inside the home-left div, after the contact-info -->
+<div class="contact-form">
+    <h3 class="cyber-subtitle">Get in Touch</h3>
+    <form id="contactForm">
+        <div class="form-group">
+            <input type="text" id="name" name="name" required>
+            <label for="name">Name</label>
+            <div class="underline"></div>
+        </div>
+        <div class="form-group">
+            <input type="email" id="email" name="email" required>
+            <label for="email">Email</label>
+            <div class="underline"></div>
+        </div>
+        <div class="form-group">
+            <textarea id="message" name="message" required></textarea>
+            <label for="message">Message</label>
+            <div class="underline"></div>
+        </div>
+        <button type="submit" class="cyber-button">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-glitch"></span>
+        </button>
+    </form>
+    <div id="formStatus"></div>
+</div>
             </div>
             <div class="scroll-down">
                 <span>Scroll Down</span>
