@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ryosvoid | Cyberpunk Portfolio</title>
+    <title>Cyberpunk Portfolio</title>
     <link rel="stylesheet" href="main.css">
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
-    <script>emailjs.init('AX9ZtVpZPmydtAaFI');</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Particle Background -->
@@ -17,110 +15,176 @@
     <div class="container">
         <!-- Navigation -->
         <nav class="cyber-nav">
-            <div class="nav-logo">✩°｡ ⋆⸜ 🕹️</div>
+            <div class="nav-logo">
+                <span class="glitch" data-text="RYOS">RYOS</span>
+            </div>
             <ul class="nav-links">
-                <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
-                <li><a href="#about" class="nav-link" data-section="about">About Me</a></li>
-                <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
-                <li><a href="#certificates" class="nav-link" data-section="certificates">Certificates</a></li>
+                <li><a href="#home" class="nav-link active" data-sound="click-futuristic.mp3">Home</a></li>
+                <li><a href="#about" class="nav-link" data-sound="click-futuristic.mp3">About Me</a></li>
+                <li><a href="#projects" class="nav-link" data-sound="click-futuristic.mp3">Projects</a></li>
+                <li><a href="#certificates" class="nav-link" data-sound="click-futuristic.mp3">Certificates</a></li>
             </ul>
+            <div class="nav-social">
+                <a href="https://github.com/ryosvoid" target="_blank" class="social-icon">
+                    <img src="./assets/images/icons/github.svg" alt="GitHub">
+                </a>
+                <a href="mailto:hajarcrk26@gmail.com" class="social-icon">
+                    <img src="./assets/images/icons/email.svg" alt="Email">
+                </a>
+            </div>
             <div class="nav-hamburger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
             </div>
         </nav>
 
         <!-- Home Section -->
         <section id="home" class="section active">
-            <div class="hero">
-                <div class="hero-content">
-                    <div class="hero-image">
-                        <img src="./assets/images/profile.jpeg" alt="Profile" class="profile-img">
-                        <div class="glow"></div>
+            <div class="home-content">
+                <div class="home-left">
+                    <h1 class="cyber-title glitch" data-text="Hi, I'm Ryos">Hi, I'm Ryos</h1>
+                    <div class="typing-container">
+                        <span class="typing-text"></span>
+                        <span class="typing-cursor">|</span>
                     </div>
-                    <h1 class="cyber-title">Ryosvoid</h1>
-                    <div class="cyber-subtitle">
-                        <span id="typed"></span>
-                    </div>
-                    <div class="hero-contacts">
-                        <a href="https://github.com/ryosvoid" target="_blank" class="contact-link">
-                            <img src="./assets/images/icons/github.svg" alt="GitHub">
-                        </a>
-                        <a href="mailto:hajarcrk26@gmail.com" class="contact-link">
-                            <img src="./assets/images/icons/email.svg" alt="Email">
-                        </a>
-                        <a href="tel:+212724600991" class="contact-link">
+                    <p class="cyber-desc">Building digital experiences with a cyberpunk aesthetic</p>
+                    <div class="contact-info">
+                        <div class="info-item">
                             <img src="./assets/images/icons/phone.svg" alt="Phone">
-                        </a>
+                            <span>+212 724 600 991</span>
+                        </div>
+                        <div class="info-item">
+                            <img src="./assets/images/icons/email.svg" alt="Email">
+                            <span>hajarcrk26@gmail.com</span>
+                        </div>
                     </div>
-                    <button class="cyber-button open-modal">Contact Me</button>
                 </div>
+                <div class="home-right">
+                    <div class="profile-container">
+                        <img src="./assets/images/profile.jpeg" alt="Profile" class="profile-img">
+                        <div class="profile-glitch"></div>
+                        <div class="profile-holo"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-down">
+                <span>Scroll Down</span>
+                <div class="scroll-arrow"></div>
             </div>
         </section>
 
         <!-- About Me Section -->
         <section id="about" class="section">
-            <h2 class="section-title">About Me ✮🌐‧₊˚</h2>
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="About Me">About Me</h2>
+                <div class="section-divider"></div>
+            </div>
             <div class="about-content">
-                <div class="about-text">
-                    <p>Tech enthusiast with a passion for problem-solving and AI development. I combine analytical thinking with creative solutions to build innovative projects.</p>
+                <div class="about-main">
+                    <h3 class="cyber-subtitle">Tech Enthusiast & Problem Solver</h3>
+                    <p class="cyber-text">I'm passionate about creating innovative solutions and exploring the intersection of technology and design. My journey in tech has led me to develop various projects and acquire diverse skills.</p>
                     
                     <div class="skills-section">
-                        <h3>Technical Skills</h3>
-                        <div class="skill">
-                            <span>Python</span>
-                            <div class="skill-bar"><div class="skill-level" data-level="85"></div></div>
-                        </div>
-                        <div class="skill">
-                            <span>C</span>
-                            <div class="skill-bar"><div class="skill-level" data-level="85"></div></div>
-                        </div>
-                        <div class="skill">
-                            <span>HTML</span>
-                            <div class="skill-bar"><div class="skill-level" data-level="85"></div></div>
-                        </div>
-                        <div class="skill">
-                            <span>CSS</span>
-                            <div class="skill-bar"><div class="skill-level" data-level="40"></div></div>
-                        </div>
-                        <div class="skill">
-                            <span>JavaScript</span>
-                            <div class="skill-bar"><div class="skill-level" data-level="40"></div></div>
-                        </div>
-                        <div class="skill">
-                            <span>SQL</span>
-                            <div class="skill-bar"><div class="skill-level" data-level="60"></div></div>
+                        <h4 class="skills-title">Technical Skills</h4>
+                        <div class="skill-bars">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Python</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>C</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>HTML</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>CSS</span>
+                                    <span>40%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="40%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>JavaScript</span>
+                                    <span>40%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="40%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>SQL</span>
+                                    <span>60%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="60%"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="languages-section">
-                        <h3>Languages</h3>
+                        <h4 class="skills-title">Languages</h4>
                         <div class="language-bubbles">
-                            <div class="bubble" data-lang="en">EN</div>
-                            <div class="bubble" data-lang="fr">FR</div>
-                            <div class="bubble" data-lang="ar">AR</div>
+                            <div class="language-bubble" data-lang="EN">EN</div>
+                            <div class="language-bubble" data-lang="FR">FR</div>
+                            <div class="language-bubble" data-lang="AR">AR</div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="hobbies-section">
-                    <h3>Hobbies & Interests</h3>
-                    <div class="hobby">
-                        <span>♟️ Chess</span>
-                        <p>Strategic thinking and competitive play</p>
-                    </div>
-                    <div class="hobby">
-                        <span>🧮 Math</span>
-                        <p>Problem solving and logical puzzles</p>
-                    </div>
-                    <div class="hobby">
-                        <span>💪 Fitness</span>
-                        <p>Strength training and endurance</p>
-                    </div>
-                    <div class="hobby">
-                        <span>📚 Reading</span>
-                        <p>Sci-fi, tech, and psychology</p>
+                <div class="about-sidebar">
+                    <h3 class="cyber-subtitle">Hobbies & Interests</h3>
+                    <div class="hobbies-grid">
+                        <div class="hobby-item">
+                            <div class="hobby-icon"><i class="fas fa-chess"></i></div>
+                            <div class="hobby-info">
+                                <h4>Chess</h4>
+                                <p>Strategic board game that enhances problem-solving and critical thinking skills.</p>
+                            </div>
+                        </div>
+                        <div class="hobby-item">
+                            <div class="hobby-icon"><i class="fas fa-square-root-alt"></i></div>
+                            <div class="hobby-info">
+                                <h4>Math</h4>
+                                <p>Exploring mathematical concepts and solving complex problems for fun.</p>
+                            </div>
+                        </div>
+                        <div class="hobby-item">
+                            <div class="hobby-icon"><i class="fas fa-dumbbell"></i></div>
+                            <div class="hobby-info">
+                                <h4>Fitness</h4>
+                                <p>Maintaining physical health through regular exercise and training.</p>
+                            </div>
+                        </div>
+                        <div class="hobby-item">
+                            <div class="hobby-icon"><i class="fas fa-book"></i></div>
+                            <div class="hobby-info">
+                                <h4>Reading</h4>
+                                <p>Enjoying both technical literature and fiction to expand knowledge.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,52 +192,55 @@
 
         <!-- Projects Section -->
         <section id="projects" class="section">
-            <h2 class="section-title">Projects 🖇️✩</h2>
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="Projects">Projects</h2>
+                <div class="section-divider"></div>
+            </div>
             <div class="projects-grid">
-                <!-- Memory Game -->
+                <!-- Memory Game Project -->
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="./assets/images/projects/memory game/memory3.jpeg" alt="Memory Game">
+                    <div class="project-media">
+                        <img src="./assets/images/projects/memory game/memory3.jpeg" alt="Memory Game" class="project-image">
                         <div class="project-overlay">
-                            <h3>Memory Game</h3>
+                            <button class="view-gallery" data-project="memory">View Gallery</button>
                         </div>
                     </div>
-                    <div class="project-details">
-                        <p>A cognitive training game where users match pairs of cards with account connectivity and game history tracking.</p>
-                        <div class="tech-tags">
+                    <div class="project-info">
+                        <h3 class="project-title">Memory Game</h3>
+                        <p class="project-desc">A digital memory card matching game with user accounts, sound effects, and game history tracking.</p>
+                        <div class="project-tech">
                             <span>HTML</span>
                             <span>CSS</span>
                             <span>JavaScript</span>
                             <span>Python</span>
                         </div>
-                        <a href="https://github.com/ryosvoid/memory_game" target="_blank" class="project-link">View on GitHub</a>
-                        <div class="project-gallery">
-                            <img src="./assets/images/projects/memory game/memory1.jpeg" alt="Memory Game 1">
-                            <img src="./assets/images/projects/memory game/memory2.jpeg" alt="Memory Game 2">
-                            <img src="./assets/images/projects/memory game/memory4.jpeg" alt="Memory Game 4">
-                        </div>
+                        <a href="https://github.com/ryosvoid/memory_game" target="_blank" class="project-link">
+                            <img src="./assets/images/icons/github.svg" alt="GitHub">
+                            View on GitHub
+                        </a>
                     </div>
                 </div>
                 
                 <!-- Maths Pyramid Game -->
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="./assets/images/projects/maths game/pyramid_equation1.png" alt="Maths Pyramid Game">
+                    <div class="project-media">
+                        <img src="./assets/images/projects/maths game/pyramid_equation1.png" alt="Maths Pyramid Game" class="project-image">
                         <div class="project-overlay">
-                            <h3>Maths Pyramid Game</h3>
+                            <button class="view-gallery" data-project="maths">View Gallery</button>
                         </div>
                     </div>
-                    <div class="project-details">
-                        <p>Memorize numbers on hexagons and create equations that resolve to the target number shown.</p>
-                        <div class="tech-tags">
-                            <span>Python</span>
-                            <span>Algorithm</span>
+                    <div class="project-info">
+                        <h3 class="project-title">Maths Pyramid Game</h3>
+                        <p class="project-desc">A challenging math puzzle game where players create equations to match target numbers on a pyramid.</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
                         </div>
-                        <a href="https://github.com/ryosvoid/maths-pyramid-game" target="_blank" class="project-link">View on GitHub</a>
-                        <div class="project-gallery">
-                            <img src="./assets/images/projects/maths game/pyramid_equation2.png" alt="Maths Game 2">
-                            <img src="./assets/images/projects/maths game/pyramid_equation3.png" alt="Maths Game 3">
-                        </div>
+                        <a href="https://github.com/ryosvoid/maths-pyramid-game" target="_blank" class="project-link">
+                            <img src="./assets/images/icons/github.svg" alt="GitHub">
+                            View on GitHub
+                        </a>
                     </div>
                 </div>
             </div>
@@ -181,81 +248,85 @@
 
         <!-- Certificates Section -->
         <section id="certificates" class="section">
-            <h2 class="section-title">Certificates ₊˚⋆୨୧˚</h2>
-            <div class="certificates-container">
+            <div class="section-header">
+                <h2 class="section-title glitch" data-text="Certificates">Certificates</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="certificates-grid">
                 <div class="certificate-card">
-                    <h3>Introduction to Python Programming</h3>
-                    <p class="certificate-desc">Fundamentals of Python including data structures, OOP, and basic algorithms.</p>
+                    <h3 class="certificate-title">Introduction to Python Programming</h3>
+                    <p class="certificate-desc">Fundamentals of Python programming including data structures, functions, and object-oriented concepts.</p>
                     <div class="certificate-meta">
-                        <span>Coursera</span>
-                        <span>2024</span>
+                        <span class="certificate-platform">Coursera</span>
+                        <span class="certificate-year">2024</span>
                     </div>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/ASU8HQFZK59D" target="_blank" class="certificate-link">View Certificate</a>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/ASU8HQFZK59D" target="_blank" class="certificate-link">
+                        View Certificate
+                    </a>
                 </div>
                 
                 <div class="certificate-card">
-                    <h3>Work Smarter with Microsoft Word</h3>
-                    <p class="certificate-desc">Advanced document formatting, collaboration tools, and productivity features.</p>
+                    <h3 class="certificate-title">Work Smarter with Microsoft Word</h3>
+                    <p class="certificate-desc">Advanced techniques for document creation, formatting, and automation in Microsoft Word.</p>
                     <div class="certificate-meta">
-                        <span>Coursera</span>
-                        <span>2025</span>
+                        <span class="certificate-platform">Coursera</span>
+                        <span class="certificate-year">2025</span>
                     </div>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/Z9D37DD2BQJX" target="_blank" class="certificate-link">View Certificate</a>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/Z9D37DD2BQJX" target="_blank" class="certificate-link">
+                        View Certificate
+                    </a>
                 </div>
                 
                 <div class="certificate-card">
-                    <h3>Work Smarter with Microsoft Excel</h3>
-                    <p class="certificate-desc">Data analysis, visualization, and advanced spreadsheet techniques.</p>
+                    <h3 class="certificate-title">Work Smarter with Microsoft Excel</h3>
+                    <p class="certificate-desc">Mastery of Excel functions, formulas, data analysis, and visualization techniques.</p>
                     <div class="certificate-meta">
-                        <span>Coursera</span>
-                        <span>2025</span>
+                        <span class="certificate-platform">Coursera</span>
+                        <span class="certificate-year">2025</span>
                     </div>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/S1GJVO57BZYW" target="_blank" class="certificate-link">View Certificate</a>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/S1GJVO57BZYW" target="_blank" class="certificate-link">
+                        View Certificate
+                    </a>
                 </div>
                 
                 <div class="certificate-card">
-                    <h3>Introduction to Web Development</h3>
-                    <p class="certificate-desc">HTML5, CSS3, and JavaScript essentials for modern web applications.</p>
+                    <h3 class="certificate-title">Introduction to Web Development</h3>
+                    <p class="certificate-desc">Comprehensive introduction to HTML, CSS, and JavaScript for building modern websites.</p>
                     <div class="certificate-meta">
-                        <span>Coursera</span>
-                        <span>2025</span>
+                        <span class="certificate-platform">Coursera</span>
+                        <span class="certificate-year">2025</span>
                     </div>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/AVG5K3BQRVPN" target="_blank" class="certificate-link">View Certificate</a>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/AVG5K3BQRVPN" target="_blank" class="certificate-link">
+                        View Certificate
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Modal -->
-        <div class="modal-overlay">
-            <div class="cyber-modal">
-                <button class="close-modal">&times;</button>
-                <h2>Send Me a Message</h2>
-                <form id="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" required placeholder="Name">
+        <!-- Project Gallery Modal -->
+        <div class="gallery-modal">
+            <div class="modal-overlay"></div>
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h3 class="modal-title"></h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="gallery-main">
+                        <img src="" alt="" class="gallery-current">
                     </div>
-                    <div class="form-group">
-                        <input type="text" id="surname" name="surname" required placeholder="Surname">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" required placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" required placeholder="Your Message"></textarea>
-                    </div>
-                    <button type="submit" class="cyber-button">
-                        <span class="btn-text">Send Message</span>
-                        <div class="loading-spinner"></div>
-                        <div class="success-checkmark">✓</div>
-                    </button>
-                </form>
+                    <div class="gallery-thumbs"></div>
+                </div>
             </div>
         </div>
-
-        <!-- Back to Top -->
-        <button class="back-to-top">↑</button>
     </div>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="main.js"></script>
 </body>
