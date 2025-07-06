@@ -3,300 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hajar Cherrouk | Cyberpunk Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Cyberpunk Portfolio</title>
     <link rel="stylesheet" href="main.css">
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <!-- Cyberpunk Terminal UI Elements -->
-    <div class="terminal-ui">
-        <div class="terminal-corner tl"></div>
-        <div class="terminal-corner tr"></div>
-        <div class="terminal-corner bl"></div>
-        <div class="terminal-corner br"></div>
-        <div class="terminal-border top"></div>
-        <div class="terminal-border right"></div>
-        <div class="terminal-border bottom"></div>
-        <div class="terminal-border left"></div>
-    </div>
-
-    <!-- Digital Rain Effect -->
-    <div class="digital-rain"></div>
-
-    <!-- Holographic Grid Background -->
-    <div class="holographic-grid"></div>
-
-    <!-- Floating Neon Particles -->
-    <div id="neon-particles"></div>
-
-    <!-- Main Navigation -->
+    <!-- Floating Particles -->
+    <div id="particles-js"></div>
+    
+    <!-- Navigation -->
     <nav class="cyber-nav">
-        <div class="nav-logo glitch" data-text="HAJAR_DEV">
-            <span class="logo-text">HAJAR_DEV</span>
-            <span class="logo-cursor">_</span>
-        </div>
-        
+        <div class="nav-logo">✩°｡ ⋆⸜</div>
         <ul class="nav-links">
-            <li>
-                <a href="#home" class="nav-link" data-sound="hover">
-                    <span class="nav-number">01</span>
-                    <span class="nav-text">HOME</span>
-                    <span class="nav-hover">[SYSTEM_READY]</span>
-                </a>
-            </li>
-            <li>
-                <a href="#about" class="nav-link" data-sound="hover">
-                    <span class="nav-number">02</span>
-                    <span class="nav-text">ABOUT</span>
-                    <span class="nav-hover">[PROFILE.EXE]</span>
-                </a>
-            </li>
-            <li>
-                <a href="#projects" class="nav-link" data-sound="hover">
-                    <span class="nav-number">03</span>
-                    <span class="nav-text">PROJECTS</span>
-                    <span class="nav-hover">[DATA_ACCESS]</span>
-                </a>
-            </li>
-            <li>
-                <a href="#certificates" class="nav-link" data-sound="hover">
-                    <span class="nav-number">04</span>
-                    <span class="nav-text">CERTIFICATES</span>
-                    <span class="nav-hover">[CREDENTIALS]</span>
-                </a>
-            </li>
-            <li>
-                <button id="contact-nav-btn" class="cyber-button" data-sound="modal">
-                    <span class="button-text">CONTACT</span>
-                    <span class="button-hover">[SEND_MAIL]</span>
-                    <div class="button-pulse"></div>
-                </button>
-            </li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#certificates" class="nav-link">Certificates</a></li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Contact -->
     <section id="home" class="hero-section">
-        <div class="hero-grid"></div>
+        <div class="hero-bg" style="background-image: url('./assets/images/decorations/cyber-grid-bg.jpg')"></div>
         <div class="hero-content">
-            <div class="hero-text">
-                <p class="cyber-subtitle"><span class="highlight">WELCOME TO MY DIGITAL REALM //</span></p>
-                <h1 class="cyber-title glitch" data-text="HAJAR_CHERROUK">
-                    <span class="title-text">HAJAR_CHERROUK</span>
-                    <span class="title-cursor">_</span>
-                </h1>
-                <div class="typing-container">
-                    <span id="typed-text"></span>
-                    <span class="blinking-cursor">_</span>
-                </div>
-                
-                <div class="hero-actions">
-                    <button id="contact-btn" class="cyber-button" data-sound="modal">
-                        <span>INITIATE_CONTACT</span>
-                        <div class="button-hover"></div>
-                    </button>
-                    <a href="#projects" class="cyber-button outline" data-sound="hover">
-                        <span>VIEW_PROJECTS</span>
-                        <div class="button-hover"></div>
-                    </a>
-                </div>
+            <div class="profile-container">
+                <img src="./assets/images/profile.jpeg" alt="Profile" class="profile-img">
+                <div class="glow"></div>
             </div>
-            
-            <div class="hero-profile">
-                <div class="profile-frame">
-                    <img src="./assets/images/profile.jpeg" alt="Profile" class="profile-img glitch-img">
-                    <div class="profile-grid"></div>
-                    <div class="profile-hologram"></div>
-                </div>
+            <h1 class="cyber-title">Your Name</h1>
+            <div class="cyber-subtitle">
+                <span id="typed-text"></span>
+                <span class="blinking-cursor">|</span>
             </div>
-        </div>
-        
-        <div class="hero-contacts">
-            <a href="https://github.com/ryosvoid" class="contact-link" data-sound="click">
-                <i class="fab fa-github"></i>
-                <span>@ryosvoid</span>
-            </a>
-            <a href="mailto:hajarcrk26@gmail.com" class="contact-link" data-sound="click">
-                <i class="fas fa-envelope"></i>
-                <span>hajarcrk26@gmail.com</span>
-            </a>
-            <a href="tel:+212724600991" class="contact-link" data-sound="click">
-                <i class="fas fa-phone"></i>
-                <span>+212 724 600 991</span>
-            </a>
-        </div>
-        
-        <div class="scroll-prompt">
-            <div class="scroll-line"></div>
-            <span>SCROLL_TO_NAVIGATE</span>
+            <div class="hero-contacts">
+                <a href="https://github.com/ryosvoid" class="contact-link">
+                    <img src="./assets/images/icons/github.svg" alt="GitHub"> GitHub
+                </a>
+                <a href="mailto:hajarcrk26@gmail.com" class="contact-link">
+                    <img src="./assets/images/icons/email.svg" alt="Email"> Email
+                </a>
+                <a href="tel:+212724600991" class="contact-link">
+                    <img src="./assets/images/icons/phone.svg" alt="Phone"> +212 724 600 991
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Me Section -->
     <section id="about" class="section about-section">
-        <div class="section-header">
-            <h2 class="section-title glitch" data-text="ABOUT_ME">
-                <span class="section-number">02.</span> 
-                <span class="title-text">ABOUT_ME</span>
-                <span class="title-cursor">_</span>
-            </h2>
-            <div class="section-line"></div>
-        </div>
+        <h2 class="section-title">About Me</h2>
         
         <div class="about-content">
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <div class="terminal-buttons">
-                        <div class="terminal-btn close"></div>
-                        <div class="terminal-btn minimize"></div>
-                        <div class="terminal-btn maximize"></div>
-                    </div>
-                    <span class="terminal-title">hajar@portfolio:~</span>
-                </div>
-                <div class="terminal-body">
-                    <p class="terminal-line"><span class="prompt">></span> <span class="command">whoami</span></p>
-                    <p class="terminal-line output">Tech enthusiast | Creative developer | Problem solver | AI explorer</p>
-                    
-                    <p class="terminal-line"><span class="prompt">></span> <span class="command">cat bio.txt</span></p>
-                    <p class="terminal-line output multi-line">
-                        Passionate about technology and its potential to shape the future.
-                        Constantly learning and building projects at the intersection
-                        of creativity and technical innovation.
-                    </p>
-                    
-                    <p class="terminal-line"><span class="prompt">></span> <span class="command">skills --show-progress</span></p>
-                    <div class="terminal-line output">
-                        <div class="cyber-skills-grid">
-                            <!-- Python Skill -->
-                            <div class="cyber-skill-card" data-skill="python">
-                                <div class="skill-header">
-                                    <div class="skill-icon">
-                                        <i class="fab fa-python"></i>
-                                    </div>
-                                    <h3>PYTHON</h3>
-                                    <span class="skill-percent" data-target="85">0%</span>
-                                </div>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="--target-width:85%;">
-                                        <div class="skill-progress"></div>
-                                        <div class="skill-glows"></div>
-                                    </div>
-                                    <div class="skill-desc">Web Scraping • Automation • Data Analysis</div>
-                                </div>
-                            </div>
-                            
-                            <!-- C Skill -->
-                            <div class="cyber-skill-card" data-skill="c">
-                                <div class="skill-header">
-                                    <div class="skill-icon">
-                                        <i class="fas fa-code"></i>
-                                    </div>
-                                    <h3>C LANGUAGE</h3>
-                                    <span class="skill-percent" data-target="85">0%</span>
-                                </div>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="--target-width:85%;">
-                                        <div class="skill-progress"></div>
-                                        <div class="skill-glows"></div>
-                                    </div>
-                                    <div class="skill-desc">System Programming • Algorithms</div>
-                                </div>
-                            </div>
-                            
-                            <!-- Web Dev Skill -->
-                            <div class="cyber-skill-card" data-skill="web">
-                                <div class="skill-header">
-                                    <div class="skill-icon">
-                                        <i class="fas fa-code"></i>
-                                    </div>
-                                    <h3>WEB DEV</h3>
-                                    <span class="skill-percent" data-target="70">0%</span>
-                                </div>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="--target-width:70%;">
-                                        <div class="skill-progress"></div>
-                                        <div class="skill-glows"></div>
-                                    </div>
-                                    <div class="skill-desc">HTML/CSS (85%) • JavaScript (40%)</div>
-                                </div>
-                            </div>
-                            
-                            <!-- Database Skill -->
-                            <div class="cyber-skill-card" data-skill="sql">
-                                <div class="skill-header">
-                                    <div class="skill-icon">
-                                        <i class="fas fa-database"></i>
-                                    </div>
-                                    <h3>DATABASES</h3>
-                                    <span class="skill-percent" data-target="60">0%</span>
-                                </div>
-                                <div class="skill-bar-container">
-                                    <div class="skill-bar" style="--target-width:60%;">
-                                        <div class="skill-progress"></div>
-                                        <div class="skill-glows"></div>
-                                    </div>
-                                    <div class="skill-desc">SQL • Database Design</div>
-                                </div>
-                            </div>
+            <div class="about-text">
+                <p>Tech enthusiast with a passion for problem solving and creative development.</p>
+            </div>
+            
+            <div class="skills-section">
+                <h3>Technical Skills</h3>
+                <div class="skill-bars">
+                    <div class="skill" data-percent="85">
+                        <span class="skill-name">Python</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0%"></div>
                         </div>
                     </div>
+                    <div class="skill" data-percent="85">
+                        <span class="skill-name">C</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="skill" data-percent="85">
+                        <span class="skill-name">HTML</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="skill" data-percent="40">
+                        <span class="skill-name">CSS</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="skill" data-percent="40">
+                        <span class="skill-name">JavaScript</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="skill" data-percent="60">
+                        <span class="skill-name">SQL</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Languages</h3>
+                <div class="language-bubbles">
+                    <div class="bubble" data-lang="EN">English</div>
+                    <div class="bubble" data-lang="FR">French</div>
+                    <div class="bubble" data-lang="AR">Arabic</div>
                 </div>
             </div>
             
             <div class="hobbies-section">
-                <h3 class="hobbies-title">HOBBIES & INTERESTS</h3>
-                <div class="hobby-grid">
-                    <div class="hobby-card" data-hobby="chess">
-                        <div class="hobby-icon">
-                            <i class="fas fa-chess"></i>
+                <h3>Hobbies & Interests</h3>
+                <div class="hobby-items">
+                    <div class="hobby-item">
+                        <span class="hobby-icon">♟️</span>
+                        <div>
+                            <h4>Chess</h4>
+                            <p>Strategic board game that enhances problem-solving skills</p>
                         </div>
-                        <span class="hobby-name">CHESS</span>
                     </div>
-                    <div class="hobby-card" data-hobby="math">
-                        <div class="hobby-icon">
-                            <i class="fas fa-square-root-alt"></i>
+                    <div class="hobby-item">
+                        <span class="hobby-icon">🧮</span>
+                        <div>
+                            <h4>Math</h4>
+                            <p>Exploring mathematical concepts and problem-solving</p>
                         </div>
-                        <span class="hobby-name">MATH</span>
                     </div>
-                    <div class="hobby-card" data-hobby="fitness">
-                        <div class="hobby-icon">
-                            <i class="fas fa-dumbbell"></i>
+                    <div class="hobby-item">
+                        <span class="hobby-icon">💪</span>
+                        <div>
+                            <h4>Fitness</h4>
+                            <p>Maintaining physical health through regular exercise</p>
                         </div>
-                        <span class="hobby-name">FITNESS</span>
                     </div>
-                    <div class="hobby-card" data-hobby="reading">
-                        <div class="hobby-icon">
-                            <i class="fas fa-book-open"></i>
-                        </div>
-                        <span class="hobby-name">READING</span>
-                    </div>
-                </div>
-                
-                <div class="languages-section">
-                    <h3 class="languages-title">LANGUAGES</h3>
-                    <div class="language-bubbles">
-                        <div class="bubble" data-lang="EN">
-                            <div class="bubble-inner">
-                                <span>EN</span>
-                                <div class="bubble-percent">100%</div>
-                            </div>
-                        </div>
-                        <div class="bubble" data-lang="FR">
-                            <div class="bubble-inner">
-                                <span>FR</span>
-                                <div class="bubble-percent">90%</div>
-                            </div>
-                        </div>
-                        <div class="bubble" data-lang="AR">
-                            <div class="bubble-inner">
-                                <span>AR</span>
-                                <div class="bubble-percent">100%</div>
-                            </div>
+                    <div class="hobby-item">
+                        <span class="hobby-icon">📚</span>
+                        <div>
+                            <h4>Reading</h4>
+                            <p>Exploring new ideas through books and articles</p>
                         </div>
                     </div>
                 </div>
@@ -306,72 +146,44 @@
 
     <!-- Projects Section -->
     <section id="projects" class="section projects-section">
-        <div class="section-header">
-            <h2 class="section-title glitch" data-text="MY_PROJECTS">
-                <span class="section-number">03.</span> 
-                <span class="title-text">MY_PROJECTS</span>
-                <span class="title-cursor">_</span>
-            </h2>
-            <div class="section-line"></div>
-        </div>
+        <h2 class="section-title">My Projects</h2>
         
-        <div class="projects-grid">
+        <div class="project-grid">
             <!-- Memory Game Project -->
-            <div class="project-card" data-project="memory">
+            <div class="project-card">
                 <div class="project-image">
                     <img src="./assets/images/projects/memory game/memory3.jpeg" alt="Memory Game">
-                    <div class="project-overlay">
-                        <div class="overlay-content">
-                            <h3>MEMORY_GAME</h3>
-                            <div class="tech-tags">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JS</span>
-                                <span>PYTHON</span>
-                            </div>
-                            <button class="view-gallery" data-sound="click">VIEW_GALLERY</button>
-                        </div>
-                        <div class="overlay-bg"></div>
-                    </div>
-                    <div class="project-label">FEATURED</div>
                 </div>
                 <div class="project-details">
-                    <h3>MEMORY_GAME <span class="project-emoji">🧠</span></h3>
-                    <p>Interactive card matching game with user accounts and score tracking.</p>
-                    <div class="project-actions">
-                        <a href="https://github.com/ryosvoid/memory_game" class="github-link" data-sound="click">
-                            <i class="fab fa-github"></i> VIEW_CODE
-                        </a>
-                        <button class="view-details" data-sound="hover">DETAILS</button>
+                    <h3>Memory Game</h3>
+                    <p>An interactive card matching game with user accounts and score tracking. Players can create accounts, track their progress, and see their history of matches.</p>
+                    <div class="tech-tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>Python</span>
                     </div>
+                    <a href="https://github.com/ryosvoid/memory_game" class="github-link">
+                        <img src="./assets/images/icons/github.svg" alt="GitHub"> View on GitHub
+                    </a>
                 </div>
             </div>
             
             <!-- Maths Pyramid Game -->
-            <div class="project-card" data-project="maths">
+            <div class="project-card">
                 <div class="project-image">
                     <img src="./assets/images/projects/maths game/pyramid_equation1.png" alt="Maths Pyramid">
-                    <div class="project-overlay">
-                        <div class="overlay-content">
-                            <h3>MATHS_PYRAMID</h3>
-                            <div class="tech-tags">
-                                <span>PYTHON</span>
-                                <span>JAVASCRIPT</span>
-                            </div>
-                            <button class="view-gallery" data-sound="click">VIEW_GALLERY</button>
-                        </div>
-                        <div class="overlay-bg"></div>
-                    </div>
                 </div>
                 <div class="project-details">
-                    <h3>MATHS_PYRAMID <span class="project-emoji">🧮</span></h3>
-                    <p>Solve pyramid equations by memorizing and calculating number patterns.</p>
-                    <div class="project-actions">
-                        <a href="https://github.com/ryosvoid/maths-pyramid-game" class="github-link" data-sound="click">
-                            <i class="fab fa-github"></i> VIEW_CODE
-                        </a>
-                        <button class="view-details" data-sound="hover">DETAILS</button>
+                    <h3>Maths Pyramid Game</h3>
+                    <p>A challenging math puzzle where players must solve pyramid equations by memorizing and calculating number patterns. The game has multiple difficulty levels.</p>
+                    <div class="tech-tags">
+                        <span>Python</span>
+                        <span>JavaScript</span>
                     </div>
+                    <a href="https://github.com/ryosvoid/maths-pyramid-game" class="github-link">
+                        <img src="./assets/images/icons/github.svg" alt="GitHub"> View on GitHub
+                    </a>
                 </div>
             </div>
         </div>
@@ -379,223 +191,41 @@
 
     <!-- Certificates Section -->
     <section id="certificates" class="section certificates-section">
-        <div class="section-header">
-            <h2 class="section-title glitch" data-text="CERTIFICATES">
-                <span class="section-number">04.</span> 
-                <span class="title-text">CERTIFICATES</span>
-                <span class="title-cursor">_</span>
-            </h2>
-            <div class="section-line"></div>
-        </div>
+        <h2 class="section-title">Certificates</h2>
         
-        <div class="certificates-slider">
+        <div class="certificates-grid">
             <div class="certificate-card">
-                <div class="certificate-image">
-                    <div class="certificate-bg"></div>
-                    <div class="certificate-content">
-                        <h3>INTRODUCTION_TO_PYTHON</h3>
-                        <div class="certificate-meta">
-                            <span class="platform">COURSERA</span>
-                            <span class="year">2024</span>
-                        </div>
-                        <a href="https://www.coursera.org/account/accomplishments/verify/ASU8HQFZK59D" 
-                           class="view-certificate" data-sound="click">
-                            VIEW_CERTIFICATE
-                        </a>
-                    </div>
-                    <div class="certificate-ribbon">ACHIEVEMENT</div>
-                </div>
+                <h3>Introduction to Python Programming</h3>
+                <p class="certificate-platform">Coursera · 2024</p>
+                <p class="certificate-desc">Fundamentals of Python programming including data structures, algorithms, and basic problem-solving techniques.</p>
+                <a href="https://www.coursera.org/account/accomplishments/verify/ASU8HQFZK59D" class="view-cert">View Certificate</a>
             </div>
             
-            <!-- Additional certificates would go here -->
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section contact-section">
-        <div class="section-header">
-            <h2 class="section-title glitch" data-text="GET_IN_TOUCH">
-                <span class="section-number">05.</span> 
-                <span class="title-text">GET_IN_TOUCH</span>
-                <span class="title-cursor">_</span>
-            </h2>
-            <div class="section-line"></div>
-        </div>
-        
-        <div class="contact-content">
-            <div class="contact-info">
-                <h3>LET'S_CREATE_SOMETHING_AMAZING_TOGETHER</h3>
-                <p>Whether you have a project in mind or just want to chat about tech, feel free to reach out!</p>
-                
-                <div class="contact-methods">
-                    <a href="mailto:hajarcrk26@gmail.com" class="contact-method" data-sound="hover">
-                        <div class="method-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="method-details">
-                            <span class="method-title">EMAIL_ME</span>
-                            <span class="method-value">hajarcrk26@gmail.com</span>
-                        </div>
-                    </a>
-                    
-                    <a href="tel:+212724600991" class="contact-method" data-sound="hover">
-                        <div class="method-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="method-details">
-                            <span class="method-title">CALL_ME</span>
-                            <span class="method-value">+212 724 600 991</span>
-                        </div>
-                    </a>
-                    
-                    <a href="https://github.com/ryosvoid" class="contact-method" data-sound="hover">
-                        <div class="method-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <div class="method-details">
-                            <span class="method-title">GITHUB</span>
-                            <span class="method-value">@ryosvoid</span>
-                        </div>
-                    </a>
-                </div>
+            <div class="certificate-card">
+                <h3>Work Smarter with Microsoft Word</h3>
+                <p class="certificate-platform">Coursera · 2025</p>
+                <p class="certificate-desc">Advanced document formatting, collaboration features, and productivity techniques in Microsoft Word.</p>
+                <a href="https://www.coursera.org/account/accomplishments/verify/Z9D37DD2BQJX" class="view-cert">View Certificate</a>
             </div>
             
-            <div class="contact-form-container">
-                <form id="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" required>
-                        <label for="name">NAME</label>
-                        <div class="form-line"></div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" required>
-                        <label for="email">EMAIL</label>
-                        <div class="form-line"></div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="text" id="subject" name="subject" required>
-                        <label for="subject">SUBJECT</label>
-                        <div class="form-line"></div>
-                    </div>
-                    
-                    <div class="form-group textarea-group">
-                        <textarea id="message" name="message" required></textarea>
-                        <label for="message">MESSAGE</label>
-                        <div class="form-line"></div>
-                    </div>
-                    
-                    <button type="submit" class="cyber-button" data-sound="click">
-                        <span id="submit-text">SEND_MESSAGE</span>
-                        <div id="loading-spinner" class="spinner"></div>
-                        <div id="success-check" class="checkmark">✓</div>
-                        <div class="button-hover"></div>
-                    </button>
-                </form>
+            <div class="certificate-card">
+                <h3>Work Smarter with Microsoft Excel</h3>
+                <p class="certificate-platform">Coursera · 2025</p>
+                <p class="certificate-desc">Data analysis, visualization, and advanced spreadsheet techniques using Excel.</p>
+                <a href="https://www.coursera.org/account/accomplishments/verify/S1GJVO57BZYW" class="view-cert">View Certificate</a>
+            </div>
+            
+            <div class="certificate-card">
+                <h3>Introduction to Web Development</h3>
+                <p class="certificate-platform">Coursera · 2025</p>
+                <p class="certificate-desc">HTML, CSS, and JavaScript fundamentals for building responsive websites.</p>
+                <a href="https://www.coursera.org/account/accomplishments/verify/AVG5K3BQRVPN" class="view-cert">View Certificate</a>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="cyber-footer">
-        <div class="footer-content">
-            <div class="footer-logo glitch" data-text="HAJAR_DEV">
-                <span class="logo-text">HAJAR_DEV</span>
-                <span class="logo-cursor">_</span>
-            </div>
-            <p class="footer-text">DESIGNED_&_BUILT_WITH_❤️_AND_NEON_LIGHTS</p>
-            
-            <div class="footer-links">
-                <a href="#home" data-sound="click">HOME</a>
-                <a href="#about" data-sound="click">ABOUT</a>
-                <a href="#projects" data-sound="click">PROJECTS</a>
-                <a href="#certificates" data-sound="click">CERTIFICATES</a>
-                <button id="footer-contact-btn" data-sound="modal">CONTACT</button>
-            </div>
-            
-            <div class="footer-social">
-                <a href="https://github.com/ryosvoid" data-sound="click">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:hajarcrk26@gmail.com" data-sound="click">
-                    <i class="fas fa-envelope"></i>
-                </a>
-                <a href="tel:+212724600991" data-sound="click">
-                    <i class="fas fa-phone"></i>
-                </a>
-            </div>
-        </div>
-        
-        <div class="footer-copyright">
-            <p>©_2023_HAJAR_CHERROUK._ALL_RIGHTS_RESERVED.</p>
-            <div class="footer-decoration">
-                <img src="./assets/images/decorations/totoro.gif" alt="Totoro" class="footer-totoro">
-            </div>
-        </div>
-    </footer>
-
-    <!-- Project Gallery Modal -->
-    <div id="gallery-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" data-sound="click">&times;</span>
-            <h2 id="gallery-title">PROJECT_GALLERY</h2>
-            <div class="gallery-container">
-                <div class="gallery-slide active">
-                    <img src="" alt="Gallery Image" class="gallery-image">
-                </div>
-            </div>
-            <div class="gallery-controls">
-                <button id="prev-btn" class="gallery-btn" data-sound="click">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <div class="gallery-pagination">
-                    <span id="current-slide">1</span> / <span id="total-slides">3</span>
-                </button>
-                <button id="next-btn" class="gallery-btn" data-sound="click">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            <div class="gallery-thumbnails">
-                <!-- Thumbnails will be injected by JS -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Project Details Modal -->
-    <div id="details-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" data-sound="click">&times;</span>
-            <h2 id="details-title">PROJECT_DETAILS</h2>
-            <div class="details-content">
-                <!-- Content will be injected by JS -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Modal (for mobile) -->
-    <div id="mobile-contact-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" data-sound="click">&times;</span>
-            <h2>CONTACT_ME</h2>
-            <form id="mobile-contact-form">
-                <!-- Same form fields as main contact form -->
-            </form>
-        </div>
-    </div>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top" data-sound="click">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Audio Elements -->
-    <audio id="hover-sound" src="./assets/sounds/hover-soft.mp3" preload="auto"></audio>
-    <audio id="click-sound" src="./assets/sounds/click-futuristic.mp3" preload="auto"></audio>
-    <audio id="modal-sound" src="./assets/sounds/modal-open.wav" preload="auto"></audio>
-    <audio id="success-sound" src="./assets/sounds/success-chime.mp3" preload="auto"></audio>
-    <audio id="typing-sound" src="./assets/sounds/terminal-typing.wav" preload="auto" loop></audio>
-    <audio id="powerup-sound" src="./assets/sounds/power-up.wav" preload="auto"></audio>
+    <button id="back-to-top" class="back-to-top">↑</button>
 
     <script src="main.js"></script>
 </body>
