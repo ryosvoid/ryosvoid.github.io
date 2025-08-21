@@ -3,50 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hajar Cherrouk | Portfolio</title>
+    <title>Hajar Cherrouk | Cyber Portfolio</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    
+    <!-- Navigation -->
+    <nav class="cyber-nav">
+        <div class="nav-logo">
+            <span class="glitch" data-text="Hajar Cherrouk">Hajar Cherrouk</span>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active" data-sound="click-futuristic.mp3">Home</a></li>
+            <li><a href="#about" class="nav-link" data-sound="click-futuristic.mp3">About Me</a></li>
+            <li><a href="#projects" class="nav-link" data-sound="click-futuristic.mp3">Projects</a></li>
+            <li><a href="#certificates" class="nav-link" data-sound="click-futuristic.mp3">Certificates</a></li>
+        </ul>
 
+        <div class="nav-social">
+            <a href="https://github.com/ryosvoid" target="_blank" class="social-icon">
+                <img src="./assets/images/icons/github.svg" alt="GitHub">
+            </a>
+            <a href="mailto:hajarcrk26@gmail.com" class="social-icon">
+                <img src="./assets/images/icons/email.svg" alt="Email">
+            </a>
+        </div>
+
+        <div class="nav-hamburger">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
     <div class="container">
-        <!-- Navigation -->
-        <nav class="cyber-nav">
-            <div class="nav-logo">
-                <span class="glitch" data-text="Hajar Cherrouk">Hajar cherrouk</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home" class="nav-link active" data-sound="click-futuristic.mp3">Home</a></li>
-                <li><a href="#about" class="nav-link" data-sound="click-futuristic.mp3">About Me</a></li>
-                <li><a href="#projects" class="nav-link" data-sound="click-futuristic.mp3">Projects</a></li>
-                <li><a href="#certificates" class="nav-link" data-sound="click-futuristic.mp3">Certificates</a></li>
-            </ul>
-            <div class="nav-social">
-                <a href="https://github.com/ryosvoid" target="_blank" class="social-icon">
-                    <img src="./assets/images/icons/github.svg" alt="GitHub">
-                </a>
-                <a href="mailto:hajarcrk26@gmail.com" class="social-icon">
-                    <img src="./assets/images/icons/email.svg" alt="Email">
-                </a>
-            </div>
-            <div class="nav-hamburger">
-                <div class="hamburger-line"></div>
-                <div class="hamburger-line"></div>
-                <div class="hamburger-line"></div>
-            </div>
-        </nav>
-
         <!-- Home Section -->
         <section id="home" class="section active">
             <div class="home-content">
+                <!-- Left Column - Text Content -->
                 <div class="home-left">
-                    <h1 class="cyber-title glitch" data-text="Hi, I'm Ryos">Hi, I'm Ryos</h1>
+                    <h1 class="cyber-title glitch" data-text="Hi, I'm Hajar">Hi, I'm Hajar</h1>
+                    
                     <div class="typing-container">
                         <span class="typing-text"></span>
                         <span class="typing-cursor">|</span>
                     </div>
-                    <p class="cyber-desc">Building digital experiences with a cyber aesthetic</p> <!-- Updated text -->
+                    
+                    <p class="cyber-desc">Building digital experiences with a cyber aesthetic</p>
+                    
                     <div class="contact-info">
                         <div class="info-item">
                             <img src="./assets/images/icons/phone.svg" alt="Phone">
@@ -58,42 +64,49 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Right Column - Profile Image -->
                 <div class="home-right">
                     <div class="profile-container">
-                        <img src="./assets/images/profile.jpeg" alt="Profile" class="profile-img">
+                        <img src="./assets/images/profile.jpeg" alt="Hajar Cherrouk" class="profile-img">
                         <div class="profile-glitch"></div>
                         <div class="profile-holo"></div>
-                        <!-- NEW: Avatar Reaction Bubble -->
                         <div class="avatar-reaction" id="avatarReaction">😊</div>
                     </div>
                 </div>
-                <!-- Contact Form -->
-                <div class="contact-form">
-                    <h3 class="cyber-subtitle">Get in Touch</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" required>
-                            <label for="name">Name</label>
-                            <div class="underline"></div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" required>
-                            <label for="email">Email</label>
-                            <div class="underline"></div>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" required></textarea>
-                            <label for="message">Message</label>
-                            <div class="underline"></div>
-                        </div>
-                        <button type="submit" class="cyber-button">
-                            <span class="btn-text">Send Message</span>
-                            <span class="btn-glitch"></span>
-                        </button>
-                    </form>
-                    <div id="formStatus"></div>
-                </div>
             </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3 class="cyber-subtitle">Get in Touch</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Your Name</label>
+                        <div class="underline"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Your Email</label>
+                        <div class="underline"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="message" name="message" required></textarea>
+                        <label for="message">Your Message</label>
+                        <div class="underline"></div>
+                    </div>
+                    
+                    <button type="submit" class="cyber-button">
+                        <span class="btn-text">Send Message</span>
+                        <span class="btn-glitch"></span>
+                    </button>
+                </form>
+                <div id="formStatus"></div>
+            </div>
+
+            <!-- Scroll Down Indicator -->
             <div class="scroll-down">
                 <span>Scroll Down</span>
                 <div class="scroll-arrow"></div>
@@ -106,15 +119,17 @@
                 <h2 class="section-title glitch" data-text="About Me">About Me</h2>
                 <div class="section-divider"></div>
             </div>
+
             <div class="about-content">
+                <!-- Main About Content -->
                 <div class="about-main">
                     <h3 class="cyber-subtitle">Tech Enthusiast & Problem Solver</h3>
                     <p class="cyber-text">I'm passionate about creating innovative solutions and exploring the intersection of technology and design. My journey in tech has led me to develop various projects and acquire diverse skills.</p>
                     
+                    <!-- Skills Section -->
                     <div class="skills-section">
                         <h4 class="skills-title">Technical Skills</h4>
                         <div class="skill-bars">
-                            <!-- NEW: Added data-skill attribute for interactivity -->
                             <div class="skill-item" data-skill="Python">
                                 <div class="skill-info">
                                     <span>Python</span>
@@ -124,6 +139,7 @@
                                     <div class="skill-progress" data-width="85%"></div>
                                 </div>
                             </div>
+                            
                             <div class="skill-item" data-skill="C">
                                 <div class="skill-info">
                                     <span>C</span>
@@ -133,6 +149,7 @@
                                     <div class="skill-progress" data-width="85%"></div>
                                 </div>
                             </div>
+                            
                             <div class="skill-item" data-skill="HTML">
                                 <div class="skill-info">
                                     <span>HTML</span>
@@ -142,6 +159,7 @@
                                     <div class="skill-progress" data-width="85%"></div>
                                 </div>
                             </div>
+                            
                             <div class="skill-item" data-skill="CSS">
                                 <div class="skill-info">
                                     <span>CSS</span>
@@ -151,6 +169,7 @@
                                     <div class="skill-progress" data-width="40%"></div>
                                 </div>
                             </div>
+                            
                             <div class="skill-item" data-skill="JavaScript">
                                 <div class="skill-info">
                                     <span>JavaScript</span>
@@ -160,6 +179,7 @@
                                     <div class="skill-progress" data-width="40%"></div>
                                 </div>
                             </div>
+                            
                             <div class="skill-item" data-skill="SQL">
                                 <div class="skill-info">
                                     <span>SQL</span>
@@ -172,6 +192,7 @@
                         </div>
                     </div>
                     
+                    <!-- Languages Section -->
                     <div class="languages-section">
                         <h4 class="skills-title">Languages</h4>
                         <div class="language-bubbles">
@@ -181,6 +202,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Sidebar - Hobbies -->
                 <div class="about-sidebar">
                     <h3 class="cyber-subtitle">Hobbies & Interests</h3>
                     <div class="hobbies-grid">
@@ -188,28 +211,31 @@
                             <div class="hobby-icon"><i class="fas fa-chess"></i></div>
                             <div class="hobby-info">
                                 <h4>Chess</h4>
-                                <p>Strategic board game that enhances problem-solving and critical thinking skills.</p>
+                                <p>Strategic board game that enhances problem-solving skills</p>
                             </div>
                         </div>
+                        
                         <div class="hobby-item">
                             <div class="hobby-icon"><i class="fas fa-square-root-alt"></i></div>
                             <div class="hobby-info">
                                 <h4>Math</h4>
-                                <p>Exploring mathematical concepts and solving complex problems for fun.</p>
+                                <p>Exploring mathematical concepts and solving complex problems</p>
                             </div>
                         </div>
+                        
                         <div class="hobby-item">
                             <div class="hobby-icon"><i class="fas fa-dumbbell"></i></div>
                             <div class="hobby-info">
                                 <h4>Fitness</h4>
-                                <p>Maintaining physical health through regular exercise and training.</p>
+                                <p>Maintaining physical health through regular exercise</p>
                             </div>
                         </div>
+                        
                         <div class="hobby-item">
                             <div class="hobby-icon"><i class="fas fa-book"></i></div>
                             <div class="hobby-info">
                                 <h4>Reading</h4>
-                                <p>Enjoying both technical literature and fiction to expand knowledge.</p>
+                                <p>Enjoying technical literature and fiction to expand knowledge</p>
                             </div>
                         </div>
                     </div>
@@ -223,18 +249,19 @@
                 <h2 class="section-title glitch" data-text="Projects">Projects</h2>
                 <div class="section-divider"></div>
             </div>
+
             <div class="projects-grid">
                 <!-- Memory Game Project -->
                 <div class="project-card">
                     <div class="project-media">
-                        <img src="./assets/images/projects/memory game/memory3.jpeg" alt="Memory Game" class="project-image">
+                        <img src="./assets/images/projects/memory-game.jpg" alt="Memory Game" class="project-image">
                         <div class="project-overlay">
                             <button class="view-gallery" data-project="memory">View Gallery</button>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3 class="project-title">Memory Game</h3>
-                        <p class="project-desc">A digital memory card matching game with user accounts, sound effects, and game history tracking.</p>
+                        <p class="project-desc">A digital memory card matching game with user accounts and game history tracking</p>
                         <div class="project-tech">
                             <span>HTML</span>
                             <span>CSS</span>
@@ -247,18 +274,18 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Maths Pyramid Game -->
                 <div class="project-card">
                     <div class="project-media">
-                        <img src="./assets/images/projects/maths game/pyramid_equation1.png" alt="Maths Pyramid Game" class="project-image">
+                        <img src="./assets/images/projects/maths-game.jpg" alt="Maths Pyramid Game" class="project-image">
                         <div class="project-overlay">
                             <button class="view-gallery" data-project="maths">View Gallery</button>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3 class="project-title">Maths Pyramid Game</h3>
-                        <p class="project-desc">A challenging math puzzle game where players create equations to match target numbers on a pyramid.</p>
+                        <p class="project-desc">A challenging math puzzle game with equation building and target numbers</p>
                         <div class="project-tech">
                             <span>HTML</span>
                             <span>CSS</span>
@@ -270,6 +297,8 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Add more project cards as needed -->
             </div>
         </section>
 
@@ -279,81 +308,69 @@
                 <h2 class="section-title glitch" data-text="Certificates">Certificates</h2>
                 <div class="section-divider"></div>
             </div>
+
             <div class="certificates-grid">
                 <div class="certificate-card">
                     <h3 class="certificate-title">Introduction to Python Programming</h3>
-                    <p class="certificate-desc">Fundamentals of Python programming including data structures, functions, and object-oriented concepts.</p>
+                    <p class="certificate-desc">Fundamentals of Python programming including data structures and OOP concepts</p>
                     <div class="certificate-meta">
                         <span class="certificate-platform">Coursera</span>
                         <span class="certificate-year">2024</span>
                     </div>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/ASU8HQFZK59D" target="_blank" class="certificate-link">
-                        View Certificate
-                    </a>
+                    <a href="#" target="_blank" class="certificate-link">View Certificate</a>
                 </div>
-                
+
                 <div class="certificate-card">
-                    <h3 class="certificate-title">Work Smarter with Microsoft Word</h3>
-                    <p class="certificate-desc">Advanced techniques for document creation, formatting, and automation in Microsoft Word.</p>
+                    <h3 class="certificate-title">Web Development Fundamentals</h3>
+                    <p class="certificate-desc">Comprehensive introduction to HTML, CSS, and JavaScript for modern websites</p>
                     <div class="certificate-meta">
                         <span class="certificate-platform">Coursera</span>
-                        <span class="certificate-year">2025</span>
+                        <span class="certificate-year">2024</span>
                     </div>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/Z9D37DD2BQJX" target="_blank" class="certificate-link">
-                        View Certificate
-                    </a>
+                    <a href="#" target="_blank" class="certificate-link">View Certificate</a>
                 </div>
-                
+
                 <div class="certificate-card">
-                    <h3 class="certificate-title">Work Smarter with Microsoft Excel</h3>
-                    <p class="certificate-desc">Mastery of Excel functions, formulas, data analysis, and visualization techniques.</p>
+                    <h3 class="certificate-title">Database Management with SQL</h3>
+                    <p class="certificate-desc">Mastering SQL queries, database design, and management techniques</p>
                     <div class="certificate-meta">
                         <span class="certificate-platform">Coursera</span>
-                        <span class="certificate-year">2025</span>
+                        <span class="certificate-year">2024</span>
                     </div>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/S1GJVO57BZYW" target="_blank" class="certificate-link">
-                        View Certificate
-                    </a>
+                    <a href="#" target="_blank" class="certificate-link">View Certificate</a>
                 </div>
-                
+
                 <div class="certificate-card">
-                    <h3 class="certificate-title">Introduction to Web Development</h3>
-                    <p class="certificate-desc">Comprehensive introduction to HTML, CSS, and JavaScript for building modern websites.</p>
+                    <h3 class="certificate-title">Advanced JavaScript Concepts</h3>
+                    <p class="certificate-desc">Deep dive into modern JavaScript features and frameworks</p>
                     <div class="certificate-meta">
                         <span class="certificate-platform">Coursera</span>
-                        <span class="certificate-year">2025</span>
+                        <span class="certificate-year">2024</span>
                     </div>
-                    <a href="https://www.coursera.org/account/accomplishments/verify/AVG5K3BQRVPN" target="_blank" class="certificate-link">
-                        View Certificate
-                    </a>
+                    <a href="#" target="_blank" class="certificate-link">View Certificate</a>
                 </div>
             </div>
         </section>
+    </div>
 
-        <!-- Project Gallery Modal -->
-        <div class="gallery-modal">
-            <div class="modal-overlay"></div>
-            <div class="modal-container">
-                <div class="modal-header">
-                    <h3 class="modal-title"></h3>
-                    <button class="modal-close">&times;</button>
+    <!-- Project Gallery Modal -->
+    <div class="gallery-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">Project Gallery</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="gallery-main">
+                    <img src="" alt="" class="gallery-current">
                 </div>
-                <div class="modal-body">
-                    <div class="gallery-main">
-                        <img src="" alt="" class="gallery-current">
-                    </div>
-                    <div class="gallery-thumbs"></div>
-                </div>
+                <div class="gallery-thumbs"></div>
             </div>
         </div>
     </div>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- NEW: Terminal Popup for Skill Details -->
+    <!-- Skill Terminal Popup -->
     <div id="skillTerminal" class="terminal">
         <div class="terminal-header">
             <span class="terminal-title">skill_info.exe</span>
@@ -366,8 +383,14 @@
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Back to Top Button -->
+    <button class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Files -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
