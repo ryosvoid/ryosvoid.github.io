@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyberpunk Portfolio</title>
+    <title>Hajar Cherrouk | Portfolio</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Particle Background -->
-    <div id="particles-js"></div>
     
-    <!-- Main Container -->
+
     <div class="container">
         <!-- Navigation -->
         <nav class="cyber-nav">
             <div class="nav-logo">
-                <span class="glitch" data-text="RYOS">RYOS</span>
+                <span class="glitch" data-text="Hajar Cherrouk">Hajar cherrouk</span>
             </div>
             <ul class="nav-links">
                 <li><a href="#home" class="nav-link active" data-sound="click-futuristic.mp3">Home</a></li>
@@ -48,7 +46,7 @@
                         <span class="typing-text"></span>
                         <span class="typing-cursor">|</span>
                     </div>
-                    <p class="cyber-desc">Building digital experiences with a cyberpunk aesthetic</p>
+                    <p class="cyber-desc">Building digital experiences with a cyber aesthetic</p> <!-- Updated text -->
                     <div class="contact-info">
                         <div class="info-item">
                             <img src="./assets/images/icons/phone.svg" alt="Phone">
@@ -65,34 +63,36 @@
                         <img src="./assets/images/profile.jpeg" alt="Profile" class="profile-img">
                         <div class="profile-glitch"></div>
                         <div class="profile-holo"></div>
+                        <!-- NEW: Avatar Reaction Bubble -->
+                        <div class="avatar-reaction" id="avatarReaction">😊</div>
                     </div>
                 </div>
-                <!-- Add this inside the home-left div, after the contact-info -->
-<div class="contact-form">
-    <h3 class="cyber-subtitle">Get in Touch</h3>
-    <form id="contactForm">
-        <div class="form-group">
-            <input type="text" id="name" name="name" required>
-            <label for="name">Name</label>
-            <div class="underline"></div>
-        </div>
-        <div class="form-group">
-            <input type="email" id="email" name="email" required>
-            <label for="email">Email</label>
-            <div class="underline"></div>
-        </div>
-        <div class="form-group">
-            <textarea id="message" name="message" required></textarea>
-            <label for="message">Message</label>
-            <div class="underline"></div>
-        </div>
-        <button type="submit" class="cyber-button">
-            <span class="btn-text">Send Message</span>
-            <span class="btn-glitch"></span>
-        </button>
-    </form>
-    <div id="formStatus"></div>
-</div>
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3 class="cyber-subtitle">Get in Touch</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Name</label>
+                            <div class="underline"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email</label>
+                            <div class="underline"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" required></textarea>
+                            <label for="message">Message</label>
+                            <div class="underline"></div>
+                        </div>
+                        <button type="submit" class="cyber-button">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-glitch"></span>
+                        </button>
+                    </form>
+                    <div id="formStatus"></div>
+                </div>
             </div>
             <div class="scroll-down">
                 <span>Scroll Down</span>
@@ -114,7 +114,8 @@
                     <div class="skills-section">
                         <h4 class="skills-title">Technical Skills</h4>
                         <div class="skill-bars">
-                            <div class="skill-item">
+                            <!-- NEW: Added data-skill attribute for interactivity -->
+                            <div class="skill-item" data-skill="Python">
                                 <div class="skill-info">
                                     <span>Python</span>
                                     <span>85%</span>
@@ -123,7 +124,7 @@
                                     <div class="skill-progress" data-width="85%"></div>
                                 </div>
                             </div>
-                            <div class="skill-item">
+                            <div class="skill-item" data-skill="C">
                                 <div class="skill-info">
                                     <span>C</span>
                                     <span>85%</span>
@@ -132,7 +133,7 @@
                                     <div class="skill-progress" data-width="85%"></div>
                                 </div>
                             </div>
-                            <div class="skill-item">
+                            <div class="skill-item" data-skill="HTML">
                                 <div class="skill-info">
                                     <span>HTML</span>
                                     <span>85%</span>
@@ -141,7 +142,7 @@
                                     <div class="skill-progress" data-width="85%"></div>
                                 </div>
                             </div>
-                            <div class="skill-item">
+                            <div class="skill-item" data-skill="CSS">
                                 <div class="skill-info">
                                     <span>CSS</span>
                                     <span>40%</span>
@@ -150,7 +151,7 @@
                                     <div class="skill-progress" data-width="40%"></div>
                                 </div>
                             </div>
-                            <div class="skill-item">
+                            <div class="skill-item" data-skill="JavaScript">
                                 <div class="skill-info">
                                     <span>JavaScript</span>
                                     <span>40%</span>
@@ -159,7 +160,7 @@
                                     <div class="skill-progress" data-width="40%"></div>
                                 </div>
                             </div>
-                            <div class="skill-item">
+                            <div class="skill-item" data-skill="SQL">
                                 <div class="skill-info">
                                     <span>SQL</span>
                                     <span>60%</span>
@@ -351,6 +352,19 @@
     <button class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </button>
+
+    <!-- NEW: Terminal Popup for Skill Details -->
+    <div id="skillTerminal" class="terminal">
+        <div class="terminal-header">
+            <span class="terminal-title">skill_info.exe</span>
+            <button class="terminal-close">&times;</button>
+        </div>
+        <div class="terminal-body">
+            <div class="terminal-content" id="terminalOutput">
+                <p>> System ready. Select a skill to display info.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
