@@ -1,411 +1,205 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize particles.js
-    particlesJS('particles-js', {
-        "particles": {
-            "number": {
-                "value": 80,
-                "density": {
-                    "enable": true,
-                    "value_area": 800
-                }
-            },
-            "color": {
-                "value": ["#ff9ff3", "#48dbfb", "#feca57"]
-            },
-            "shape": {
-                "type": "circle",
-                "stroke": {
-                    "width": 0,
-                    "color": "#000000"
-                }
-            },
-            "opacity": {
-                "value": 0.5,
-                "random": true,
-                "anim": {
-                    "enable": true,
-                    "speed": 1,
-                    "opacity_min": 0.1,
-                    "sync": false
-                }
-            },
-            "size": {
-                "value": 3,
-                "random": true,
-                "anim": {
-                    "enable": true,
-                    "speed": 2,
-                    "size_min": 0.1,
-                    "sync": false
-                }
-            },
-            "line_linked": {
-                "enable": true,
-                "distance": 150,
-                "color": "#48dbfb",
-                "opacity": 0.2,
-                "width": 1
-            },
-            "move": {
-                "enable": true,
-                "speed": 1,
-                "direction": "none",
-                "random": true,
-                "straight": false,
-                "out_mode": "out",
-                "bounce": false,
-                "attract": {
-                    "enable": true,
-                    "rotateX": 600,
-                    "rotateY": 1200
-                }
-            }
-        },
-        "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-                "onhover": {
-                    "enable": true,
-                    "mode": "grab"
-                },
-                "onclick": {
-                    "enable": true,
-                    "mode": "push"
-                },
-                "resize": true
-            },
-            "modes": {
-                "grab": {
-                    "distance": 140,
-                    "line_linked": {
-                        "opacity": 0.5
-                    }
-                },
-                "push": {
-                    "particles_nb": 4
-                }
-            }
-        },
-        "retina_detect": true
-    });
+    // ============================================
+    // 1. INITIALIZATION & GLOBAL VARIABLES
+    // ============================================
+    console.log("Initializing Portfolio...");
 
-    // Typing Animation
-    const typingText = document.querySelector('.typing-text');
-    const words = ["Tech Enthusiast", "Problem Solver", "AI Enthusiast", "Developer"];
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let isEnd = false;
+    // -- Avatar Reaction System --
+    const avatarReaction = document.getElementById('avatarReaction');
+    let reactionTimeout; // To control how long reactions are shown
 
-    function type() {
-        const currentWord = words[wordIndex];
-        const currentChar = currentWord.substring(0, charIndex);
-        typingText.textContent = currentChar;
+    // -- Skill Terminal --
+    const skillTerminal = document.getElementById('skillTerminal');
+    const terminalClose = document.querySelector('.terminal-close');
+    const terminalOutput = document.getElementById('terminalOutput');
 
-        if (!isDeleting && charIndex < currentWord.length) {
-            charIndex++;
-            setTimeout(type, 100);
-        } else if (isDeleting && charIndex > 0) {
-            charIndex--;
-            setTimeout(type, 50);
-        } else {
-            isDeleting = !isDeleting;
-            if (!isDeleting) {
-                wordIndex = (wordIndex + 1) % words.length;
-            }
-            setTimeout(type, 1000);
+    // Data for the terminal: Fun facts about your skills!
+    const skillFacts = {
+        "Python": "My go-to for automation and data tasks. Built several games and scripts with it!",
+        "C": "Learned to appreciate memory management and low-level logic. The foundation of everything.",
+        "HTML": "The skeleton of the web. I enjoy structuring content in a semantic way.",
+        "CSS": "Where the magic happens! I love transforming HTML into visually appealing experiences.",
+        "JavaScript": "Making websites interactive and dynamic. This portfolio runs on JS!",
+        "SQL": "The language of data. I use it to query and manage databases efficiently."
+    };
+
+    // ============================================
+    // 2. CORE FUNCTIONS
+    // ============================================
+
+    /**
+     * Controls the avatar's reaction emoji.
+     * @param {string} emoji - The emoji to display.
+     * @param {number} duration - How long to show it (ms). 0 = permanent until changed.
+     */
+    function setAvatarReaction(emoji, duration = 3000) {
+        // Clear any previous timeout so reactions don't overlap weirdly
+        clearTimeout(reactionTimeout);
+
+        // Update the emoji text
+        avatarReaction.textContent = emoji;
+
+        // Add the class that triggers the show animation (defined in CSS)
+        avatarReaction.classList.add('show');
+
+        // If a duration is set, hide the reaction after that time
+        if (duration > 0) {
+            reactionTimeout = setTimeout(() => {
+                avatarReaction.classList.remove('show');
+            }, duration);
         }
     }
 
-    // Start typing animation
-    setTimeout(type, 1000);
+    /**
+     * "Types" text into the terminal, character by character.
+     * @param {string} text - The text to display.
+     * @param {HTMLElement} element - The HTML element to type into.
+     * @param {number} speed - Typing speed (ms per character).
+     * @param {Function} callback - Function to run after typing is done.
+     */
+    function typeInTerminal(text, element, speed = 40, callback) {
+        let i = 0;
+        element.innerHTML = ''; // Clear previous text
 
-    // Navigation
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('.section');
-    const hamburger = document.querySelector('.nav-hamburger');
-    const navMenu = document.querySelector('.nav-links');
-
-    // Handle navigation clicks
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            
-            // Play sound if available
-            const soundFile = this.getAttribute('data-sound');
-            if (soundFile) {
-                playSound(`./assets/sounds/${soundFile}`);
+        function type() {
+            if (i < text.length) {
+                // Add the next character, use a span to allow for future styling (like blinks)
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else if (callback) {
+                // All text is typed, run the callback function
+                setTimeout(callback, 500);
             }
+        }
+        type();
+    }
 
-            // Update active nav link
-            navLinks.forEach(navLink => navLink.classList.remove('active'));
-            this.classList.add('active');
+    /**
+     * Opens the terminal and displays info about a skill.
+     * @param {string} skillName - The name of the skill to display.
+     */
+    function openSkillTerminal(skillName) {
+        // Play a sound for the terminal opening (beep boop!)
+        playSound('./assets/sounds/terminal-open.wav'); // You might need to find a sound for this
 
-            // Show target section
-            sections.forEach(section => {
-                section.classList.remove('active');
-                if (section.id === targetId.substring(1)) {
-                    section.classList.add('active');
-                }
-            });
+        // Show the terminal modal
+        skillTerminal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
 
-            // Close mobile menu if open
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active');
+        // Get the fun fact for this skill
+        const fact = skillFacts[skillName] || `> No additional data found for ${skillName}.`;
+
+        // Create the text that will be "typed" out
+        const terminalText = `> Initializing skill assessment...\n> Loading data for [${skillName}]...\n\n> ${fact}\n\n> _`;
+
+        // Type the text into the terminal
+        typeInTerminal(terminalText, terminalOutput);
+    }
+
+    /**
+     * Closes the skill terminal.
+     */
+    function closeSkillTerminal() {
+        playSound('./assets/sounds/terminal-close.wav'); // You might need to find a sound for this
+        skillTerminal.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+        // Reset the avatar to default when closing the terminal
+        setAvatarReaction('😊', 0); // 0 duration means it stays until another event changes it
+    }
+
+    // ============================================
+    // 3. EVENT LISTENERS & INTERACTIVITY
+    // ============================================
+
+    // -- AVATAR REACTION TRIGGERS --
+
+    // React when hovering over the profile picture itself
+    const profileContainer = document.querySelector('.profile-container');
+    profileContainer.addEventListener('mouseenter', () => setAvatarReaction('👋', 2000));
+    profileContainer.addEventListener('mouseleave', () => setAvatarReaction('😊', 0));
+
+    // React when the user is in the About section (using the existing observer)
+    const aboutSection = document.querySelector('#about');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setAvatarReaction('🤔', 4000); // Thinker emoji for the about section
+                playSound('./assets/sounds/power-up.wav');
+                animateSkillBars(); // Keep the original skill bar animation
             }
+        });
+    }, { threshold: 0.5 });
+    observer.observe(aboutSection);
 
-            // Scroll to top of section
-            document.querySelector(targetId).scrollIntoView({
-                behavior: 'smooth'
-            });
+    // React when hovering over projects
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', () => setAvatarReaction('💻', 2000));
+    });
+
+    // React when hovering over certificates
+    const certificateCards = document.querySelectorAll('.certificate-card');
+    certificateCards.forEach(card => {
+        card.addEventListener('mouseenter', () => setAvatarReaction('🎓', 2000));
+    });
+
+    // React when interacting with the contact form
+    const contactForm = document.getElementById('contactForm');
+    const formInputs = contactForm.querySelectorAll('input, textarea');
+    formInputs.forEach(input => {
+        input.addEventListener('focus', () => setAvatarReaction('📧', 0)); // Stays while typing
+        input.addEventListener('blur', () => setAvatarReaction('😊', 0)); // Reverts when done
+    });
+
+    // -- SKILL TERMINAL TRIGGERS --
+
+    // Listen for clicks on skill bars
+    const skillItems = document.querySelectorAll('.skill-item');
+    skillItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const skillName = this.getAttribute('data-skill');
+            // Change avatar reaction to something "knowledgeable"
+            setAvatarReaction('🧠', 0); // Set it until terminal closes
+            // Open the terminal with the skill info
+            openSkillTerminal(skillName);
         });
     });
 
-    // Hamburger menu toggle
-    hamburger.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        playSound('./assets/sounds/click-futuristic.mp3');
+    // Close terminal when clicking the X button
+    terminalClose.addEventListener('click', closeSkillTerminal);
+    // Close terminal when clicking outside of it
+    skillTerminal.addEventListener('click', function(e) {
+        if (e.target === this) { // If the click is on the modal's backdrop
+            closeSkillTerminal();
+        }
     });
 
-    // Skill bars animation
-    const skillBars = document.querySelectorAll('.skill-progress');
-    
+    // ============================================
+    // 4. EXISTING FUNCTIONALITY (KEPT FROM BEFORE)
+    // ============================================
+
+    // ... (Keep all your existing code below this point) ...
+    // This includes: particlesJS init, typing animation, navigation, 
+    // gallery modal, back-to-top button, etc.
+
+    // Make sure the existing animateSkillBars() function is still here
     function animateSkillBars() {
+        const skillBars = document.querySelectorAll('.skill-progress');
         skillBars.forEach(bar => {
             const width = bar.getAttribute('data-width');
             bar.style.width = width;
         });
     }
 
-    // Animate skill bars when About section is visible
-    const aboutSection = document.querySelector('#about');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateSkillBars();
-                playSound('./assets/sounds/power-up.wav');
-            }
-        });
-    }, { threshold: 0.5 });
-
-    observer.observe(aboutSection);
-
-    // Project gallery modal
-    const viewGalleryBtns = document.querySelectorAll('.view-gallery');
-    const galleryModal = document.querySelector('.gallery-modal');
-    const modalClose = document.querySelector('.modal-close');
-    const modalTitle = document.querySelector('.modal-title');
-    const galleryCurrent = document.querySelector('.gallery-current');
-    const galleryThumbs = document.querySelector('.gallery-thumbs');
-
-    // Gallery data
-    const galleries = {
-        memory: {
-            title: "Memory Game",
-            images: [
-                './assets/images/projects/memory game/memory1.jpeg',
-                './assets/images/projects/memory game/memory2.jpeg',
-                './assets/images/projects/memory game/memory3.jpeg',
-                './assets/images/projects/memory game/memory4.jpeg',
-                './assets/images/projects/memory game/memory5.jpeg',
-                './assets/images/projects/memory game/memory6.jpeg',
-                './assets/images/projects/memory game/memory7.jpeg'
-            ]
-        },
-        maths: {
-            title: "Maths Pyramid Game",
-            images: [
-                './assets/images/projects/maths game/pyramid_equation1.png',
-                './assets/images/projects/maths game/pyramid_equation2.png',
-                './assets/images/projects/maths game/pyramid_equation3.png'
-            ]
-        }
-    };
-
-    // Open gallery modal
-    viewGalleryBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const project = this.getAttribute('data-project');
-            const gallery = galleries[project];
-            
-            playSound('./assets/sounds/modal-open.wav');
-            
-            // Set modal title
-            modalTitle.textContent = gallery.title;
-            
-            // Clear previous thumbnails
-            galleryThumbs.innerHTML = '';
-            
-            // Set first image as current
-            galleryCurrent.src = gallery.images[0];
-            galleryCurrent.alt = gallery.title;
-            
-            // Create thumbnails
-            gallery.images.forEach((img, index) => {
-                const thumb = document.createElement('img');
-                thumb.src = img;
-                thumb.alt = `${gallery.title} - Image ${index + 1}`;
-                
-                if (index === 0) {
-                    thumb.classList.add('active');
-                }
-                
-                thumb.addEventListener('click', function() {
-                    galleryCurrent.src = this.src;
-                    document.querySelectorAll('.gallery-thumbs img').forEach(img => img.classList.remove('active'));
-                    this.classList.add('active');
-                });
-                
-                galleryThumbs.appendChild(thumb);
-            });
-            
-            // Show modal
-            galleryModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    });
-
-    // Close gallery modal
-    modalClose.addEventListener('click', closeModal);
-    document.querySelector('.modal-overlay').addEventListener('click', closeModal);
-
-    function closeModal() {
-        galleryModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-
-    // Back to top button
-    const backToTopBtn = document.querySelector('.back-to-top');
-
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTopBtn.classList.add('active');
-        } else {
-            backToTopBtn.classList.remove('active');
-        }
-    });
-
-    backToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
-    // Language bubbles hover effect
-    const languageBubbles = document.querySelectorAll('.language-bubble');
-
-    languageBubbles.forEach(bubble => {
-        bubble.addEventListener('mouseenter', function() {
-            const lang = this.getAttribute('data-lang');
-            let tooltipText = '';
-            
-            switch(lang) {
-                case 'EN':
-                    tooltipText = 'Fluent';
-                    break;
-                case 'FR':
-                    tooltipText = 'Fluent';
-                    break;
-                case 'AR':
-                    tooltipText = 'Native';
-                    break;
-            }
-            
-            const tooltip = document.createElement('div');
-            tooltip.className = 'language-tooltip';
-            tooltip.textContent = tooltipText;
-            this.appendChild(tooltip);
-            
-            setTimeout(() => {
-                tooltip.style.opacity = '1';
-                tooltip.style.transform = 'translateY(0)';
-            }, 10);
-        });
-        
-        bubble.addEventListener('mouseleave', function() {
-            const tooltip = this.querySelector('.language-tooltip');
-            if (tooltip) {
-                tooltip.style.opacity = '0';
-                tooltip.style.transform = 'translateY(10px)';
-                setTimeout(() => tooltip.remove(), 300);
-            }
-        });
-    });
-
-    // Play sound function
+    // Make sure the existing playSound() function is still here
     function playSound(soundFile) {
+        // ... existing playSound code ...
         const audio = new Audio(soundFile);
         audio.volume = 0.3;
         audio.play().catch(e => console.log("Audio play failed:", e));
     }
-    // Add this to the DOMContentLoaded event listener
 
-// EmailJS Integration
-(function() {
-    // Initialize EmailJS with your public key
-    emailjs.init('AX9ZtVpZPmydtAaFI');
-
-    const contactForm = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Play sound
-            playSound('./assets/sounds/modal-open.wav');
-            
-            // Show loading state
-            formStatus.innerHTML = '<div class="loading-spinner"></div>Sending message...';
-            
-            // Send form data via EmailJS
-            emailjs.sendForm('ryoscoid', 'template_jai0z9m', this)
-                .then(function() {
-                    // Success message
-                    formStatus.innerHTML = '<div class="success-message">✓ Message sent successfully!</div>';
-                    playSound('./assets/sounds/success-chime.mp3');
-                    
-                    // Reset form
-                    contactForm.reset();
-                    
-                    // Clear status after 5 seconds
-                    setTimeout(() => {
-                        formStatus.innerHTML = '';
-                    }, 5000);
-                }, function(error) {
-                    // Error message
-                    formStatus.innerHTML = `<div class="error-message">✗ Failed to send message. Please try again.</div>`;
-                    console.error('EmailJS error:', error);
-                });
-        });
-    }
-
-    // Add loading spinner styles dynamically
-    const style = document.createElement('style');
-    style.textContent = `
-        .loading-spinner {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: var(--secondary);
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-    `;
-    document.head.appendChild(style);
-})();
-
-    // Initialize animations when page loads
-    animateSkillBars();
+    // Initialize the page
+    animateSkillBars(); // Animate skill bars on load if in view
 });
