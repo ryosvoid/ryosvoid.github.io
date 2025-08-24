@@ -2,439 +2,157 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Hajar Cherrouk • Game Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Figtree:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://unpkg.com/gsap@3/dist/Flip.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hajar Cherrouk • Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Figtree:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/typeit@8.8.3/dist/index.umd.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     :root {
-      --blue: #7fd9fd;
-      --purple: #c9a2ff;
-      --pink: #ff8fcf;
-      --yellow: #ffe476;
-      --bg: linear-gradient(135deg, #e3f4ff 0%, #ffeafd 100%);
-      --hud: rgba(255,255,255,0.89);
-      --shadow: 0 10px 36px 0 #a98aff33;
-      --glow: 0 0 16px 2px #ffbffd88, 0 0 44px 3px #9dfffa55;
-      --radius: 22px;
+      --blue: #6aa9ff;
+      --purple: #9b8cff;
+      --midblue: #3a74c8;
+      --bg: linear-gradient(120deg, #c9d8fd 0%, #6aa9ff 40%, #9b8cff 100%);
+      --ink: #232343;
+      --muted: #5b5b7a;
+      --panel: #fdfcffcc;
+      --radius: 20px;
+      --shadow: 0 8px 30px 0 #b8a2ff18, 0 2px 8px 0 #6aa9ff22;
+      --glow: 0 0 16px 2px #b9b4ff55, 0 0 44px 3px #6aa9ff44;
     }
-
-    html,body {
-      min-height: 100vh; margin:0; padding:0;
-      font-family: 'Figtree', Arial, sans-serif;
-      background: var(--bg);
-      overflow-x: hidden;
+    html,body { min-height:100vh; margin:0; padding:0; font-family:'Poppins','Figtree',Arial,sans-serif; background:var(--bg); color:var(--ink); }
+    body { position:relative; }
+    /* Orbs + particles */
+    .orbs { position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:0; pointer-events:none; }
+    .orb { position:absolute; border-radius:50%; filter:blur(60px); opacity:.22; }
+    .orb1 { width:420px; height:420px; background:radial-gradient(circle,#b9b4ff 0,#6aa9ff44 100%); left:-80px; top:50px;}
+    .orb2 { width:320px; height:320px; background:radial-gradient(circle,#6aa9ff 0,#fff0 100%); right:40px; top:120px;}
+    .orb3 { width:260px; height:260px; background:radial-gradient(circle,#9b8cff 0,#fff0 100%); left:140px; bottom:-90px;}
+    .particle { position:absolute; pointer-events:none; opacity:.18; }
+    .p1 { width:90px; height:90px; left:12vw; top:80px; background:radial-gradient(circle,#7fd9fd 0,#fff0 100%);}
+    .p2 { width:70px; height:70px; right:18vw; top:160px; background:radial-gradient(circle,#b8a2ff 0,#fff0 100%);}
+    .p3 { width:50px; height:50px; left:23vw; bottom:130px; background:radial-gradient(circle,#6aa9ff 0,#fff0 100%);}
+    /* Header */
+    header {
+      width:100%; position:sticky; top:0; background:linear-gradient(90deg,#6aa9ffcc 0,#9b8cffcc 100%);
+      z-index:5; box-shadow:0 2px 18px #8797e544; backdrop-filter:blur(13px) saturate(130%);
     }
-    body {
-      position: relative;
-      min-height: 100vh;
-      width: 100vw;
-      overflow: hidden;
+    .nav-inner {
+      display:flex; align-items:center; justify-content:space-between; max-width:1240px; margin:auto; padding:14px 28px 10px 28px;
     }
-    /* Game HUD */
-    .gamemenu {
-      position: fixed; top: 22px; left: 50%; transform: translateX(-50%);
-      z-index: 99;
-      display: flex; align-items: center; gap: 16px;
-      background: var(--hud);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      padding: 10px 18px;
-      border: 2.5px solid var(--purple);
-      animation: dropin .8s cubic-bezier(.38,1.14,.48,.97);
+    .brand { display:flex; align-items:center; gap:13px; font-weight:900; font-size:1.19em; letter-spacing:.1px; color:var(--ink); text-decoration:none;}
+    .brand img { width:41px; height:41px; border-radius:14px; object-fit:cover; box-shadow:0 2px 10px #9b8cff22;}
+    nav.tabs { display:flex; gap:10px;}
+    nav.tabs a {
+      text-decoration:none; font-weight:700; color:var(--ink); background:#fff6;
+      border-radius:999px; padding:9px 19px; transition:.13s; border:1.7px solid #c9d8fd;
     }
-    @keyframes dropin {from{transform:translateX(-50%) translateY(-80px); opacity:0;}to{transform:translateX(-50%) translateY(0);opacity:1;}}
-
-    .menu-btn {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 1.01em;
-      color: var(--purple);
-      background: linear-gradient(90deg,#fff 60%,#d8f9ff 100%);
-      border: 2px solid var(--pink);
-      border-radius: 13px;
-      padding: 12px 22px;
-      margin: 0 5px;
-      box-shadow: 0 2px 12px #b1d7ff55;
-      cursor: pointer;
-      transition: .14s;
-      position: relative;
-      outline: none;
+    nav.tabs a.active, nav.tabs a:hover {
+      color:var(--blue); background:#f7f5ff; border-color:var(--purple); box-shadow:0 2px 16px #9b8cff33;
     }
-    .menu-btn.active,
-    .menu-btn:hover {
-      color: #fff;
-      background: linear-gradient(90deg,var(--pink),var(--purple) 90%);
-      text-shadow: 0 2px 8px #fff3;
-      box-shadow: 0 4px 20px #ffbffd88;
-      border-color: var(--yellow);
-      transform: scale(1.09);
+    /* Main Layout */
+    .main { display:flex; max-width:1200px; margin:48px auto 0 auto; gap:48px; padding:0 18px; position:relative; z-index:2;}
+    @media (max-width:950px){ .main{flex-direction:column; align-items:center; gap:28px;}}
+    /* Sidebar */
+    .sidebar {
+      width:275px; min-width:190px; background:var(--panel); border-radius:var(--radius); box-shadow:var(--shadow); padding:32px 22px 24px 22px;
+      display:flex; flex-direction:column; align-items:center; gap:26px; border:2px solid #d8e1ff;
     }
-    /* XP bar */
-    .xpbar {
-      height: 14px; width: 94px;
-      background: #f3d7ff;
-      border: 1.5px solid var(--pink);
-      border-radius: 8px;
-      margin-left: 5px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 1px 6px #ffbffd55;
+    .sidebar img.avatar { width:83px; height:83px; border-radius:15px; object-fit:cover; border:3px solid #fff;}
+    .contact-icons { display:flex; gap:12px; margin-top:7px;}
+    .contact-icons img { width:32px; height:32px; border-radius:8px; background:#fff; box-shadow:0 2px 8px #6aa9ff22; cursor:pointer;}
+    .sidebar .skills { margin-top:18px; display:grid; gap:9px;}
+    .badge { display:flex;align-items:center; gap:9px; font-weight:700; background:linear-gradient(90deg,#e6f1ff 60%,#e8e3ff 100%); border-radius:9px; padding:7px 13px; color:var(--purple);}
+    /* Main Content */
+    .content {
+      flex:1; background:var(--panel); border-radius:var(--radius); box-shadow:var(--shadow); padding:36px 44px 30px 44px; min-width:0;
+      display:flex; flex-direction:column; gap:13px; border:2px solid #d8e1ff;
     }
-    .xpfill {
-      height:100%; background:linear-gradient(90deg,var(--pink),var(--blue),var(--purple)); border-radius:8px;
-      animation: xpfill 2.3s cubic-bezier(.44,1.18,.53,.95) both;
+    .content h1 { margin:0 0 8px 0; font-size:2.2em; font-weight:900; letter-spacing:.3px; color:var(--blue);}
+    .typed-desc { margin-bottom:15px; min-height:30px; color:var(--purple); font-weight:700; font-size:1.15em; }
+    .content .about { color:var(--muted); font-size:1.11em; margin-bottom:18px; line-height:1.6; }
+    .cta { display:flex; gap:14px; margin:16px 0 0 0;}
+    .btn {
+      background:linear-gradient(90deg,#9b8cff 50%,#6aa9ff 100%); color:#fff; font-weight:800; font-size:1em;
+      border-radius:11px; padding:12px 22px; border:none; box-shadow:0 1.5px 8px #6aa9ff33; cursor:pointer; transition:.13s;
+      display:inline-flex; align-items:center; gap:7px;
     }
-    @keyframes xpfill { from{width:0;} to{width:80%;} }
-
-    /* Main game area */
-    .gamescreen {
-      position: absolute; top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      transition: opacity .33s;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 10;
-    }
-    .gamescreen.active {
-      opacity: 1;
-      pointer-events: auto;
-      z-index: 20;
-      transition: opacity .4s cubic-bezier(.29,1.19,.45,.98);
-    }
-    /* Animated particles */
-    .particle {position:absolute;width:30px;height:30px;pointer-events:none;opacity:.76;z-index:1;}
-    .particle.star {background:url('assets/images/star.png') center/contain no-repeat;}
-    .particle.heart {background:url('assets/images/heart-icon.png') center/contain no-repeat;}
-    .particle.spark {background:url('assets/images/spark.png') center/contain no-repeat;}
-    /* "Start" Screen */
-    .home-content {
-      background: linear-gradient(135deg,#fff 60%,#dbe8ff 100%);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow), var(--glow);
-      padding: 44px 24px 38px;
-      display: flex; flex-direction: column; align-items: center; gap: 18px;
-      min-width: 320px; max-width: 350px;
-      border: 2.5px solid var(--blue);
-      position:relative;
-    }
-    .avatar-main { width: 110px; height: 110px; border-radius: 50%; border:5px solid #fff; margin-bottom:10px; box-shadow: 0 5px 20px #b8a2ff55;}
-    .glitch {
-      font-size: 2em;
-      font-family: 'Press Start 2P', monospace;
-      color: var(--blue);
-      text-shadow: 2px 2px 0 var(--pink), -2px 1px 0 var(--purple), 0 0 16px var(--yellow);
-      user-select: none;
-    }
-    #typed-desc {
-      font-family: 'Figtree', Arial, sans-serif; font-weight:700; font-size:1.07em; min-height:32px; color:var(--purple); text-align:center; letter-spacing:0.7px;
-    }
-    .start-btn {
-      font-family: 'Press Start 2P', monospace; font-size:1.13em;
-      padding: 17px 38px;
-      background: linear-gradient(90deg,var(--pink) 80%,var(--blue) 100%);
-      border-radius: 13px;
-      color: #fff;
-      border: 2.3px solid var(--yellow);
-      margin-top: 20px;
-      box-shadow: 0 6px 28px #e89bff66, 0 1.5px 7px #b8a2ff88;
-      cursor:pointer;
-      transition:.17s;
-      animation: bounceStart 1.8s infinite;
-    }
-    @keyframes bounceStart {
-      0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)}
-    }
-    .start-btn:active{transform:scale(.94);}
-    /* Section "card" screens */
-    .card {
-      background: linear-gradient(135deg,#fff 60%,#fbeafd 100%);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow), var(--glow);
-      padding: 38px 28px 26px;
-      min-width: 320px; max-width: 520px;
-      border: 2.5px solid var(--purple);
-      display: flex; flex-direction: column; align-items: center; gap: 1.5em;
-      position:relative;
-      animation: cardPop .6s cubic-bezier(.46,1.13,.64,1.01);
-    }
-    @keyframes cardPop {0%{transform:scale(.8);opacity:0;}80%{transform:scale(1.06);}100%{transform:scale(1);opacity:1;}}
-    .card h2 { color: var(--blue); font-family: 'Press Start 2P', monospace; font-size:1.2em; margin-top:0;}
-    .badges { display: flex; flex-wrap: wrap; gap: 11px; justify-content:center;}
-    .badge { background: linear-gradient(90deg,#fff6, var(--pink) 80%, var(--blue) 100%);
-      border-radius: 12px; padding: 13px 16px; font-weight: 900; color: var(--purple); box-shadow: 0 1px 9px #b8a2ff33;
-      border:1.5px solid var(--yellow); font-family:'Figtree',Arial,sans-serif; font-size:1.05em; display:flex;align-items:center;gap:9px;
-    }
-    .skillbar {width:180px;height:12px;background:#f3e7ff;border-radius:6px;overflow:hidden;margin-left:9px;}
-    .skillfill {height:100%;background:linear-gradient(90deg,var(--pink),var(--blue));border-radius:6px;}
-    .projects-list,.cert-list { list-style:none; margin:0; padding:0; width:100%; }
-    .projects-list li, .cert-list li {
-      background: #f8f3ff; margin:11px 0; border-radius:10px; padding:15px 15px 12px 15px; box-shadow:0 2px 10px #b8a2ff22;
-      display:flex;flex-direction:column;gap:4px;
-    }
-    .projects-list li .badge, .cert-list li .badge { margin-bottom: 7px;}
-    .proj-btn, .cert-btn {
-      font-family:'Press Start 2P',monospace; font-size:.95em;
-      background:linear-gradient(90deg,var(--blue),var(--pink) 100%);
-      color:#fff; border:none; border-radius:8px; padding:10px 20px; margin-top:7px; cursor:pointer; box-shadow:0 1px 8px #7fd9fd44;
-      transition:.16s;
-    }
-    .proj-btn:active, .cert-btn:active {transform:scale(.94);}
-    /* Contact modal */
-    .contact-modal-bg {position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(51,14,33,0.32);backdrop-filter:blur(7px);z-index:300;}
-    .contact-modal-bg.active { display: flex;}
-    .contact-modal {
-      background: #fff; border-radius: 22px; box-shadow: 0 24px 68px #b8a2ff77;
-      padding: 24px 20px; min-width:300px; max-width:380px;
-      border:2.2px solid var(--blue);
-      display:flex;flex-direction:column;align-items:center;gap:13px;
-      animation:cardPop .5s;
-    }
-    .contact-modal h2 { font-family:'Press Start 2P',monospace; font-size:1.07em; color:var(--blue);}
-    .contact-modal form { width:100%; display: flex;flex-direction:column;gap:11px;}
-    .contact-modal input,.contact-modal textarea {
-      border:1.5px solid #e3d9ff; border-radius:10px; padding:11px; font-family:'Figtree',Arial,sans-serif;
-      font-size:1em;
-    }
-    .contact-modal textarea {min-height:80px;}
-    .contact-modal .btn {margin-top:7px;}
-    .close-modal {
-      position:absolute;top:7px;right:12px;font-size:2em;color:var(--purple);background:none;border:none;cursor:pointer;
-      opacity:.7;transition:.14s;
-    }
-    .close-modal:hover { opacity:1;}
-    .success-tick {font-size:2.2em;color:#41df8a;display:none;}
-    .success-msg {color:var(--purple);font-weight:900;display:none;}
-    /* Particles on home only */
-    .particles-home {pointer-events:none;position:absolute;z-index:0;left:0;top:0;width:100vw;height:100vh;}
-    /* Responsive */
-    @media (max-width:600px){
-      .gamemenu { flex-direction:column;padding:6px 7px;}
-      .home-content, .card {min-width:90vw;max-width:98vw;}
+    .btn:active { transform:scale(.95);}
+    @media (max-width:700px){
+      .main{padding:0 1vw;}
+      .sidebar, .content{padding:19px 5vw 17px 5vw;}
+      .sidebar{width:100%;}
     }
   </style>
 </head>
 <body>
-  <!-- Game Menu HUD -->
-  <nav class="gamemenu" id="gamemenu">
-    <button class="menu-btn active" data-screen="home">HOME</button>
-    <button class="menu-btn" data-screen="about">ABOUT</button>
-    <button class="menu-btn" data-screen="projects">PROJECTS</button>
-    <button class="menu-btn" data-screen="certificates">CERTIFICATES</button>
-    <button class="menu-btn" data-screen="contact">CONTACT</button>
-    <div class="xpbar"><div class="xpfill" style="width:80%"></div></div>
-  </nav>
-  <!-- Floating Particles Home -->
-  <div class="particles-home" id="particles-home"></div>
-  <!-- ALL GAME SCREENS -->
-  <main>
-    <!-- HOME -->
-    <section class="gamescreen active" id="screen-home">
-      <div class="home-content">
-        <img class="avatar-main" src="assets/images/IMG_0736.jpg" alt="Hajar's Avatar" />
-        <div class="glitch">Hajar Cherrouk</div>
-        <div id="typed-desc"></div>
-        <button class="start-btn clickable" id="start-btn">START</button>
-      </div>
-    </section>
-    <!-- ABOUT -->
-    <section class="gamescreen" id="screen-about">
-      <div class="card">
-        <h2>About</h2>
-        <div class="badges" style="margin-bottom:18px;">
-          <span class="badge"><img src="assets/images/lang-icon.png" style="width:1.2em"> EN/FR/AR</span>
-          <span class="badge"><img src="assets/images/heart-icon.png" style="width:1.2em"> Loves Ghibli</span>
-        </div>
-        <div>
-          <strong style="color:var(--pink);font-size:1.1em;">Skills</strong>
-          <div class="badges">
-            <span class="badge">SQL <span class="skillbar"><span class="skillfill" style="width:60%"></span></span></span>
-            <span class="badge">Python <span class="skillbar"><span class="skillfill" style="width:60%"></span></span></span>
-            <span class="badge">HTML <span class="skillbar"><span class="skillfill" style="width:60%"></span></span></span>
-            <span class="badge">CSS <span class="skillbar"><span class="skillfill" style="width:40%"></span></span></span>
-            <span class="badge">JS <span class="skillbar"><span class="skillfill" style="width:20%"></span></span></span>
-          </div>
-        </div>
-        <div>
-          <strong style="color:var(--blue);font-size:1.1em;">Hobbies</strong>
-          <div class="badges">
-            <span class="badge"><img src="assets/images/chess-icon.png" style="width:1.4em"> Chess</span>
-            <span class="badge"><img src="assets/images/math-icon.png" style="width:1.3em"> Math</span>
-            <span class="badge"><img src="assets/images/sport-icon.png" style="width:1.4em"> Sports</span>
-            <span class="badge"><img src="assets/images/book-icon.png" style="width:1.4em"> Reading</span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- PROJECTS -->
-    <section class="gamescreen" id="screen-projects">
-      <div class="card">
-        <h2>Projects</h2>
-        <ul class="projects-list">
-          <li>
-            <span class="badge"><img src="assets/images/star.png" style="width:1.1em"> Memory Game</span>
-            <span>An interactive card matching game with Ghibli-inspired artwork and multiple difficulty levels.</span>
-            <button class="proj-btn" onclick="window.open('https://github.com/ryosvoid/memory_game')">View on GitHub</button>
-          </li>
-          <li>
-            <span class="badge"><img src="assets/images/star.png" style="width:1.1em"> Pyramid Equation Game</span>
-            <span>A brainy yet beautiful game that tests your memory, logic, and math skills with Ghibli-style visuals.</span>
-            <button class="proj-btn" onclick="window.open('https://github.com/ryosvoid/maths-pyramid-game')">View on GitHub</button>
-          </li>
-          <li>
-            <span class="badge"><img src="assets/images/star.png" style="width:1.1em"> Smart Garden System</span>
-            <span>An IoT solution for monitoring and automating plant care with real-time data.</span>
-            <button class="proj-btn" onclick="window.open('#')">View on GitHub</button>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <!-- CERTIFICATES -->
-    <section class="gamescreen" id="screen-certificates">
-      <div class="card">
-        <h2>Certificates</h2>
-        <ul class="cert-list">
-          <li>
-            <span class="badge"><img src="assets/images/cert-icon.png" style="width:1.1em"> Python Programming</span>
-            <span>Coursera - University of Michigan, 2024</span>
-            <button class="cert-btn" onclick="window.open('https://coursera.org/share/443a46b3ed1df1f3ce3e756c9fd281c2')">View</button>
-          </li>
-          <li>
-            <span class="badge"><img src="assets/images/cert-icon.png" style="width:1.1em"> MS Word</span>
-            <span>Coursera - Microsoft, 2025</span>
-            <button class="cert-btn" onclick="window.open('https://coursera.org/share/246f4a1ea4e4e71caf8b805d97ee52c3')">View</button>
-          </li>
-          <li>
-            <span class="badge"><img src="assets/images/cert-icon.png" style="width:1.1em"> MS Excel</span>
-            <span>Coursera - Microsoft, 2025</span>
-            <button class="cert-btn" onclick="window.open('https://coursera.org/share/a5fd432d507960e5fd70f8f6b5145c7e')">View</button>
-          </li>
-          <li>
-            <span class="badge"><img src="assets/images/cert-icon.png" style="width:1.1em"> Web Development</span>
-            <span>Coursera - UC, 2025</span>
-            <button class="cert-btn" onclick="window.open('https://coursera.org/share/84b220c7977604f1ce66acbda583d290')">View</button>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <!-- CONTACT MODAL (not gamescreen) -->
-    <div class="contact-modal-bg" id="contact-modal-bg">
-      <div class="contact-modal">
-        <button class="close-modal" id="close-contact">&times;</button>
-        <h2>Contact Me</h2>
-        <form id="contactForm">
-          <input id="name" name="name" type="text" placeholder="Your name" required>
-          <input id="email" name="email" type="email" placeholder="you@example.com" required>
-          <textarea id="message" name="message" placeholder="Tell me about your idea…" required></textarea>
-          <button class="btn" type="submit">Send</button>
-        </form>
-        <div class="success-tick" id="success-tick">&#x2714;</div>
-        <div class="success-msg" id="success-msg">Message sent! I'll get back to you soon.</div>
-      </div>
+  <div class="orbs">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="particle p1"></div>
+  <div class="particle p2"></div>
+  <div class="particle p3"></div>
+  <header>
+    <div class="nav-inner">
+      <a class="brand" href="#home"><img src="assets/images/IMG_0736.jpg" alt="profile"/><span>Hajar Cherrouk</span></a>
+      <nav class="tabs">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
+  <main class="main">
+    <aside class="sidebar">
+      <img src="assets/images/IMG_0736.jpg" alt="avatar" class="avatar"/>
+      <div class="contact-icons">
+        <a href="mailto:hajarcrk26@gmail.com" title="Mail"><img src="assets/images/mail-icon.png" alt="Mail"></a>
+        <a href="tel:+212600000000" title="Phone"><img src="assets/images/phone-icon.png" alt="Phone"></a>
+        <a href="https://github.com/ryosvoid" target="_blank" title="GitHub"><img src="assets/images/github-icon.png" alt="GitHub"></a>
+      </div>
+      <div class="skills">
+        <div class="badge"><img src="assets/images/sql-icon.png" style="width:1.3em"> SQL</div>
+        <div class="badge"><img src="assets/images/python-icon.png" style="width:1.3em"> Python</div>
+        <div class="badge"><img src="assets/images/html-icon.png" style="width:1.3em"> HTML</div>
+        <div class="badge"><img src="assets/images/css-icon.png" style="width:1.3em"> CSS</div>
+        <div class="badge"><img src="assets/images/js-icon.png" style="width:1.3em"> JS</div>
+      </div>
+    </aside>
+    <section class="content">
+      <h1>Welcome!</h1>
+      <div class="typed-desc" id="typed-desc"></div>
+      <div class="about">
+        I’m <b>Hajar Cherrouk</b>, a Computer Engineering & AI enthusiast passionate about playful, beautiful UI and building interactive, game-inspired web experiences.<br>
+        My work blends creativity with technical skill, always aiming for magical user journeys and professional polish.<br>
+        Explore my projects, view my certificates, and let’s connect!
+      </div>
+      <div class="cta">
+        <a class="btn" href="assets/hajar-cherrouk-cv.pdf" download><img src="assets/images/cv-icon.png" style="width:1.2em"> Download CV</a>
+        <a class="btn" href="#contact"><img src="assets/images/mail-icon.png" style="width:1.2em"> Contact Me</a>
+        <a class="btn" href="#projects"><img src="assets/images/star.png" style="width:1.2em"> View Projects</a>
+      </div>
+    </section>
   </main>
-  <!-- SOUNDS -->
-  <audio id="sound-bounce" src="assets/sounds/bounce.wav" preload="auto"></audio>
-  <audio id="sound-click" src="assets/sounds/click.wav" preload="auto"></audio>
   <script>
-    // Typewriter on home
     new TypeIt('#typed-desc', {
       strings: [
-        "Press START to enter the world of code.",
-        "Level up your skills with me!",
-        "Let's play with Python, JS, and more.",
-        "Collect badges, unlock achievements!",
+        "Tech Enthusiast · UI Perfectionist · AI Explorer",
+        "Clean Code, Magical UI, Playful Features.",
+        "Level up your experience with a gamified portfolio!",
+        "Cognitive games, Ghibli vibes, and pro polish.",
       ],
-      speed: 45,
+      speed: 48,
       breakLines: false,
-      nextStringDelay: 900,
+      nextStringDelay: 1200,
       waitUntilVisible: true,
       loop: true,
       lifeLike: true,
-      deleteSpeed: 28,
+      deleteSpeed: 30,
       cursor: false
     }).go();
-
-    // Game menu switching
-    const screens = ["home","about","projects","certificates"];
-    function showScreen(screen) {
-      screens.forEach(id=>{
-        document.getElementById("screen-"+id).classList.toggle('active', id===screen);
-      });
-      // close contact modal when moving away
-      document.getElementById('contact-modal-bg').classList.remove('active');
-      // Play sound
-      document.getElementById('sound-bounce').currentTime=0;
-      document.getElementById('sound-bounce').play();
-    }
-    document.querySelectorAll('.menu-btn').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        document.querySelectorAll('.menu-btn').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        showScreen(btn.dataset.screen);
-      });
-    });
-
-    // "START" -> About
-    document.getElementById('start-btn').onclick = ()=>{
-      showScreen('about');
-      document.querySelector('.menu-btn[data-screen="about"]').classList.add('active');
-      document.querySelectorAll('.menu-btn').forEach(b=>b.classList.remove('active'));
-      document.querySelector('.menu-btn[data-screen="about"]').classList.add('active');
-      document.getElementById('sound-bounce').currentTime=0;
-      document.getElementById('sound-bounce').play();
-    };
-
-    // Contact modal
-    document.querySelector('.menu-btn[data-screen="contact"]').onclick = ()=>{
-      document.getElementById('contact-modal-bg').classList.add('active');
-      document.getElementById('sound-bounce').currentTime=0;
-      document.getElementById('sound-bounce').play();
-    };
-    document.getElementById('close-contact').onclick=()=>{
-      document.getElementById('contact-modal-bg').classList.remove('active');
-    };
-
-    // Gamified particles on home
-    function spawnParticles(){
-      const ph = document.getElementById('particles-home');
-      if(!ph) return;
-      for(let i=0;i<12;i++){
-        const p = document.createElement('div');
-        p.className = "particle " + (i%3==0?"star":i%3==1?"heart":"spark");
-        p.style.top = (10+Math.random()*75)+'vh';
-        p.style.left = (5+Math.random()*90)+'vw';
-        p.style.animation = `partmove${i} ${6+Math.random()*4}s infinite alternate ease-in-out`;
-        ph.appendChild(p);
-        let keyframes = `@keyframes partmove${i}{from{transform:translateY(0)}to{transform:translateY(${Math.random()>0.5?'-':'+'}${30+Math.random()*40}px)}}`;
-        let styleSheet = document.createElement('style'); styleSheet.innerText = keyframes; document.head.appendChild(styleSheet);
-      }
-    }spawnParticles();
-
-    // Contact form gamified
-    (function(){ emailjs.init({ publicKey: 'AX9ZtVpZPmydtAaFI' }); })();
-    const form = document.getElementById('contactForm');
-    const tick = document.getElementById('success-tick');
-    const msg = document.getElementById('success-msg');
-    form.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      form.querySelector('button').disabled = true;
-      try{
-        await emailjs.send('ryoscoid', 'template_jai0z9m', {
-          from_name: form.name.value,
-          from_email: form.email.value,
-          message: form.message.value
-        });
-        tick.style.display='block'; msg.style.display='block';
-        setTimeout(()=>{ tick.style.display='none'; msg.style.display='none'; form.reset(); document.getElementById('contact-modal-bg').classList.remove('active'); }, 2200);
-      }catch{
-        alert('Failed to send. Try again!');
-      }
-      form.querySelector('button').disabled = false;
-    });
   </script>
 </body>
 </html>
