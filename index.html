@@ -83,7 +83,7 @@
             transition: all 0.3s ease;
         }
         
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-3px);
         }
@@ -470,6 +470,7 @@
             box-shadow: 0 5px 15px rgba(158, 110, 212, 0.1);
             transition: all 0.3s ease;
             position: relative;
+            cursor: pointer;
         }
         
         .project-card:hover {
@@ -638,7 +639,7 @@
         }
         
         /* Contact Section */
-        #contact {
+        #contact-page {
             background: var(--light-gray);
             border-radius: 15px;
             padding: 40px;
@@ -925,7 +926,7 @@
                 <a href="#about" class="nav-link" data-page="about">About Me</a>
                 <a href="#projects" class="nav-link" data-page="projects">Projects</a>
                 <a href="#certificates" class="nav-link" data-page="certificates">Certificates</a>
-                <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+                <a href="#contact-page" class="nav-link" data-page="contact-page">Contact</a>
             </div>
         </nav>
         
@@ -945,7 +946,7 @@
                 <a href="#projects" class="btn btn-primary" data-page="projects">
                     <i class="fas fa-gamepad"></i> View My Projects
                 </a>
-                <a href="#contact" class="btn btn-secondary" data-page="contact">
+                <a href="#contact-page" class="btn btn-secondary" data-page="contact-page">
                     <i class="fas fa-paper-plane"></i> Contact Me
                 </a>
             </div>
@@ -1309,7 +1310,7 @@
         </section>
         
         <!-- Contact Section -->
-        <section id="contact" class="page">
+        <section id="contact-page" class="page">
             <div class="section-header">
                 <h2 class="section-title">Contact Me</h2>
                 <div class="section-decoration">
@@ -1418,7 +1419,7 @@
                     <li>Try to achieve the highest score possible!</li>
                 </div>
                 <div class="modal-buttons">
-                    <a href="https://github.com/ryosvoid/maths-pyramid-game" target="_blank" class="btn btn-ghibli">
+                    <a href="https://github.com/ryosvoid/m maths-pyramid-game" target="_blank" class="btn btn-ghibli">
                         <i class="fab fa-github"></i> View on GitHub
                     </a>
                 </div>
@@ -1443,6 +1444,27 @@
                 
                 // Scroll to top
                 window.scrollTo(0, 0);
+            });
+        });
+        
+        // Home page buttons navigation
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.getAttribute('data-page')) {
+                    e.preventDefault();
+                    
+                    // Update active link
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    document.querySelector(`.nav-link[data-page="${this.getAttribute('data-page')}"]`).classList.add('active');
+                    
+                    // Show the corresponding page
+                    const pageId = this.getAttribute('data-page');
+                    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                    document.getElementById(pageId).classList.add('active');
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                }
             });
         });
         
@@ -1554,7 +1576,8 @@
                     from_name: document.getElementById('name').value,
                     from_email: document.getElementById('email').value,
                     subject: document.getElementById('subject').value,
-                    message: document.getElementById('message').value
+                    message: document.getElementById('message').value,
+                    to_email: "hajarcrk26@gmail.com"
                 };
                 
                 // Send email using EmailJS
