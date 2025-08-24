@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hajar's Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Delius&family=Patrick+Hand+SC&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
     <script>
         (function() {
@@ -44,7 +44,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(158, 110, 212, 0.2);
             overflow: hidden;
@@ -63,7 +63,7 @@
         }
         
         .logo {
-            font-family: 'Patrick Hand SC', cursive;
+            font-family: 'Playfair Display', serif;
             font-size: 28px;
             color: white;
             text-shadow: 2px 2px 0 var(--purple);
@@ -97,35 +97,50 @@
             align-items: center;
             text-align: center;
             padding: 40px 20px;
-            background: url('assets/images/ghibli-background.png') no-repeat center center;
-            background-size: cover;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23ffc2ee" opacity="0.2"/><path d="M30,30 C50,10 70,30 70,50 C90,70 70,90 50,70 C30,90 10,70 30,50 C10,30 30,10 30,30 Z" fill="%23c17bff" opacity="0.1"/></svg>') repeat;
             position: relative;
         }
         
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.7);
-            z-index: 0;
-        }
-        
-        #home > * {
+        .profile-container {
             position: relative;
-            z-index: 1;
+            margin-bottom: 30px;
         }
         
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             object-fit: cover;
             border: 5px solid var(--pink);
             box-shadow: 0 8px 20px rgba(195, 123, 255, 0.4);
-            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--blue), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        
+        .profile-decoration {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--blue);
+            border-radius: 50%;
+            top: 0;
+            right: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .profile-decoration::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: var(--pink);
+            border-radius: 50%;
+            bottom: -20px;
+            right: -10px;
         }
         
         .glitch-container {
@@ -133,7 +148,7 @@
         }
         
         .glitch-text {
-            font-family: 'Patrick Hand SC', cursive;
+            font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             color: var(--purple);
             position: relative;
@@ -195,6 +210,7 @@
             color: var(--dark-blue);
             min-height: 60px;
             margin: 20px 0;
+            font-weight: 500;
         }
         
         .home-buttons {
@@ -258,7 +274,7 @@
         }
         
         .section-title {
-            font-family: 'Patrick Hand SC', cursive;
+            font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             color: var(--purple);
             margin-bottom: 15px;
@@ -915,7 +931,12 @@
         
         <!-- Home Section -->
         <section id="home" class="page active">
-            <img src="assets/images/IMG_0736.jpg" alt="Hajar" class="profile-img">
+            <div class="profile-container">
+                <div class="profile-img">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-decoration"></div>
+            </div>
             <div class="glitch-container">
                 <h1 class="glitch-text" data-text="Hajar Cherkaoui">Hajar Cherkaoui</h1>
             </div>
@@ -1100,7 +1121,9 @@
                 <div class="project-card" id="memory-game">
                     <div class="project-badge">Featured</div>
                     <div class="project-image">
-                        <img src="assets/images/projects/memory-game/memory3.jpeg" alt="Memory Game">
+                        <div style="background:linear-gradient(45deg, var(--blue), var(--purple)); width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:white; font-size:3rem;">
+                            <i class="fas fa-brain"></i>
+                        </div>
                         <div class="project-overlay">
                             <i class="fas fa-expand"></i>
                             <span>View Details</span>
@@ -1126,7 +1149,9 @@
                 <div class="project-card" id="pyramid-game">
                     <div class="project-badge">New</div>
                     <div class="project-image">
-                        <img src="assets/images/projects/maths-game/pyramid_equation1.png" alt="Pyramid Equation Game">
+                        <div style="background:linear-gradient(45deg, var(--pink), var(--blue)); width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:white; font-size:3rem;">
+                            <i class="fas fa-square-root-alt"></i>
+                        </div>
                         <div class="project-overlay">
                             <i class="fas fa-expand"></i>
                             <span>View Details</span>
@@ -1150,7 +1175,9 @@
                 
                 <div class="project-card" id="iot-project">
                     <div class="project-image">
-                        <img src="https://i.pinimg.com/736x/17/8a/ac/178aac81579eeb9ec43d60c45ebe6053.jpg" alt="IoT Project">
+                        <div style="background:linear-gradient(45deg, var(--purple), var(--pink)); width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:white; font-size:3rem;">
+                            <i class="fas fa-seedling"></i>
+                        </div>
                         <div class="project-overlay">
                             <i class="fas fa-expand"></i>
                             <span>View Details</span>
@@ -1180,8 +1207,9 @@
             <div class="section-header">
                 <h2 class="section-title">My Certificates</h2>
                 <div class="section-decoration">
-                    <div class="ghibli-scroll"></div>
-                    <div class="ghibli-scroll"></div>
+                    <div class="ghibli-star"></div>
+                    <div class="ghibli-star"></div>
+                    <div class="ghibli-star"></div>
                 </div>
             </div>
             
@@ -1333,7 +1361,9 @@
         <div class="modal-content">
             <button class="modal-close" id="memory-close">&times;</button>
             <div class="modal-image-container">
-                <img src="assets/images/projects/memory-game/memory3.jpeg" alt="Memory Game" class="modal-image">
+                <div style="background:linear-gradient(45deg, var(--blue), var(--purple)); width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:white; font-size:5rem;">
+                    <i class="fas fa-brain"></i>
+                </div>
             </div>
             <div class="modal-body">
                 <h2 class="modal-title">Memory Game</h2>
@@ -1354,13 +1384,6 @@
                         <i class="fab fa-github"></i> View on GitHub
                     </a>
                 </div>
-                <h3 class="modal-subtitle">Project Gallery</h3>
-                <div class="modal-gallery">
-                    <img src="assets/images/projects/memory-game/memory1.jpeg" alt="Memory Game Screenshot 1" class="gallery-image">
-                    <img src="assets/images/projects/memory-game/memory2.jpeg" alt="Memory Game Screenshot 2" class="gallery-image">
-                    <img src="assets/images/projects/memory-game/memory3.jpeg" alt="Memory Game Screenshot 3" class="gallery-image">
-                    <img src="assets/images/projects/memory-game/memory4.jpeg" alt="Memory Game Screenshot 4" class="gallery-image">
-                </div>
             </div>
         </div>
     </div>
@@ -1369,7 +1392,9 @@
         <div class="modal-content">
             <button class="modal-close" id="pyramid-close">&times;</button>
             <div class="modal-image-container">
-                <img src="assets/images/projects/maths-game/pyramid_equation1.png" alt="Pyramid Equation Game" class="modal-image">
+                <div style="background:linear-gradient(45deg, var(--pink), var(--blue)); width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:white; font-size:5rem;">
+                    <i class="fas fa-square-root-alt"></i>
+                </div>
             </div>
             <div class="modal-body">
                 <h2 class="modal-title">Pyramid Equation Game</h2>
@@ -1396,12 +1421,6 @@
                     <a href="https://github.com/ryosvoid/maths-pyramid-game" target="_blank" class="btn btn-ghibli">
                         <i class="fab fa-github"></i> View on GitHub
                     </a>
-                </div>
-                <h3 class="modal-subtitle">Game Screens</h3>
-                <div class="modal-gallery">
-                    <img src="assets/images/projects/maths-game/pyramid_equation1.png" alt="Pyramid Game Screenshot 1" class="gallery-image">
-                    <img src="assets/images/projects/maths-game/pyramid_equation2.png" alt="Pyramid Game Screenshot 2" class="gallery-image">
-                    <img src="assets/images/projects/maths-game/pyramid_equation3.png" alt="Pyramid Game Screenshot 3" class="gallery-image">
                 </div>
             </div>
         </div>
