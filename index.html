@@ -2,524 +2,438 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hajar Cherrouk • Gamified Portfolio</title>
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
-  <!-- GSAP, TypeIt, EmailJS -->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Hajar Cherrouk • Game Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Figtree:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/Flip.min.js"></script>
   <script src="https://unpkg.com/typeit@8.8.3/dist/index.umd.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     :root {
-      --bg:#e8f3ff; --blue:#7ccaff; --pink:#ffb7e6; --purple:#b8a2ff;
-      --panel: #fff8fecc; --ink:#2d1b3c; --muted:#735c82;
-      --radius: 28px; --shadow: 0 12px 32px 0 rgba(147,91,255,0.13), 0 4px 12px 0 rgba(0,0,0,.06);
-      --blur: blur(18px);
+      --blue: #7fd9fd;
+      --purple: #c9a2ff;
+      --pink: #ff8fcf;
+      --yellow: #ffe476;
+      --bg: linear-gradient(135deg, #e3f4ff 0%, #ffeafd 100%);
+      --hud: rgba(255,255,255,0.89);
+      --shadow: 0 10px 36px 0 #a98aff33;
+      --glow: 0 0 16px 2px #ffbffd88, 0 0 44px 3px #9dfffa55;
+      --radius: 22px;
     }
-    html,body{min-height:100vh;margin:0;padding:0;font-family:'Figtree','Poppins',Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--bg) 0%,#f9e0ff 85%);overflow-x:hidden;scroll-behavior:smooth;}
-    .orb{position:fixed;border-radius:50%;filter:var(--blur);opacity:.38;z-index:-1;}
-    .orb.pink{width:340px;height:340px;background:radial-gradient(circle at 30% 30%,#ffb7e6,transparent 75%);top:5%;left:-8%;animation:floaty 18s infinite alternate;}
-    .orb.blue{width:410px;height:410px;background:radial-gradient(circle at 70% 70%,#b9eaff,transparent 75%);top:44%;right:-12%;animation:floaty 24s infinite alternate-reverse;}
-    .orb.purple{width:380px;height:380px;background:radial-gradient(circle at 65% 50%,#e8dcff,transparent 75%);bottom:-8%;left:8%;animation:floaty 19s infinite alternate;}
-    @keyframes floaty{from{transform:translateY(0)}to{transform:translateY(-28px)}}
-    .nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.75);backdrop-filter:blur(14px)saturate(120%);border-bottom:1.5px solid var(--purple);box-shadow:0 2px 12px #d5b9ff44;}
-    .nav-inner{max-width:1200px;margin:auto;display:flex;align-items:center;gap:14px;padding:10px 16px;}
-    .brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:1.2em;text-decoration:none;color:var(--ink);}
-    .brand img{width:38px;height:38px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow);}
-    .tabs{margin-left:auto;display:flex;gap:7px;}
-    .tab{padding:11px 20px;border-radius:999px;background:linear-gradient(180deg,#fff,#fbeaff 85%);border:2px solid #e2d2ff;font-weight:800;text-decoration:none;color:var(--muted);font-size:1.01em;outline:none;transition:.16s;box-shadow:0 3px 12px #c7b1ff19;}
-    .tab.active,.tab:hover{border-color:var(--pink);background:linear-gradient(180deg,#fff,#ffeffc 95%);color:var(--purple);box-shadow:0 8px 18px #ffb7e673;}
-    .nav-progress{position:absolute;left:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--pink),var(--blue),var(--purple));border-radius:999px;transition:width 0.35s cubic-bezier(.53,1.56,.63,.89);z-index:5;}
-    .section{max-width:1200px;margin:0 auto;padding:40px 16px;}
-    /* HERO */
-    .hero-wrapper{min-height:98vh;display:flex;align-items:center;justify-content:center;}
-    .hero{background:var(--panel);border-radius:var(--radius);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:20px;padding:54px 24px 38px;position:relative;max-width:440px;margin:40px auto 0;width:100%;border:2.5px solid #f7d6ff;animation:heroPop 1.2s cubic-bezier(.46,1.13,.64,1.01);}
-    @keyframes heroPop{0%{transform:scale(.7);opacity:0;}72%{transform:scale(1.09);}100%{transform:scale(1);opacity:1;}}
-    .glitch{font-size:clamp(34px,8vw,52px);font-weight:900;letter-spacing:1.5px;color:var(--purple);text-shadow:2px 2px 0 var(--pink),-2px -1px 0 var(--blue);animation:glitch 1.2s infinite alternate-reverse;user-select:none;}
-    @keyframes glitch{0%,100%{text-shadow:2px 2px 0 var(--pink),-2px -1px 0 var(--blue);}45%{text-shadow:0px 2px 0 var(--pink),2px 0px 0 var(--blue);}70%{text-shadow:-2px 0 0 var(--pink);}80%{text-shadow:2px 2px 0 var(--purple);}}
-    #typed-desc{font-size:1.08em;margin:7px 0 0 0;min-height:32px;color:var(--muted);font-weight:700;text-align:center;letter-spacing:0.7px;height:36px;}
-    .avatar-block{margin:18px 0 0 0;display:flex;flex-direction:column;align-items:center;gap:8px;}
-    .avatar-main{width:105px;height:105px;border-radius:24px;object-fit:cover;border:4px solid #fff;box-shadow:0 8px 30px rgba(155,140,255,.21);}
-    .contact-icons{margin-top:8px;display:flex;gap:16px;}
-    .contact-icons img{width:38px;height:38px;border-radius:10px;background:#fff;box-shadow:0 2px 13px #e5d2ff33;transition:transform .13s;cursor:pointer;}
-    .contact-icons img:active{transform:scale(0.83);}
-    .cta{margin:20px 0 0 0;display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
-    .btn{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:1.09em;letter-spacing:0.3px;padding:16px 27px;border-radius:15px;border:none;background:linear-gradient(90deg,#ffeafd 70%,#e9eaff 100%);color:var(--purple);box-shadow:0 2px 16px rgba(73,43,255,.10);cursor:pointer;transition:box-shadow .19s,transform .14s;text-decoration:none;outline:none;border:2px solid #f9d6ff;}
-    .btn.primary{background:linear-gradient(90deg,var(--pink) 80%,var(--blue) 100%);color:#fff;border-color:#b8a2ff;}
-    .btn:active{transform:scale(0.91);}
-    .btn .fa,.btn .fab{font-size:1.2em;}
+
+    html,body {
+      min-height: 100vh; margin:0; padding:0;
+      font-family: 'Figtree', Arial, sans-serif;
+      background: var(--bg);
+      overflow-x: hidden;
+    }
+    body {
+      position: relative;
+      min-height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+    }
+    /* Game HUD */
+    .gamemenu {
+      position: fixed; top: 22px; left: 50%; transform: translateX(-50%);
+      z-index: 99;
+      display: flex; align-items: center; gap: 16px;
+      background: var(--hud);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 10px 18px;
+      border: 2.5px solid var(--purple);
+      animation: dropin .8s cubic-bezier(.38,1.14,.48,.97);
+    }
+    @keyframes dropin {from{transform:translateX(-50%) translateY(-80px); opacity:0;}to{transform:translateX(-50%) translateY(0);opacity:1;}}
+
+    .menu-btn {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.01em;
+      color: var(--purple);
+      background: linear-gradient(90deg,#fff 60%,#d8f9ff 100%);
+      border: 2px solid var(--pink);
+      border-radius: 13px;
+      padding: 12px 22px;
+      margin: 0 5px;
+      box-shadow: 0 2px 12px #b1d7ff55;
+      cursor: pointer;
+      transition: .14s;
+      position: relative;
+      outline: none;
+    }
+    .menu-btn.active,
+    .menu-btn:hover {
+      color: #fff;
+      background: linear-gradient(90deg,var(--pink),var(--purple) 90%);
+      text-shadow: 0 2px 8px #fff3;
+      box-shadow: 0 4px 20px #ffbffd88;
+      border-color: var(--yellow);
+      transform: scale(1.09);
+    }
+    /* XP bar */
+    .xpbar {
+      height: 14px; width: 94px;
+      background: #f3d7ff;
+      border: 1.5px solid var(--pink);
+      border-radius: 8px;
+      margin-left: 5px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 1px 6px #ffbffd55;
+    }
+    .xpfill {
+      height:100%; background:linear-gradient(90deg,var(--pink),var(--blue),var(--purple)); border-radius:8px;
+      animation: xpfill 2.3s cubic-bezier(.44,1.18,.53,.95) both;
+    }
+    @keyframes xpfill { from{width:0;} to{width:80%;} }
+
+    /* Main game area */
+    .gamescreen {
+      position: absolute; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity .33s;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .gamescreen.active {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 20;
+      transition: opacity .4s cubic-bezier(.29,1.19,.45,.98);
+    }
+    /* Animated particles */
+    .particle {position:absolute;width:30px;height:30px;pointer-events:none;opacity:.76;z-index:1;}
+    .particle.star {background:url('assets/images/star.png') center/contain no-repeat;}
+    .particle.heart {background:url('assets/images/heart-icon.png') center/contain no-repeat;}
+    .particle.spark {background:url('assets/images/spark.png') center/contain no-repeat;}
+    /* "Start" Screen */
+    .home-content {
+      background: linear-gradient(135deg,#fff 60%,#dbe8ff 100%);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow), var(--glow);
+      padding: 44px 24px 38px;
+      display: flex; flex-direction: column; align-items: center; gap: 18px;
+      min-width: 320px; max-width: 350px;
+      border: 2.5px solid var(--blue);
+      position:relative;
+    }
+    .avatar-main { width: 110px; height: 110px; border-radius: 50%; border:5px solid #fff; margin-bottom:10px; box-shadow: 0 5px 20px #b8a2ff55;}
+    .glitch {
+      font-size: 2em;
+      font-family: 'Press Start 2P', monospace;
+      color: var(--blue);
+      text-shadow: 2px 2px 0 var(--pink), -2px 1px 0 var(--purple), 0 0 16px var(--yellow);
+      user-select: none;
+    }
+    #typed-desc {
+      font-family: 'Figtree', Arial, sans-serif; font-weight:700; font-size:1.07em; min-height:32px; color:var(--purple); text-align:center; letter-spacing:0.7px;
+    }
+    .start-btn {
+      font-family: 'Press Start 2P', monospace; font-size:1.13em;
+      padding: 17px 38px;
+      background: linear-gradient(90deg,var(--pink) 80%,var(--blue) 100%);
+      border-radius: 13px;
+      color: #fff;
+      border: 2.3px solid var(--yellow);
+      margin-top: 20px;
+      box-shadow: 0 6px 28px #e89bff66, 0 1.5px 7px #b8a2ff88;
+      cursor:pointer;
+      transition:.17s;
+      animation: bounceStart 1.8s infinite;
+    }
+    @keyframes bounceStart {
+      0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)}
+    }
+    .start-btn:active{transform:scale(.94);}
+    /* Section "card" screens */
+    .card {
+      background: linear-gradient(135deg,#fff 60%,#fbeafd 100%);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow), var(--glow);
+      padding: 38px 28px 26px;
+      min-width: 320px; max-width: 520px;
+      border: 2.5px solid var(--purple);
+      display: flex; flex-direction: column; align-items: center; gap: 1.5em;
+      position:relative;
+      animation: cardPop .6s cubic-bezier(.46,1.13,.64,1.01);
+    }
+    @keyframes cardPop {0%{transform:scale(.8);opacity:0;}80%{transform:scale(1.06);}100%{transform:scale(1);opacity:1;}}
+    .card h2 { color: var(--blue); font-family: 'Press Start 2P', monospace; font-size:1.2em; margin-top:0;}
+    .badges { display: flex; flex-wrap: wrap; gap: 11px; justify-content:center;}
+    .badge { background: linear-gradient(90deg,#fff6, var(--pink) 80%, var(--blue) 100%);
+      border-radius: 12px; padding: 13px 16px; font-weight: 900; color: var(--purple); box-shadow: 0 1px 9px #b8a2ff33;
+      border:1.5px solid var(--yellow); font-family:'Figtree',Arial,sans-serif; font-size:1.05em; display:flex;align-items:center;gap:9px;
+    }
+    .skillbar {width:180px;height:12px;background:#f3e7ff;border-radius:6px;overflow:hidden;margin-left:9px;}
+    .skillfill {height:100%;background:linear-gradient(90deg,var(--pink),var(--blue));border-radius:6px;}
+    .projects-list,.cert-list { list-style:none; margin:0; padding:0; width:100%; }
+    .projects-list li, .cert-list li {
+      background: #f8f3ff; margin:11px 0; border-radius:10px; padding:15px 15px 12px 15px; box-shadow:0 2px 10px #b8a2ff22;
+      display:flex;flex-direction:column;gap:4px;
+    }
+    .projects-list li .badge, .cert-list li .badge { margin-bottom: 7px;}
+    .proj-btn, .cert-btn {
+      font-family:'Press Start 2P',monospace; font-size:.95em;
+      background:linear-gradient(90deg,var(--blue),var(--pink) 100%);
+      color:#fff; border:none; border-radius:8px; padding:10px 20px; margin-top:7px; cursor:pointer; box-shadow:0 1px 8px #7fd9fd44;
+      transition:.16s;
+    }
+    .proj-btn:active, .cert-btn:active {transform:scale(.94);}
+    /* Contact modal */
+    .contact-modal-bg {position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(51,14,33,0.32);backdrop-filter:blur(7px);z-index:300;}
+    .contact-modal-bg.active { display: flex;}
+    .contact-modal {
+      background: #fff; border-radius: 22px; box-shadow: 0 24px 68px #b8a2ff77;
+      padding: 24px 20px; min-width:300px; max-width:380px;
+      border:2.2px solid var(--blue);
+      display:flex;flex-direction:column;align-items:center;gap:13px;
+      animation:cardPop .5s;
+    }
+    .contact-modal h2 { font-family:'Press Start 2P',monospace; font-size:1.07em; color:var(--blue);}
+    .contact-modal form { width:100%; display: flex;flex-direction:column;gap:11px;}
+    .contact-modal input,.contact-modal textarea {
+      border:1.5px solid #e3d9ff; border-radius:10px; padding:11px; font-family:'Figtree',Arial,sans-serif;
+      font-size:1em;
+    }
+    .contact-modal textarea {min-height:80px;}
+    .contact-modal .btn {margin-top:7px;}
+    .close-modal {
+      position:absolute;top:7px;right:12px;font-size:2em;color:var(--purple);background:none;border:none;cursor:pointer;
+      opacity:.7;transition:.14s;
+    }
+    .close-modal:hover { opacity:1;}
+    .success-tick {font-size:2.2em;color:#41df8a;display:none;}
+    .success-msg {color:var(--purple);font-weight:900;display:none;}
+    /* Particles on home only */
+    .particles-home {pointer-events:none;position:absolute;z-index:0;left:0;top:0;width:100vw;height:100vh;}
     /* Responsive */
-    @media (max-width:650px){.hero{padding:22px 3vw 17px;}.nav-inner{flex-direction:column;gap:8px;}.cta{flex-direction:column;gap:12px;}.brand img{width:33px;height:33px;}.glitch{font-size:10vw;}}
-    /* Section reveal animation via GSAP */
-    .reveal{opacity:0;transform:translateY(28px) scale(.96);}
-    .reveal.visible{opacity:1;transform:none;transition:.7s cubic-bezier(.28,1.14,.41,1.02);}
-    .section-title{font-size:2.4em;font-weight:900;color:var(--purple);margin:0 0 24px 0;text-align:center;}
-    /* About section */
-    .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;}
-    @media (max-width:900px){.about-grid{grid-template-columns:1fr;}}
-    .panel{background:var(--panel);border-radius:var(--radius);box-shadow:var(--shadow);border:1.5px solid #efd6ff;padding:26px;}
-    .skills-grid{display:grid;gap:16px;margin:18px 0;}
-    .skill-item{margin:8px 0;}
-    .skill-name{display:flex;justify-content:space-between;font-weight:700;}
-    .skill-bar{height:14px;background:#f2eaff;border-radius:999px;border:1px solid #e3d9ff;overflow:hidden;}
-    .skill-progress{height:100%;background:linear-gradient(90deg,var(--pink),var(--purple),var(--blue));box-shadow:inset 0 0 8px rgba(0,0,0,.08);}
-    .language-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;}
-    .language-item{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(155,140,255,.25);border-radius:14px;padding:10px;}
-    .language-bubble{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;font-weight:900;background:linear-gradient(135deg,#ffd1f1,#d9e7ff);}
-    .hobbies-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:13px;}
-    .hobby-item{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(155,140,255,.25);border-radius:14px;padding:10px;}
-    .hobby-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:8px;background:linear-gradient(135deg,#ffd1f1,#e7ddff);}
-    /* Projects */
-    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;}
-    .project-card{background:var(--panel);border:1.5px solid #efd6ff;border-radius:18px;box-shadow:var(--shadow);overflow:hidden;position:relative;transition:.22s;cursor:pointer;}
-    .project-card:hover{transform:scale(1.04);}
-    .project-badge{position:absolute;top:10px;left:10px;background:linear-gradient(135deg,#ffd1f1,#e7ddff);padding:7px 13px;border-radius:999px;font-size:13px;font-weight:800;border:1px solid #e9dbff;}
-    .project-image{position:relative;height:170px;overflow:hidden;}
-    .project-image img{width:100%;height:100%;object-fit:cover;display:block;}
-    .project-overlay{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(180deg,rgba(255,255,255,0) 20%,rgba(155,140,255,.18));opacity:0;transition:.22s;gap:10px;color:#222;font-weight:700;}
-    .project-card:hover .project-overlay{opacity:1;}
-    .project-content{padding:16px;}
-    .project-title{margin:4px 0 6px;font-size:19px;}
-    .project-description{color:var(--muted);margin:0 0 10px;font-size:15px;min-height:40px;}
-    .project-footer{display:flex;align-items:center;justify-content:space-between;}
-    .project-tags{display:flex;gap:6px;flex-wrap:wrap;}
-    .project-tag{background:#fff;border:1px solid #e2dbff;padding:5px 10px;border-radius:999px;font-size:12px;font-weight:700;}
-    .project-link{width:36px;height:36px;display:grid;place-items:center;border:1px solid #e2dbff;border-radius:10px;background:#fff;}
-    /* Project Modal */
-    .project-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(25,18,44,.35);backdrop-filter:blur(7px);padding:20px;z-index:99;}
-    .modal-content{width:min(900px,96vw);background:#fff;border-radius:20px;border:1.7px solid #eadfff;box-shadow:0 40px 60px rgba(100,80,200,.22);overflow:hidden;position:relative;display:flex;flex-direction:row;}
-    .modal-image-container{height:100%;max-height:420px;}
-    .modal-image{width:280px;height:100%;object-fit:cover;display:block;}
-    .modal-body{padding:23px 20px;overflow:auto;max-height:420px;}
-    .modal-title{margin:0 0 8px;}
-    .modal-tech{display:inline-block;font-size:13px;background:#fff;padding:7px 12px;border:1px solid #e6dbff;border-radius:999px;font-weight:800;}
-    .modal-features{margin:10px 0 0;padding-left:18px;display:grid;gap:7px;}
-    .modal-buttons{margin:14px 0;display:flex;gap:11px;}
-    .btn.btn-ghibli{background:linear-gradient(135deg,#ffd1f1,#e7ddff);}
-    .modal-close{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:12px;border:1px solid #eadfff;background:#fff;cursor:pointer;font-size:22px;line-height:1;}
-    @media(max-width:700px){.modal-content{flex-direction:column;align-items:center;}.modal-image{width:100%;max-width:300px;height:auto;}}
-    /* Certificate Cards */
-    .certificates-container{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
-    .certificate-card{background:var(--panel);border:1.5px solid #efd6ff;border-radius:18px;box-shadow:var(--shadow);padding:19px;display:grid;gap:12px;}
-    .certificate-header{display:flex;align-items:center;gap:12px;font-weight:800;}
-    .certificate-body{color:var(--muted);}
-    .certificate-meta{display:flex;gap:12px;font-size:12px;color:#555;}
-    .btn.btn-view{background:#fff;display:inline-flex;width:max-content;}
-    /* Contact */
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-    @media (max-width:900px){.contact-grid{grid-template-columns:1fr;}}
-    form{display:grid;gap:12px;}
-    .field{display:grid;gap:7px;}
-    label{font-weight:700;}
-    input,textarea{background:#fff;border:1.5px solid #e6dbff;border-radius:14px;padding:13px 12px;outline:none;font-family:inherit;}
-    input:focus,textarea:focus{box-shadow:0 0 0 3px rgba(155,140,255,.16);}
-    textarea{min-height:120px;resize:vertical;}
-    .form-actions{display:flex;gap:12px;align-items:center;}
-    .spinner{width:18px;height:18px;border:3px solid #e6dbff;border-top-color:#9b8cff;border-radius:50%;display:none;animation:spin .8s linear infinite;}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    /* Success overlay */
-    .overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(25,18,44,.35);backdrop-filter:blur(7px);z-index:120;padding:18px;}
-    .overlay-card{width:min(520px,94vw);background:#fff;border:1.7px solid #eadfff;border-radius:22px;box-shadow:0 40px 60px rgba(100,80,200,.22);padding:22px;text-align:center;position:relative;}
-    .overlay .close-x{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:12px;border:1px solid #eadfff;background:#fff;cursor:pointer;font-size:22px;}
-    .check{width:70px;height:70px;border-radius:50%;border:4px solid #b9f6c6;margin:0 auto 10px;display:grid;place-items:center;animation:pop .6s ease-out both;}
-    .check i{color:#2fbf6b;font-size:34px;}
-    @keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
-    .contact-methods{display:flex;gap:10px;flex-wrap:wrap;}
-    .contact-method{display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e6dbff;background:#fff;padding:10px 12px;border-radius:12px;text-decoration:none;color:inherit;font-weight:700;}
-    .project-card,.project-overlay,.modal-close,.btn,.contact-method{cursor:pointer;}
+    @media (max-width:600px){
+      .gamemenu { flex-direction:column;padding:6px 7px;}
+      .home-content, .card {min-width:90vw;max-width:98vw;}
+    }
   </style>
 </head>
 <body>
-  <!-- Background Orbs -->
-  <div class="orb pink"></div>
-  <div class="orb blue"></div>
-  <div class="orb purple"></div>
-  <!-- NAVIGATION -->
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="#home">
-        <img src="assets/images/IMG_0736.jpg" alt="profile"/>
-        <span>Hajar Cherrouk</span>
-      </a>
-      <nav class="tabs">
-        <a class="tab active" href="#home">Home</a>
-        <a class="tab" href="#about">About</a>
-        <a class="tab" href="#projects">Projects</a>
-        <a class="tab" href="#certificates">Certificates</a>
-        <a class="tab" href="#contact">Contact</a>
-      </nav>
-      <div class="nav-progress" id="nav-progress"></div>
-    </div>
-  </header>
-  <!-- HOME HERO -->
-  <section id="home" class="hero-wrapper section reveal">
-    <div class="hero" id="hero">
-      <div class="glitch" id="glitch-name">Hajar Cherrouk</div>
-      <div id="typed-desc"></div>
-      <div class="avatar-block">
+  <!-- Game Menu HUD -->
+  <nav class="gamemenu" id="gamemenu">
+    <button class="menu-btn active" data-screen="home">HOME</button>
+    <button class="menu-btn" data-screen="about">ABOUT</button>
+    <button class="menu-btn" data-screen="projects">PROJECTS</button>
+    <button class="menu-btn" data-screen="certificates">CERTIFICATES</button>
+    <button class="menu-btn" data-screen="contact">CONTACT</button>
+    <div class="xpbar"><div class="xpfill" style="width:80%"></div></div>
+  </nav>
+  <!-- Floating Particles Home -->
+  <div class="particles-home" id="particles-home"></div>
+  <!-- ALL GAME SCREENS -->
+  <main>
+    <!-- HOME -->
+    <section class="gamescreen active" id="screen-home">
+      <div class="home-content">
         <img class="avatar-main" src="assets/images/IMG_0736.jpg" alt="Hajar's Avatar" />
-        <div class="contact-icons">
-          <a href="mailto:hajarcrk26@gmail.com" title="Mail"><img src="assets/images/mail-icon.png" alt="Mail"></a>
-          <a href="tel:+212600000000" title="Phone"><img src="assets/images/phone-icon.png" alt="Phone"></a>
-          <a href="https://github.com/ryosvoid" target="_blank" title="GitHub"><img src="assets/images/github-icon.png" alt="GitHub"></a>
-        </div>
+        <div class="glitch">Hajar Cherrouk</div>
+        <div id="typed-desc"></div>
+        <button class="start-btn clickable" id="start-btn">START</button>
       </div>
-      <div class="cta">
-        <a class="btn primary clickable" href="#projects"><i class="fa fa-wand-magic-sparkles"></i> Explore Projects</a>
-        <a class="btn clickable" href="assets/hajar-cherrouk-cv.pdf" download><i class="fa fa-file-download"></i> Download CV</a>
-        <a class="btn clickable" href="#contact"><i class="fa fa-envelope"></i> Contact Me</a>
-      </div>
-    </div>
-  </section>
-  <!-- ABOUT -->
-  <section id="about" class="section reveal">
-    <h2 class="section-title">About Me</h2>
-    <div class="about-grid">
-      <div class="panel">
-        <h3 class="about-card-title"><img src="assets/images/story-icon.png" style="width:1.5em;vertical-align:-.2em"> My Story</h3>
-        <div class="about-text">
-          <p>Heya! I'm Hajar — Computer Engineering & AI enthusiast. I enjoy clean UI, tiny details, and shipping playful features that still feel professional.</p>
+    </section>
+    <!-- ABOUT -->
+    <section class="gamescreen" id="screen-about">
+      <div class="card">
+        <h2>About</h2>
+        <div class="badges" style="margin-bottom:18px;">
+          <span class="badge"><img src="assets/images/lang-icon.png" style="width:1.2em"> EN/FR/AR</span>
+          <span class="badge"><img src="assets/images/heart-icon.png" style="width:1.2em"> Loves Ghibli</span>
         </div>
-        <div class="skills-grid">
-          <div class="skill-item"><div class="skill-name">SQL <span>60%</span></div><div class="skill-bar"><div class="skill-progress" style="width:60%"></div></div></div>
-          <div class="skill-item"><div class="skill-name">Python <span>60%</span></div><div class="skill-bar"><div class="skill-progress" style="width:60%"></div></div></div>
-          <div class="skill-item"><div class="skill-name">HTML <span>60%</span></div><div class="skill-bar"><div class="skill-progress" style="width:60%"></div></div></div>
-          <div class="skill-item"><div class="skill-name">CSS <span>40%</span></div><div class="skill-bar"><div class="skill-progress" style="width:40%"></div></div></div>
-          <div class="skill-item"><div class="skill-name">JavaScript <span>20%</span></div><div class="skill-bar"><div class="skill-progress" style="width:20%"></div></div></div>
+        <div>
+          <strong style="color:var(--pink);font-size:1.1em;">Skills</strong>
+          <div class="badges">
+            <span class="badge">SQL <span class="skillbar"><span class="skillfill" style="width:60%"></span></span></span>
+            <span class="badge">Python <span class="skillbar"><span class="skillfill" style="width:60%"></span></span></span>
+            <span class="badge">HTML <span class="skillbar"><span class="skillfill" style="width:60%"></span></span></span>
+            <span class="badge">CSS <span class="skillbar"><span class="skillfill" style="width:40%"></span></span></span>
+            <span class="badge">JS <span class="skillbar"><span class="skillfill" style="width:20%"></span></span></span>
+          </div>
         </div>
-      </div>
-      <div class="panel">
-        <h3 class="about-card-title"><img src="assets/images/lang-icon.png" style="width:1.5em;vertical-align:-.2em"> Languages</h3>
-        <div class="language-grid">
-          <div class="language-item"><div class="language-bubble">EN</div><div><h4>English</h4><p>Professional Proficiency</p></div></div>
-          <div class="language-item"><div class="language-bubble">FR</div><div><h4>French</h4><p>Native Proficiency</p></div></div>
-          <div class="language-item"><div class="language-bubble">AR</div><div><h4>Arabic</h4><p>Native Proficiency</p></div></div>
-        </div>
-        <h3 style="margin-top:14px"><img src="assets/images/heart-icon.png" style="width:1.5em;vertical-align:-.2em"> Hobbies</h3>
-        <div class="hobbies-grid">
-          <div class="hobby-item"><div class="hobby-icon"><img src="assets/images/chess-icon.png" style="width:1.4em"></div><div><h4>Chess Strategy</h4><p>Tactical puzzles & competitive play</p></div></div>
-          <div class="hobby-item"><div class="hobby-icon"><img src="assets/images/math-icon.png" style="width:1.4em"></div><div><h4>Math Problems</h4><p>Memory-friendly brain teasers</p></div></div>
-          <div class="hobby-item"><div class="hobby-icon"><img src="assets/images/sport-icon.png" style="width:1.4em"></div><div><h4>Sports & Fitness</h4><p>Staying active & healthy</p></div></div>
-          <div class="hobby-item"><div class="hobby-icon"><img src="assets/images/book-icon.png" style="width:1.4em"></div><div><h4>Reading</h4><p>Literature & sci‑fi</p></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- PROJECTS -->
-  <section id="projects" class="section reveal">
-    <h2 class="section-title">My Projects</h2>
-    <div class="projects-grid">
-      <!-- Memory Game -->
-      <div class="project-card clickable" id="memory-game" data-modal="#memory-modal">
-        <div class="project-badge">Featured</div>
-        <div class="project-image">
-          <img src="assets/images/projects/memory-game/memory3.jpeg" alt="Memory Game">
-          <div class="project-overlay"><span>🎲 View Details</span></div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Memory Game</h3>
-          <p class="project-description">An interactive card matching game with Ghibli-inspired artwork and multiple difficulty levels.</p>
-          <div class="project-footer">
-            <div class="project-tags">
-              <span class="project-tag">Python</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span>
-            </div>
-            <a href="https://github.com/ryosvoid/memory_game" target="_blank" class="project-link"><img src="assets/images/github-icon.png" style="width:1.5em"></a>
+        <div>
+          <strong style="color:var(--blue);font-size:1.1em;">Hobbies</strong>
+          <div class="badges">
+            <span class="badge"><img src="assets/images/chess-icon.png" style="width:1.4em"> Chess</span>
+            <span class="badge"><img src="assets/images/math-icon.png" style="width:1.3em"> Math</span>
+            <span class="badge"><img src="assets/images/sport-icon.png" style="width:1.4em"> Sports</span>
+            <span class="badge"><img src="assets/images/book-icon.png" style="width:1.4em"> Reading</span>
           </div>
         </div>
       </div>
-      <!-- Pyramid Game -->
-      <div class="project-card clickable" id="pyramid-game" data-modal="#pyramid-modal">
-        <div class="project-badge">New</div>
-        <div class="project-image">
-          <img src="assets/images/projects/maths-game/pyramid_equation1.png" alt="Pyramid Equation Game">
-          <div class="project-overlay"><span>🎲 View Details</span></div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Pyramid Equation Game</h3>
-          <p class="project-description">A brainy yet beautiful game that tests your memory, logic, and math skills with Ghibli-style visuals.</p>
-          <div class="project-footer">
-            <div class="project-tags"><span class="project-tag">HTML</span><span class="project-tag">CSS</span><span class="project-tag">JavaScript</span></div>
-            <a href="https://github.com/ryosvoid/maths-pyramid-game" target="_blank" class="project-link"><img src="assets/images/github-icon.png" style="width:1.5em"></a>
-          </div>
-        </div>
-      </div>
-      <!-- IoT Project -->
-      <div class="project-card clickable" id="iot-project" data-modal="#iot-modal">
-        <div class="project-image">
-          <img src="https://i.pinimg.com/736x/17/8a/ac/178aac81579eeb9ec43d60c45ebe6053.jpg" alt="IoT Project">
-          <div class="project-overlay"><span>🎲 View Details</span></div>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Smart Garden System</h3>
-          <p class="project-description">An IoT solution for monitoring and automating plant care with real-time data.</p>
-          <div class="project-footer">
-            <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">IoT</span><span class="project-tag">Raspberry Pi</span><span class="project-tag">Sensors</span></div>
-            <a href="#" class="project-link"><img src="assets/images/github-icon.png" style="width:1.5em"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- PROJECT MODALS -->
-  <div class="project-modal" id="memory-modal">
-    <div class="modal-content">
-      <button class="modal-close" data-close>&times;</button>
-      <div class="modal-image-container"><img src="assets/images/projects/memory-game/memory3.jpeg" alt="Memory Game" class="modal-image"></div>
-      <div class="modal-body">
-        <h2 class="modal-title">Memory Game</h2>
-        <span class="modal-tech">HTML, CSS, JavaScript</span>
-        <p class="modal-description">A fully interactive memory game designed to train cognitive skills through card matching.</p>
-        <ul class="modal-features">
-          <li>Multiple difficulty levels</li>
-          <li>Score tracking & timer</li>
-          <li>Ghibli-themed cards</li>
+    </section>
+    <!-- PROJECTS -->
+    <section class="gamescreen" id="screen-projects">
+      <div class="card">
+        <h2>Projects</h2>
+        <ul class="projects-list">
+          <li>
+            <span class="badge"><img src="assets/images/star.png" style="width:1.1em"> Memory Game</span>
+            <span>An interactive card matching game with Ghibli-inspired artwork and multiple difficulty levels.</span>
+            <button class="proj-btn" onclick="window.open('https://github.com/ryosvoid/memory_game')">View on GitHub</button>
+          </li>
+          <li>
+            <span class="badge"><img src="assets/images/star.png" style="width:1.1em"> Pyramid Equation Game</span>
+            <span>A brainy yet beautiful game that tests your memory, logic, and math skills with Ghibli-style visuals.</span>
+            <button class="proj-btn" onclick="window.open('https://github.com/ryosvoid/maths-pyramid-game')">View on GitHub</button>
+          </li>
+          <li>
+            <span class="badge"><img src="assets/images/star.png" style="width:1.1em"> Smart Garden System</span>
+            <span>An IoT solution for monitoring and automating plant care with real-time data.</span>
+            <button class="proj-btn" onclick="window.open('#')">View on GitHub</button>
+          </li>
         </ul>
-        <div class="modal-buttons">
-          <a href="https://github.com/ryosvoid/memory_game" target="_blank" class="btn btn-ghibli"><img src="assets/images/github-icon.png" style="width:1.3em"> View on GitHub</a>
-        </div>
       </div>
-    </div>
-  </div>
-  <div class="project-modal" id="pyramid-modal">
-    <div class="modal-content">
-      <button class="modal-close" data-close>&times;</button>
-      <div class="modal-image-container"><img src="assets/images/projects/maths-game/pyramid_equation1.png" alt="Pyramid Equation Game" class="modal-image"></div>
-      <div class="modal-body">
-        <h2 class="modal-title">Pyramid Equation Game</h2>
-        <span class="modal-tech">HTML, CSS, JavaScript</span>
-        <p class="modal-description">A mathematical puzzle game that challenges both memory and problem-solving skills.</p>
-        <ul class="modal-features">
-          <li>Sequence-based memory & calculation</li>
-          <li>Levels & beautiful feedback</li>
+    </section>
+    <!-- CERTIFICATES -->
+    <section class="gamescreen" id="screen-certificates">
+      <div class="card">
+        <h2>Certificates</h2>
+        <ul class="cert-list">
+          <li>
+            <span class="badge"><img src="assets/images/cert-icon.png" style="width:1.1em"> Python Programming</span>
+            <span>Coursera - University of Michigan, 2024</span>
+            <button class="cert-btn" onclick="window.open('https://coursera.org/share/443a46b3ed1df1f3ce3e756c9fd281c2')">View</button>
+          </li>
+          <li>
+            <span class="badge"><img src="assets/images/cert-icon.png" style="width:1.1em"> MS Word</span>
+            <span>Coursera - Microsoft, 2025</span>
+            <button class="cert-btn" onclick="window.open('https://coursera.org/share/246f4a1ea4e4e71caf8b805d97ee52c3')">View</button>
+          </li>
+          <li>
+            <span class="badge"><img src="assets/images/cert-icon.png" style="width:1.1em"> MS Excel</span>
+            <span>Coursera - Microsoft, 2025</span>
+            <button class="cert-btn" onclick="window.open('https://coursera.org/share/a5fd432d507960e5fd70f8f6b5145c7e')">View</button>
+          </li>
+          <li>
+            <span class="badge"><img src="assets/images/cert-icon.png" style="width:1.1em"> Web Development</span>
+            <span>Coursera - UC, 2025</span>
+            <button class="cert-btn" onclick="window.open('https://coursera.org/share/84b220c7977604f1ce66acbda583d290')">View</button>
+          </li>
         </ul>
-        <div class="modal-buttons">
-          <a href="https://github.com/ryosvoid/maths-pyramid-game" target="_blank" class="btn btn-ghibli"><img src="assets/images/github-icon.png" style="width:1.3em"> View on GitHub</a>
-        </div>
       </div>
-    </div>
-  </div>
-  <div class="project-modal" id="iot-modal">
-    <div class="modal-content">
-      <button class="modal-close" data-close>&times;</button>
-      <div class="modal-image-container"><img src="https://i.pinimg.com/736x/17/8a/ac/178aac81579eeb9ec43d60c45ebe6053.jpg" alt="IoT Project" class="modal-image"></div>
-      <div class="modal-body">
-        <h2 class="modal-title">Smart Garden System</h2>
-        <span class="modal-tech">Python, IoT, Raspberry Pi</span>
-        <p class="modal-description">Monitor soil moisture, temperature and control irrigation with sensors and a Raspberry Pi.</p>
-      </div>
-    </div>
-  </div>
-  <!-- CERTIFICATES -->
-  <section id="certificates" class="section reveal">
-    <h2 class="section-title">My Certificates</h2>
-    <div class="certificates-container">
-      <div class="certificate-card">
-        <div class="certificate-header"><img src="assets/images/cert-icon.png" style="width:1.6em"><h3>Introduction to Python Programming</h3></div>
-        <div class="certificate-body">
-          <p>Coursera certification covering Python fundamentals and problem-solving techniques.</p>
-          <div class="certificate-meta">
-            <span class="certificate-date">Issued: 2024</span>
-            <span class="certificate-org">University of Michigan</span>
-          </div>
-        </div>
-        <div class="certificate-footer"><a href="https://coursera.org/share/443a46b3ed1df1f3ce3e756c9fd281c2" target="_blank" class="btn btn-view">View Certificate</a></div>
-      </div>
-      <div class="certificate-card">
-        <div class="certificate-header"><img src="assets/images/cert-icon.png" style="width:1.6em"><h3>Work Smarter with Microsoft Word</h3></div>
-        <div class="certificate-body">
-          <p>Advanced techniques for document creation and formatting in Microsoft Word.</p>
-          <div class="certificate-meta">
-            <span class="certificate-date">Issued: 2025</span>
-            <span class="certificate-org">Microsoft</span>
-          </div>
-        </div>
-        <div class="certificate-footer"><a href="https://coursera.org/share/246f4a1ea4e4e71caf8b805d97ee52c3" target="_blank" class="btn btn-view">View Certificate</a></div>
-      </div>
-      <div class="certificate-card">
-        <div class="certificate-header"><img src="assets/images/cert-icon.png" style="width:1.6em"><h3>Work Smarter with Microsoft Excel</h3></div>
-        <div class="certificate-body">
-          <p>Advanced Excel skills including formulas, data analysis, and visualization.</p>
-          <div class="certificate-meta">
-            <span class="certificate-date">Issued: 2025</span>
-            <span class="certificate-org">Microsoft</span>
-          </div>
-        </div>
-        <div class="certificate-footer"><a href="https://coursera.org/share/a5fd432d507960e5fd70f8f6b5145c7e" target="_blank" class="btn btn-view">View Certificate</a></div>
-      </div>
-      <div class="certificate-card">
-        <div class="certificate-header"><img src="assets/images/cert-icon.png" style="width:1.6em"><h3>Introduction to Web Development</h3></div>
-        <div class="certificate-body">
-          <p>Fundamentals of HTML, CSS, and JavaScript for building beautiful websites.</p>
-          <div class="certificate-meta">
-            <span class="certificate-date">Issued: 2025</span>
-            <span class="certificate-org">University of California</span>
-          </div>
-        </div>
-        <div class="certificate-footer"><a href="https://coursera.org/share/84b220c7977604f1ce66acbda583d290" target="_blank" class="btn btn-view">View Certificate</a></div>
-      </div>
-    </div>
-  </section>
-  <!-- CONTACT -->
-  <section id="contact" class="section reveal">
-    <h2 class="section-title">Contact Me</h2>
-    <div class="panel" style="padding:18px;">
-      <div class="contact-grid">
-        <form id="contactForm" class="panel" style="padding:16px">
-          <div class="field">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name" required>
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="you@example.com" required>
-          </div>
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Tell me about your idea…" required></textarea>
-          </div>
-          <div class="form-actions">
-            <button id="sendBtn" type="submit" class="btn primary"><span>Send</span></button>
-            <div class="spinner" id="spinner"></div>
-          </div>
-          <small style="color:var(--muted)">This sends directly via EmailJS.</small>
+    </section>
+    <!-- CONTACT MODAL (not gamescreen) -->
+    <div class="contact-modal-bg" id="contact-modal-bg">
+      <div class="contact-modal">
+        <button class="close-modal" id="close-contact">&times;</button>
+        <h2>Contact Me</h2>
+        <form id="contactForm">
+          <input id="name" name="name" type="text" placeholder="Your name" required>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+          <textarea id="message" name="message" placeholder="Tell me about your idea…" required></textarea>
+          <button class="btn" type="submit">Send</button>
         </form>
-        <div class="panel" style="padding:16px">
-          <h3><img src="assets/images/paperplane-icon.png" style="width:1.3em;vertical-align:-.2em"> Quick Links</h3>
-          <div class="contact-methods" style="margin-top:10px">
-            <a class="contact-method github" href="https://github.com/ryosvoid" target="_blank"><img src="assets/images/github-icon.png" style="width:1.1em"><span>@ryosvoid</span></a>
-            <a class="contact-method email" href="mailto:hajarcrk26@gmail.com"><img src="assets/images/mail-icon.png" style="width:1.1em"><span>hajarcrk26@gmail.com</span></a>
-            <a class="contact-method phone" href="tel:+212600000000"><img src="assets/images/phone-icon.png" style="width:1.1em"><span>+212 600000000</span></a>
-          </div>
-        </div>
+        <div class="success-tick" id="success-tick">&#x2714;</div>
+        <div class="success-msg" id="success-msg">Message sent! I'll get back to you soon.</div>
       </div>
     </div>
-  </section>
-  <!-- EMAIL SUCCESS OVERLAY -->
-  <div class="overlay" id="successOverlay">
-    <div class="overlay-card">
-      <button class="close-x" data-close-overlay>&times;</button>
-      <div class="check"><span style="font-size:2.2em;line-height:1">&#x2714;</span></div>
-      <h3>Message sent successfully</h3>
-      <p style="color:var(--muted);margin-top:6px">Thanks for reaching out! I'll get back to you soon.</p>
-      <a href="#home" class="btn" data-close-overlay>Go back to portfolio</a>
-    </div>
-  </div>
+  </main>
   <!-- SOUNDS -->
   <audio id="sound-bounce" src="assets/sounds/bounce.wav" preload="auto"></audio>
   <audio id="sound-click" src="assets/sounds/click.wav" preload="auto"></audio>
   <script>
-    // Typewriter effect
-    document.addEventListener('DOMContentLoaded', function () {
-      new TypeIt('#typed-desc', {
-        strings: [
-          "Tech enthusiast and UI polisher.",
-          "Loves math, code, and cute design.",
-          "Cognitive games and Ghibli fan.",
-          "Leveling up every project.",
-        ],
-        speed: 52,
-        breakLines: false,
-        nextStringDelay: 1200,
-        waitUntilVisible: true,
-        loop: true,
-        lifeLike: true,
-        deleteSpeed: 35,
-        cursor: false
-      }).go();
-    });
-    // Nav tab highlight and progress bar
-    const tabs = document.querySelectorAll('.tab');
-    const navProgress = document.getElementById('nav-progress');
-    const sectionOrder = ["home", "about", "projects", "certificates", "contact"];
-    function updateNav() {
-      let curr = 0;
-      sectionOrder.forEach((id, idx) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight/2) curr = idx;
+    // Typewriter on home
+    new TypeIt('#typed-desc', {
+      strings: [
+        "Press START to enter the world of code.",
+        "Level up your skills with me!",
+        "Let's play with Python, JS, and more.",
+        "Collect badges, unlock achievements!",
+      ],
+      speed: 45,
+      breakLines: false,
+      nextStringDelay: 900,
+      waitUntilVisible: true,
+      loop: true,
+      lifeLike: true,
+      deleteSpeed: 28,
+      cursor: false
+    }).go();
+
+    // Game menu switching
+    const screens = ["home","about","projects","certificates"];
+    function showScreen(screen) {
+      screens.forEach(id=>{
+        document.getElementById("screen-"+id).classList.toggle('active', id===screen);
       });
-      tabs.forEach((t,i) => t.classList.toggle('active', i===curr));
-      navProgress.style.width = ((curr+1)/sectionOrder.length*100) + "%";
+      // close contact modal when moving away
+      document.getElementById('contact-modal-bg').classList.remove('active');
+      // Play sound
+      document.getElementById('sound-bounce').currentTime=0;
+      document.getElementById('sound-bounce').play();
     }
-    window.addEventListener('scroll', updateNav);
-
-    // GSAP reveals
-    document.querySelectorAll('.reveal').forEach(el => {
-      gsap.fromTo(el, { opacity: 0, y: 48 }, {
-        opacity: 1, y: 0, duration: .9, ease: "bounce.out", scrollTrigger: {
-          trigger: el, start: "top 80%", toggleActions: "play none none none"
-        }
+    document.querySelectorAll('.menu-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.menu-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        showScreen(btn.dataset.screen);
       });
     });
 
-    // Gamified modal opening/closing + sound
-    document.querySelectorAll('.project-card').forEach(card=>{
-      card.addEventListener('click', (e)=>{
-        const m = document.querySelector(card.dataset.modal);
-        if(m){ m.style.display='flex'; document.getElementById('sound-bounce').play(); }
-      })
-    })
-    document.querySelectorAll('[data-close]').forEach(btn=>{
-      btn.addEventListener('click', ()=> btn.closest('.project-modal').style.display='none');
-    })
-    document.querySelectorAll('.project-modal').forEach(m=>{
-      m.addEventListener('click', (e)=>{ if(e.target===m) m.style.display='none'; })
-    })
+    // "START" -> About
+    document.getElementById('start-btn').onclick = ()=>{
+      showScreen('about');
+      document.querySelector('.menu-btn[data-screen="about"]').classList.add('active');
+      document.querySelectorAll('.menu-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelector('.menu-btn[data-screen="about"]').classList.add('active');
+      document.getElementById('sound-bounce').currentTime=0;
+      document.getElementById('sound-bounce').play();
+    };
 
-    // Click sound on interactive elements
-    const bounceSound = document.getElementById('sound-bounce');
-    document.querySelectorAll('.clickable, .contact-icons img').forEach(btn => {
-      btn.addEventListener('click', () => {
-        bounceSound.currentTime = 0;
-        bounceSound.play();
-      });
-    });
+    // Contact modal
+    document.querySelector('.menu-btn[data-screen="contact"]').onclick = ()=>{
+      document.getElementById('contact-modal-bg').classList.add('active');
+      document.getElementById('sound-bounce').currentTime=0;
+      document.getElementById('sound-bounce').play();
+    };
+    document.getElementById('close-contact').onclick=()=>{
+      document.getElementById('contact-modal-bg').classList.remove('active');
+    };
 
-    // EmailJS init
+    // Gamified particles on home
+    function spawnParticles(){
+      const ph = document.getElementById('particles-home');
+      if(!ph) return;
+      for(let i=0;i<12;i++){
+        const p = document.createElement('div');
+        p.className = "particle " + (i%3==0?"star":i%3==1?"heart":"spark");
+        p.style.top = (10+Math.random()*75)+'vh';
+        p.style.left = (5+Math.random()*90)+'vw';
+        p.style.animation = `partmove${i} ${6+Math.random()*4}s infinite alternate ease-in-out`;
+        ph.appendChild(p);
+        let keyframes = `@keyframes partmove${i}{from{transform:translateY(0)}to{transform:translateY(${Math.random()>0.5?'-':'+'}${30+Math.random()*40}px)}}`;
+        let styleSheet = document.createElement('style'); styleSheet.innerText = keyframes; document.head.appendChild(styleSheet);
+      }
+    }spawnParticles();
+
+    // Contact form gamified
     (function(){ emailjs.init({ publicKey: 'AX9ZtVpZPmydtAaFI' }); })();
-    // Contact form
     const form = document.getElementById('contactForm');
-    const spinner = document.getElementById('spinner');
-    const sendBtn = document.getElementById('sendBtn');
-    const overlay = document.getElementById('successOverlay');
-    function validate(){
-      const name = form.name.value.trim(), email = form.email.value.trim(), message = form.message.value.trim();
-      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      return name && emailOk && message.length>1;
-    }
+    const tick = document.getElementById('success-tick');
+    const msg = document.getElementById('success-msg');
     form.addEventListener('submit', async (e)=>{
       e.preventDefault();
-      if(!validate()){
-        form.classList.add('shake');
-        [...form.querySelectorAll('input,textarea')].forEach(el=>{
-          if(!el.value.trim()) el.style.borderColor = '#ff8ec9';
-        });
-        setTimeout(()=> form.classList.remove('shake'), 400);
-        return;
-      }
-      spinner.style.display='inline-block';
-      sendBtn.disabled = true;
+      form.querySelector('button').disabled = true;
       try{
         await emailjs.send('ryoscoid', 'template_jai0z9m', {
           from_name: form.name.value,
           from_email: form.email.value,
           message: form.message.value
         });
-        form.reset();
-        overlay.style.display='flex';
-      }catch(err){
-        alert('Oops, something went wrong. Please try again.');
-        console.error(err);
-      }finally{
-        spinner.style.display='none';
-        sendBtn.disabled = false;
+        tick.style.display='block'; msg.style.display='block';
+        setTimeout(()=>{ tick.style.display='none'; msg.style.display='none'; form.reset(); document.getElementById('contact-modal-bg').classList.remove('active'); }, 2200);
+      }catch{
+        alert('Failed to send. Try again!');
       }
-    });
-    overlay.addEventListener('click', (e)=>{
-      if(e.target===overlay || e.target.hasAttribute('data-close-overlay')) overlay.style.display='none';
+      form.querySelector('button').disabled = false;
     });
   </script>
 </body>
