@@ -1,269 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hajar Cherrouk • Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Figtree:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/typeit@8.8.3/dist/index.umd.js"></script>
-  <style>
-    :root {
-      --blue: #5c8dff;
-      --purple: #7c5cff;
-      --bg: linear-gradient(120deg, #c2d3ff 0%, #5c8dff 40%, #7c5cff 100%);
-      --ink: #232343;
-      --muted: #5b5b7a;
-      --panel: #fdfcffcc;
-      --radius: 20px;
-      --shadow: 0 8px 30px 0 #7c5cff17, 0 2px 8px 0 #5c8dff24;
-      --section-gap: 50px;
-    }
-    html,body { min-height:100vh; margin:0; padding:0; font-family:'Poppins','Figtree',Arial,sans-serif; background:var(--bg); color:var(--ink); }
-    body { position:relative; }
-    .orbs { position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:0; pointer-events:none; }
-    .orb { position:absolute; border-radius:50%; filter:blur(60px); opacity:.19; }
-    .orb1 { width:430px; height:430px; background:radial-gradient(circle,#8ea9ff 0,#5c8dff55 100%); left:-80px; top:50px;}
-    .orb2 { width:320px; height:320px; background:radial-gradient(circle,#5c8dff 0,#fff0 100%); right:40px; top:120px;}
-    .orb3 { width:260px; height:260px; background:radial-gradient(circle,#7c5cff 0,#fff0 100%); left:140px; bottom:-90px;}
-    /* Header */
-    header {
-      width:100%; position:sticky; top:0; background:linear-gradient(90deg,#5c8dffcc 0,#7c5cffcc 100%);
-      z-index:5; box-shadow:0 2px 18px #7c5cff22; backdrop-filter:blur(13px) saturate(130%);
-    }
-    .nav-inner {
-      display:flex; align-items:center; justify-content:space-between; max-width:1240px; margin:auto; padding:14px 28px 10px 28px;
-    }
-    .brand { display:flex; align-items:center; gap:13px; font-weight:900; font-size:1.17em; color:var(--ink); text-decoration:none;}
-    .brand img { width:41px; height:41px; border-radius:14px; object-fit:cover; box-shadow:0 2px 10px #7c5cff22;}
-    nav.tabs { display:flex; gap:10px;}
-    nav.tabs a {
-      text-decoration:none; font-weight:700; color:var(--ink); background:#fff6;
-      border-radius:999px; padding:9px 19px; transition:.13s; border:1.7px solid #c2d3ff;
-    }
-    nav.tabs a.active, nav.tabs a:hover {
-      color:var(--blue); background:#f7f5ff; border-color:var(--purple); box-shadow:0 2px 16px #7c5cff33;
-    }
-    /* Layout */
-    .main { display:flex; max-width:1200px; margin:48px auto 0 auto; gap:48px; padding:0 18px; position:relative; z-index:2;}
-    @media (max-width:950px){ .main{flex-direction:column; align-items:center; gap:28px;}}
-    /* Sidebar */
-    .sidebar {
-      width:265px; min-width:165px; background:var(--panel); border-radius:var(--radius); box-shadow:var(--shadow); padding:32px 22px 24px 22px;
-      display:flex; flex-direction:column; align-items:center; gap:26px; border:2px solid #c2d3ff;
-    }
-    .sidebar img.avatar { width:80px; height:80px; border-radius:15px; object-fit:cover; border:3px solid #fff;}
-    .contact-icons { display:flex; gap:12px; margin-top:7px;}
-    .contact-icons img { width:32px; height:32px; border-radius:8px; background:#fff; box-shadow:0 2px 8px #5c8dff22; cursor:pointer;}
-    .sidebar .skills { margin-top:18px; display:grid; gap:9px;}
-    .badge { display:flex;align-items:center; gap:9px; font-weight:700; background:linear-gradient(90deg,#e6f1ff 60%,#e8e3ff 100%); border-radius:9px; padding:7px 13px; color:var(--purple);}
-    /* Main Content sectioned */
-    .main-content { flex:1; min-width:0; }
-    section {
-      background:var(--panel); border-radius:var(--radius); box-shadow:var(--shadow); border:2px solid #c2d3ff;
-      padding:36px 44px 30px 44px; margin-bottom:var(--section-gap);
-      display:flex; flex-direction:column; gap:13px;
-    }
-    section h1, section h2 {margin-top:0;}
-    .typed-desc { margin-bottom:15px; min-height:30px; color:var(--purple); font-weight:700; font-size:1.15em; }
-    .about { color:var(--muted); font-size:1.11em; margin-bottom:18px; line-height:1.6;}
-    .cta { display:flex; gap:14px; margin:16px 0 0 0;}
-    .btn {
-      background:linear-gradient(90deg,#7c5cff 50%,#5c8dff 100%); color:#fff; font-weight:800; font-size:1em;
-      border-radius:11px; padding:12px 22px; border:none; box-shadow:0 1.5px 8px #5c8dff33; cursor:pointer; transition:.13s;
-      display:inline-flex; align-items:center; gap:7px;
-    }
-    .btn:active { transform:scale(.95);}
-    /* Cards for projects, certificates */
-    .card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px;}
-    .card {
-      background:#fff; border-radius:15px; box-shadow:0 2px 10px #5c8dff18;
-      padding:18px 16px; border:1.7px solid #e2e8ff; display:flex; flex-direction:column; gap:11px; min-height:180px;
-    }
-    .card .card-title { font-weight:700; color:var(--blue); }
-    .card .card-desc { color:var(--muted);}
-    .card .tags { display:flex; gap:7px; flex-wrap:wrap; font-size:0.97em;}
-    .tag {background:var(--blue);color:#fff;font-weight:700;padding:4px 10px;border-radius:8px;}
-    .card .btn {margin-top:7px;font-size:.98em;padding:9px 17px;}
-    @media (max-width:700px){
-      .main{padding:0 1vw;}
-      section{padding:16px 4vw 17px 4vw;}
-      .sidebar{width:100%;}
-      .card-grid{grid-template-columns:1fr;}
-    }
-    /* Contact form */
-    form { display:grid; gap:14px; max-width:400px;}
-    label {font-weight:700;}
-    input, textarea { font-family:inherit; font-size:1em; background:#fff; border:1.3px solid #e2e8ff; border-radius:8px; padding:10px;}
-    textarea {min-height:80px;}
-    .contact-details {margin-top:19px; color:var(--muted);}
-    .contact-details a{color:var(--purple);text-decoration:none;}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Hajar Cherrouk Portfolio</title>
+  <link rel="stylesheet" href="main.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <link rel="icon" href="assets/images/profile.jpeg" type="image/jpeg">
 </head>
 <body>
-  <div class="orbs">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
-  </div>
-  <div class="particle p1"></div>
-  <div class="particle p2"></div>
-  <div class="particle p3"></div>
-  <header>
-    <div class="nav-inner">
-      <a class="brand" href="#home"><img src="assets/images/IMG_0736.jpg" alt="profile"/><span>Hajar Cherrouk</span></a>
-      <nav class="tabs">
-        <a href="#home" class="active">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#certificates">Certificates</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-  <main class="main">
-    <aside class="sidebar">
-      <img src="assets/images/IMG_0736.jpg" alt="avatar" class="avatar"/>
-      <div class="contact-icons">
-        <a href="mailto:hajarcrk26@gmail.com" title="Mail"><img src="assets/images/mail-icon.png" alt="Mail"></a>
-        <a href="tel:+212600000000" title="Phone"><img src="assets/images/phone-icon.png" alt="Phone"></a>
-        <a href="https://github.com/ryosvoid" target="_blank" title="GitHub"><img src="assets/images/github-icon.png" alt="GitHub"></a>
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-container">
+      <div class="nav-logo">
+        <img src="assets/images/IMG_0736.jpg" alt="Hajar Cherrouk Icon" />
       </div>
-      <div class="skills">
-        <div class="badge"><img src="assets/images/sql-icon.png" style="width:1.3em"> SQL</div>
-        <div class="badge"><img src="assets/images/python-icon.png" style="width:1.3em"> Python</div>
-        <div class="badge"><img src="assets/images/html-icon.png" style="width:1.3em"> HTML</div>
-        <div class="badge"><img src="assets/images/css-icon.png" style="width:1.3em"> CSS</div>
-        <div class="badge"><img src="assets/images/js-icon.png" style="width:1.3em"> JS</div>
-      </div>
-    </aside>
-    <div class="main-content">
-      <!-- HOME -->
-      <section id="home">
-        <h1>Welcome!</h1>
-        <div class="typed-desc" id="typed-desc"></div>
-        <div class="about">
-          Hi! I’m <b>Hajar Cherrouk</b> — a Computer Engineering and AI enthusiast who loves building playful, beautiful user interfaces and interactive, game-inspired web experiences.<br><br>
-          I specialize in transforming creative ideas into professional, polished digital products: from cognitive games to smart IoT dashboards. I care deeply about clean code, magical UI detail, and making technology fun but purposeful.<br><br>
-          Explore my projects, view my certificates, and let’s connect!
-        </div>
-        <div class="cta">
-          <a class="btn" href="assets/hajar-cherrouk-cv.pdf" download><img src="assets/images/cv-icon.png" style="width:1.2em"> Download CV</a>
-          <a class="btn" href="#contact"><img src="assets/images/mail-icon.png" style="width:1.2em"> Contact Me</a>
-          <a class="btn" href="#projects"><img src="assets/images/star.png" style="width:1.2em"> View Projects</a>
-        </div>
-      </section>
-      <!-- ABOUT -->
-      <section id="about">
-        <h2>About Me</h2>
-        <div class="about">
-          <b>Languages:</b> English (Professional), French (Native), Arabic (Native)<br>
-          <b>Hobbies:</b> Chess ♟️, Math puzzles, Sports, Reading sci-fi<br>
-          <b>Currently learning:</b> React & Data Science<br>
-        </div>
-      </section>
-      <!-- PROJECTS -->
-      <section id="projects">
-        <h2>Projects</h2>
-        <div class="card-grid">
-          <div class="card">
-            <div class="card-title">Memory Game</div>
-            <div class="card-desc">Interactive card matching game with Ghibli-inspired artwork and multiple difficulty levels.</div>
-            <div class="tags"><span class="tag">Python</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-            <a class="btn" href="https://github.com/ryosvoid/memory_game" target="_blank">GitHub</a>
-          </div>
-          <div class="card">
-            <div class="card-title">Pyramid Equation Game</div>
-            <div class="card-desc">Brainy and beautiful game that tests your memory, logic, and math skills with Ghibli-style visuals.</div>
-            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
-            <a class="btn" href="https://github.com/ryosvoid/maths-pyramid-game" target="_blank">GitHub</a>
-          </div>
-          <div class="card">
-            <div class="card-title">Smart Garden System</div>
-            <div class="card-desc">IoT solution for monitoring and automating plant care with real-time data and Raspberry Pi sensors.</div>
-            <div class="tags"><span class="tag">Python</span><span class="tag">IoT</span><span class="tag">Raspberry Pi</span></div>
-            <a class="btn" href="#" target="_blank">GitHub</a>
-          </div>
-        </div>
-      </section>
-      <!-- CERTIFICATES -->
-      <section id="certificates">
-        <h2>Certificates</h2>
-        <div class="card-grid">
-          <div class="card">
-            <div class="card-title">Introduction to Python Programming</div>
-            <div class="card-desc">Coursera (U. Michigan, 2024)</div>
-            <a class="btn" href="https://coursera.org/share/443a46b3ed1df1f3ce3e756c9fd281c2" target="_blank">View</a>
-          </div>
-          <div class="card">
-            <div class="card-title">Work Smarter with Microsoft Word</div>
-            <div class="card-desc">Coursera (Microsoft, 2025)</div>
-            <a class="btn" href="https://coursera.org/share/246f4a1ea4e4e71caf8b805d97ee52c3" target="_blank">View</a>
-          </div>
-          <div class="card">
-            <div class="card-title">Work Smarter with Microsoft Excel</div>
-            <div class="card-desc">Coursera (Microsoft, 2025)</div>
-            <a class="btn" href="https://coursera.org/share/a5fd432d507960e5fd70f8f6b5145c7e" target="_blank">View</a>
-          </div>
-          <div class="card">
-            <div class="card-title">Introduction to Web Development</div>
-            <div class="card-desc">Coursera (UC, 2025)</div>
-            <a class="btn" href="https://coursera.org/share/84b220c7977604f1ce66acbda583d290" target="_blank">View</a>
-          </div>
-        </div>
-      </section>
-      <!-- CONTACT -->
-      <section id="contact">
-        <h2>Contact</h2>
-        <form>
-          <label>Name</label>
-          <input type="text" required>
-          <label>Email</label>
-          <input type="email" required>
-          <label>Message</label>
-          <textarea required></textarea>
-          <button class="btn" type="submit">Send Message</button>
-        </form>
-        <div class="contact-details">
-          <b>Email:</b> <a href="mailto:hajarcrk26@gmail.com">hajarcrk26@gmail.com</a><br>
-          <b>Phone:</b> <a href="tel:+212600000000">+212 600000000</a><br>
-          <b>GitHub:</b> <a href="https://github.com/ryosvoid" target="_blank">@ryosvoid</a>
-        </div>
-      </section>
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-active">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
-  </main>
-  <script>
-    new TypeIt('#typed-desc', {
-      strings: [
-        "Tech Enthusiast · UI Perfectionist · AI Explorer",
-        "Clean Code, Magical UI, Playful Features.",
-        "Level up your experience with a gamified portfolio!",
-        "Cognitive games, Ghibli vibes, and pro polish.",
-      ],
-      speed: 48,
-      breakLines: false,
-      nextStringDelay: 1200,
-      waitUntilVisible: true,
-      loop: true,
-      lifeLike: true,
-      deleteSpeed: 30,
-      cursor: false
-    }).go();
-    // Simple highlight nav on scroll
-    const links = document.querySelectorAll('.tabs a');
-    const sections = Array.from(document.querySelectorAll('.main-content > section'));
-    window.addEventListener('scroll', ()=>{
-      let scroll = window.scrollY+130;
-      let id = "home";
-      for(const s of sections) if(scroll >= s.offsetTop) id = s.id;
-      links.forEach(a=>a.classList.toggle('active', a.getAttribute('href').slice(1)===id));
-    });
-    // Smooth scroll
-    links.forEach(a=>{
-      a.addEventListener('click',e=>{
-        let t = document.getElementById(a.getAttribute('href').slice(1));
-        if(t){ e.preventDefault(); t.scrollIntoView({behavior:"smooth"});}
-      });
-    });
-  </script>
+  </nav>
+  <!-- Home Section -->
+  <section id="home" class="home-section">
+    <div class="container home-flex">
+      <div class="profile-icon">
+        <img src="assets/images/IMG_0736.jpg" alt="Hajar Cherrouk" />
+      </div>
+      <div class="intro-text">
+        <span class="hello-text">hello, i'm</span>
+        <h1 class="main-name">HAJAR CHERROUK</h1>
+        <span class="typed-tags"><span id="typed"></span></span>
+        <div class="home-actions">
+          <button class="main-btn" id="contact-btn"><i class="fa-regular fa-envelope"></i>EmailJS Integration</button>
+          <a href="assets/Hajar_Cherrouk_CV.pdf" class="main-btn" id="cv-btn" download><i class="fa-solid fa-file-arrow-down"></i>Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form & Info -->
+  <section id="contact" class="contact-section">
+    <div class="container contact-flex">
+      <form id="contact-form" autocomplete="off">
+        <h2>Contact Me</h2>
+        <div class="input-group">
+          <input type="text" id="name" name="name" placeholder="Your full name" required minlength="2" />
+          <span class="input-error" id="name-error"></span>
+        </div>
+        <div class="input-group">
+          <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
+          <span class="input-error" id="email-error"></span>
+        </div>
+        <div class="input-group">
+          <textarea id="message" name="message" placeholder="Your message (minimum 30 characters)" required minlength="30"></textarea>
+          <span class="input-error" id="message-error"></span>
+        </div>
+        <button type="submit" class="main-btn" id="submit-btn">
+          <span id="submit-text">Send Message</span>
+          <span class="spinner" id="submit-spinner"></span>
+        </button>
+        <div class="form-feedback" id="form-feedback"></div>
+      </form>
+      <div class="contact-info">
+        <h3>Other Contact</h3>
+        <ul>
+          <li>
+            <a href="mailto:hajarcrk26@gmail.com">
+              <i class="fa-regular fa-envelope"></i>
+              <span>hajarcrk26@gmail.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="tel:+212724600991">
+              <i class="fa-solid fa-phone"></i>
+              <span>+212 724600991</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ryosvoid" target="_blank">
+              <i class="fab fa-github"></i>
+              <span>github.com/ryosvoid</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-badge featured">Featured</div>
+          <div class="project-image">
+            <img src="assets/images/projects/memory game/memory3.jpeg" alt="Memory Game">
+            <div class="project-overlay">
+              <i class="fas fa-expand"></i>
+              <span>View Details</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Memory Game</h3>
+            <p class="project-description">An interactive card matching game with multiple difficulty, and multiplayer option levels.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">HTML</span>
+                <span class="project-tag">CSS</span>
+                <span class="project-tag">JavaScript</span>
+              </div>
+              <a href="https://github.com/ryosvoid/memory_game" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-badge new">New</div>
+          <div class="project-image">
+            <img src="assets/images/projects/maths game/pyramid_equation1.png" alt="Pyramid Equation Game">
+            <div class="project-overlay">
+              <i class="fas fa-expand"></i>
+              <span>View Details</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Pyramid Equation Game</h3>
+            <p class="project-description">A brainy yet beautiful game that tests your memory, logic, and math skills.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="project-tag">HTML</span>
+                <span class="project-tag">CSS</span>
+                <span class="project-tag">JavaScript</span>
+              </div>
+              <a href="https://github.com/ryosvoid/maths-pyramid-game" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="https://i.pinimg.com/736x/17/8a/ac/178aac81579eeb9ec43d60c45ebe6053.jpg" alt="IoT Project">
+            <div class="project-overlay">
+              <i class="fas fa-expand"></i>
+              <span>View Details</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Smart Garden System</h3>
+            <p class="project-description">An IoT solution for monitoring and automating plant care with real-time data.</p>
+            <div class="project-footer">
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">IoT</span>
+                <span class="project-tag">Raspberry Pi</span>
+                <span class="project-tag">Sensors</span>
+              </div>
+              <a href="#" class="project-link">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Add more projects as needed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates Section -->
+  <section id="certificates" class="certificates-section">
+    <div class="container">
+      <h2>Coursera Certificates</h2>
+      <div class="certificates-grid">
+        <div class="certificate-card">
+          <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python Logo" class="certificate-logo">
+          <div class="certificate-badge"><i class="fa-solid fa-certificate"></i> Verified</div>
+          <h3>Python Programming</h3>
+          <p>Issued January 2024</p>
+          <a class="main-btn" href="https://www.coursera.org/verify/443a46b3ed1df1f3ce3e756c9fd281c2" target="_blank">View Certificate</a>
+        </div>
+        <div class="certificate-card">
+          <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="Web Dev Logo" class="certificate-logo">
+          <div class="certificate-badge"><i class="fa-solid fa-certificate"></i> Verified</div>
+          <h3>Web Development Fundamentals</h3>
+          <p>Issued March 2025</p>
+          <a class="main-btn" href="https://www.coursera.org/verify/84b220c7977604f1ce66acbda583d290" target="_blank">View Certificate</a>
+        </div>
+        <div class="certificate-card">
+          <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Excel Logo" class="certificate-logo">
+          <div class="certificate-badge"><i class="fa-solid fa-certificate"></i> Verified</div>
+          <h3>Microsoft Excel Specialist</h3>
+          <p>Issued February 2025</p>
+          <a class="main-btn" href="https://www.coursera.org/verify/a5fd432d507960e5fd70f8f6b5145c7e" target="_blank">View Certificate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-flex">
+      <span>© 2024 Hajar Cherrouk</span>
+      <span>Built with <span style="color:#CC1B95;font-size:1.2em;">♥</span></span>
+    </div>
+  </footer>
+  <script src="main.js"></script>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </body>
 </html>
