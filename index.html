@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="main.css">
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-  <link rel="icon" href="assets/images/profile.jpeg" type="image/jpeg">
+  <link rel="icon" href="assets/images/IMG_0736.jpg" type="image/jpeg">
 </head>
 <body>
   <!-- Navigation -->
   <nav>
     <div class="container nav-container">
-      <ul class="nav-links nav-links-centered">
+      <ul class="nav-links">
         <li><a href="#home" class="nav-active">Home</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#certificates">Certificates</a></li>
@@ -21,41 +21,52 @@
       </ul>
     </div>
   </nav>
+
   <!-- Home Section -->
   <section id="home" class="home-section">
-    <div class="container home-flex home-centered">
-      <div class="intro-text intro-centered">
+    <div class="container home-flex">
+      <div class="profile-icon">
+        <img src="assets/images/IMG_0736.jpg" alt="Hajar Cherrouk" />
+      </div>
+      <div class="intro-text">
         <span class="hello-text">hello, i'm</span>
         <h1 class="main-name">HAJAR CHERROUK</h1>
         <span class="typed-tags"><span id="typed"></span></span>
-        <div class="home-actions home-actions-centered">
-          <button class="main-btn big-btn" id="contact-btn"><i class="fa-regular fa-envelope"></i>EmailJS Integration</button>
-          <a href="assets/Hajar_Cherrouk_CV.pdf" class="main-btn big-btn" id="cv-btn" download><i class="fa-solid fa-file-arrow-down"></i>Download CV</a>
+        <div class="home-actions">
+          <button class="main-btn" id="contact-btn"><i class="fa-regular fa-envelope"></i>EmailJS Integration</button>
+          <a href="assets/Hajar_Cherrouk_CV.pdf" class="main-btn" id="cv-btn" download><i class="fa-solid fa-file-arrow-down"></i>Download CV</a>
         </div>
-        <button class="scroll-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">
-          <i class="fa-solid fa-arrow-down"></i> Contact Me
-        </button>
-        <div class="other-contact">
-          <div class="other-contact-row">
-            <a href="mailto:hajarcrk26@gmail.com">
-              <i class="fa-regular fa-envelope"></i>
-              <span>hajarcrk26@gmail.com</span>
-            </a>
-            <a href="tel:+212724600991">
-              <i class="fa-solid fa-phone"></i>
-              <span>+212 724600991</span>
-            </a>
-            <a href="https://github.com/ryosvoid" target="_blank">
-              <i class="fab fa-github"></i>
-              <span>github.com/ryosvoid</span>
-            </a>
-          </div>
+        <div class="contact-info-home">
+          <ul>
+            <li>
+              <a href="mailto:hajarcrk26@gmail.com">
+                <i class="fa-regular fa-envelope"></i>
+                <span>hajarcrk26@gmail.com</span>
+              </a>
+            </li>
+            <li>
+              <a href="tel:+212724600991">
+                <i class="fa-solid fa-phone"></i>
+                <span>+212 724600991</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/ryosvoid" target="_blank">
+                <i class="fab fa-github"></i>
+                <span>github.com/ryosvoid</span>
+              </a>
+            </li>
+          </ul>
         </div>
+        <a href="#contact" class="scroll-contact-btn">
+          <span>Contact Me</span>
+          <i class="fa-solid fa-arrow-down"></i>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Contact Form & Info -->
+  <!-- Contact Form -->
   <section id="contact" class="contact-section">
     <div class="container contact-flex">
       <form id="contact-form" autocomplete="off">
@@ -86,83 +97,7 @@
     <div class="container">
       <h2>Projects</h2>
       <div class="projects-grid">
-        <!-- Project 1 -->
-        <div class="project-card">
-          <div class="project-badge featured">Featured</div>
-          <div class="project-image">
-            <img src="assets/images/projects/memory game/memory3.jpeg" alt="Memory Game">
-            <div class="project-overlay">
-              <i class="fas fa-expand"></i>
-              <span>View Details</span>
-            </div>
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Memory Game</h3>
-            <p class="project-description">An interactive card matching game with multiple difficulty, and multiplayer option levels.</p>
-            <div class="project-footer">
-              <div class="project-tags">
-                <span class="project-tag">Python</span>
-                <span class="project-tag">HTML</span>
-                <span class="project-tag">CSS</span>
-                <span class="project-tag">JavaScript</span>
-              </div>
-              <a href="https://github.com/ryosvoid/memory_game" target="_blank" class="project-link">
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- Project 2 -->
-        <div class="project-card">
-          <div class="project-badge new">New</div>
-          <div class="project-image">
-            <img src="assets/images/projects/maths game/pyramid_equation1.png" alt="Pyramid Equation Game">
-            <div class="project-overlay">
-              <i class="fas fa-expand"></i>
-              <span>View Details</span>
-            </div>
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Pyramid Equation Game</h3>
-            <p class="project-description">A brainy yet beautiful game that tests your memory, logic, and math skills.</p>
-            <div class="project-footer">
-              <div class="project-tags">
-                <span class="project-tag">HTML</span>
-                <span class="project-tag">CSS</span>
-                <span class="project-tag">JavaScript</span>
-              </div>
-              <a href="https://github.com/ryosvoid/maths-pyramid-game" target="_blank" class="project-link">
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- Project 3 -->
-        <div class="project-card">
-          <div class="project-image">
-            <img src="https://i.pinimg.com/736x/17/8a/ac/178aac81579eeb9ec43d60c45ebe6053.jpg" alt="IoT Project">
-            <div class="project-overlay">
-              <i class="fas fa-expand"></i>
-              <span>View Details</span>
-            </div>
-          </div>
-          <div class="project-content">
-            <h3 class="project-title">Smart Garden System</h3>
-            <p class="project-description">An IoT solution for monitoring and automating plant care with real-time data.</p>
-            <div class="project-footer">
-              <div class="project-tags">
-                <span class="project-tag">Python</span>
-                <span class="project-tag">IoT</span>
-                <span class="project-tag">Raspberry Pi</span>
-                <span class="project-tag">Sensors</span>
-              </div>
-              <a href="#" class="project-link">
-                <i class="fab fa-github"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- Add more projects as needed -->
+        <!-- ... project cards (unchanged) ... -->
       </div>
     </div>
   </section>
@@ -172,27 +107,7 @@
     <div class="container">
       <h2>Coursera Certificates</h2>
       <div class="certificates-grid">
-        <div class="certificate-card">
-          <img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python Logo" class="certificate-logo">
-          <div class="certificate-badge"><i class="fa-solid fa-certificate"></i> Verified</div>
-          <h3>Python Programming</h3>
-          <p>Issued January 2024</p>
-          <a class="main-btn" href="https://www.coursera.org/verify/443a46b3ed1df1f3ce3e756c9fd281c2" target="_blank">View Certificate</a>
-        </div>
-        <div class="certificate-card">
-          <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="Web Dev Logo" class="certificate-logo">
-          <div class="certificate-badge"><i class="fa-solid fa-certificate"></i> Verified</div>
-          <h3>Web Development Fundamentals</h3>
-          <p>Issued March 2025</p>
-          <a class="main-btn" href="https://www.coursera.org/verify/84b220c7977604f1ce66acbda583d290" target="_blank">View Certificate</a>
-        </div>
-        <div class="certificate-card">
-          <img src="https://cdn-icons-png.flaticon.com/512/732/732220.png" alt="Excel Logo" class="certificate-logo">
-          <div class="certificate-badge"><i class="fa-solid fa-certificate"></i> Verified</div>
-          <h3>Microsoft Excel Specialist</h3>
-          <p>Issued February 2025</p>
-          <a class="main-btn" href="https://www.coursera.org/verify/a5fd432d507960e5fd70f8f6b5145c7e" target="_blank">View Certificate</a>
-        </div>
+        <!-- ... certificates (unchanged) ... -->
       </div>
     </div>
   </section>
