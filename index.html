@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Hajar Cherrouk | Portfolio</title>
+  <title>Hajar Cherrouk Portfolio</title>
   <link rel="stylesheet" href="main.css">
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
@@ -13,10 +13,7 @@
   <!-- Navigation -->
   <nav>
     <div class="container nav-container">
-      <div class="nav-logo">
-        <img src="assets/images/IMG_0736.jpg" alt="Hajar Cherrouk Icon" />
-      </div>
-      <ul class="nav-links">
+      <ul class="nav-links nav-links-centered">
         <li><a href="#home" class="nav-active">Home</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#certificates">Certificates</a></li>
@@ -26,17 +23,33 @@
   </nav>
   <!-- Home Section -->
   <section id="home" class="home-section">
-    <div class="container home-flex">
-      <div class="profile-icon">
-        <img src="assets/images/IMG_0736.jpg" alt="Hajar Cherrouk" />
-      </div>
-      <div class="intro-text">
+    <div class="container home-flex home-centered">
+      <div class="intro-text intro-centered">
         <span class="hello-text">hello, i'm</span>
         <h1 class="main-name">HAJAR CHERROUK</h1>
         <span class="typed-tags"><span id="typed"></span></span>
-        <div class="home-actions">
-          <button class="main-btn" id="contact-btn"><i class="fa-regular fa-envelope"></i>EmailJS Integration</button>
-          <a href="assets/Hajar_Cherrouk_CV.pdf" class="main-btn" id="cv-btn" download><i class="fa-solid fa-file-arrow-down"></i>Download CV</a>
+        <div class="home-actions home-actions-centered">
+          <button class="main-btn big-btn" id="contact-btn"><i class="fa-regular fa-envelope"></i>EmailJS Integration</button>
+          <a href="assets/Hajar_Cherrouk_CV.pdf" class="main-btn big-btn" id="cv-btn" download><i class="fa-solid fa-file-arrow-down"></i>Download CV</a>
+        </div>
+        <button class="scroll-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">
+          <i class="fa-solid fa-arrow-down"></i> Contact Me
+        </button>
+        <div class="other-contact">
+          <div class="other-contact-row">
+            <a href="mailto:hajarcrk26@gmail.com">
+              <i class="fa-regular fa-envelope"></i>
+              <span>hajarcrk26@gmail.com</span>
+            </a>
+            <a href="tel:+212724600991">
+              <i class="fa-solid fa-phone"></i>
+              <span>+212 724600991</span>
+            </a>
+            <a href="https://github.com/ryosvoid" target="_blank">
+              <i class="fab fa-github"></i>
+              <span>github.com/ryosvoid</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -65,29 +78,6 @@
         </button>
         <div class="form-feedback" id="form-feedback"></div>
       </form>
-      <div class="contact-info">
-        <h3>Other Contact</h3>
-        <ul>
-          <li>
-            <a href="mailto:hajarcrk26@gmail.com">
-              <i class="fa-regular fa-envelope"></i>
-              <span>hajarcrk26@gmail.com</span>
-            </a>
-          </li>
-          <li>
-            <a href="tel:+212724600991">
-              <i class="fa-solid fa-phone"></i>
-              <span>+212 724600991</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/ryosvoid" target="_blank">
-              <i class="fab fa-github"></i>
-              <span>github.com/ryosvoid</span>
-            </a>
-          </li>
-        </ul>
-      </div>
     </div>
   </section>
 
